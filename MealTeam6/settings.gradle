@@ -1,0 +1,3 @@
+rootProject.name = 'MealTeam6'
+
+includeFlat 'JPAMealTeam6'
