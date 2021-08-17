@@ -15,7 +15,7 @@ import com.skilldistillery.mealteam6.entities.User;
 import com.skilldistillery.mealteam6.services.AuthService;
 
 @RestController
-@CrossOrigin({"*", "http://localhost:4201"})
+@CrossOrigin({"*", "http://localhost:1776"})
 public class AuthController {
 	
 	@Autowired
