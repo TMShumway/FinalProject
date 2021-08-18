@@ -129,14 +129,7 @@ CREATE TABLE IF NOT EXISTS `restriction` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
   `description` VARCHAR(45) NULL,
-  `recipe_id` INT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_restrictions_recipe1_idx` (`recipe_id` ASC),
-  CONSTRAINT `fk_restrictions_recipe1`
-    FOREIGN KEY (`recipe_id`)
-    REFERENCES `recipe` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 
@@ -392,6 +385,30 @@ CREATE TABLE IF NOT EXISTS `favorite_user` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `restriction_has_recipe`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `restriction_has_recipe` ;
+
+CREATE TABLE IF NOT EXISTS `restriction_has_recipe` (
+  `restriction_id` INT NOT NULL,
+  `recipe_id` INT NOT NULL,
+  PRIMARY KEY (`restriction_id`, `recipe_id`),
+  INDEX `fk_restriction_has_recipe_recipe1_idx` (`recipe_id` ASC),
+  INDEX `fk_restriction_has_recipe_restriction1_idx` (`restriction_id` ASC),
+  CONSTRAINT `fk_restriction_has_recipe_restriction1`
+    FOREIGN KEY (`restriction_id`)
+    REFERENCES `restriction` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_restriction_has_recipe_recipe1`
+    FOREIGN KEY (`recipe_id`)
+    REFERENCES `recipe` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 SET SQL_MODE = '';
 DROP USER IF EXISTS cookbookdb;
 SET SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
@@ -474,14 +491,14 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `cookbookdb`;
-INSERT INTO `restriction` (`id`, `name`, `description`, `recipe_id`) VALUES (1, 'Gluten-Free', NULL, NULL);
-INSERT INTO `restriction` (`id`, `name`, `description`, `recipe_id`) VALUES (2, 'Vegetarian', NULL, NULL);
-INSERT INTO `restriction` (`id`, `name`, `description`, `recipe_id`) VALUES (3, 'Vegan', NULL, NULL);
-INSERT INTO `restriction` (`id`, `name`, `description`, `recipe_id`) VALUES (4, 'Keto-friendly', NULL, NULL);
-INSERT INTO `restriction` (`id`, `name`, `description`, `recipe_id`) VALUES (5, 'Diabetic', NULL, NULL);
-INSERT INTO `restriction` (`id`, `name`, `description`, `recipe_id`) VALUES (6, 'Low Cholestrol ', NULL, NULL);
-INSERT INTO `restriction` (`id`, `name`, `description`, `recipe_id`) VALUES (7, 'Nut-allergy', NULL, NULL);
-INSERT INTO `restriction` (`id`, `name`, `description`, `recipe_id`) VALUES (8, 'Water-allergy', NULL, NULL);
+INSERT INTO `restriction` (`id`, `name`, `description`) VALUES (1, 'Gluten-Free', NULL);
+INSERT INTO `restriction` (`id`, `name`, `description`) VALUES (2, 'Vegetarian', NULL);
+INSERT INTO `restriction` (`id`, `name`, `description`) VALUES (3, 'Vegan', NULL);
+INSERT INTO `restriction` (`id`, `name`, `description`) VALUES (4, 'Keto-friendly', NULL);
+INSERT INTO `restriction` (`id`, `name`, `description`) VALUES (5, 'Diabetic', NULL);
+INSERT INTO `restriction` (`id`, `name`, `description`) VALUES (6, 'Low Cholestrol ', NULL);
+INSERT INTO `restriction` (`id`, `name`, `description`) VALUES (7, 'Nut-allergy', NULL);
+INSERT INTO `restriction` (`id`, `name`, `description`) VALUES (8, 'Water-allergy', NULL);
 
 COMMIT;
 
@@ -659,6 +676,21 @@ INSERT INTO `favorite_user` (`user_id`, `favorite_id`) VALUES (1, 2);
 INSERT INTO `favorite_user` (`user_id`, `favorite_id`) VALUES (2, 1);
 INSERT INTO `favorite_user` (`user_id`, `favorite_id`) VALUES (3, 4);
 INSERT INTO `favorite_user` (`user_id`, `favorite_id`) VALUES (4, 2);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `restriction_has_recipe`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `cookbookdb`;
+INSERT INTO `restriction_has_recipe` (`restriction_id`, `recipe_id`) VALUES (1, 1);
+INSERT INTO `restriction_has_recipe` (`restriction_id`, `recipe_id`) VALUES (2, 2);
+INSERT INTO `restriction_has_recipe` (`restriction_id`, `recipe_id`) VALUES (3, 3);
+INSERT INTO `restriction_has_recipe` (`restriction_id`, `recipe_id`) VALUES (3, 4);
+INSERT INTO `restriction_has_recipe` (`restriction_id`, `recipe_id`) VALUES (4, 5);
+INSERT INTO `restriction_has_recipe` (`restriction_id`, `recipe_id`) VALUES (8, 5);
 
 COMMIT;
 

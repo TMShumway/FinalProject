@@ -1,14 +1,18 @@
 package com.skilldistillery.mealteam6.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
+
 
 @Entity
 public class Recipe {
@@ -25,6 +29,27 @@ public class Recipe {
 	@Column(name="date_created")
 	private LocalDateTime dateCreated;
 	private Integer published;
+	
+	@OneToMany(mappedBy="recipe") 
+	private List<RecipeImage> recipeImages;
+	
+	@OneToMany(mappedBy="recipe")
+	private List<Rating> ratings;
+	
+	@OneToMany(mappedBy="recipe")
+	private List<Post> posts;
+	
+	@OneToMany(mappedBy="recipe")
+	private List<RecipeComment> recipeComments;
+	
+	@ManyToMany(mappedBy="recipes")
+	private List<Category> categories;
+	
+	@ManyToMany(mappedBy="recipes")
+	private List<Ingredient> ingredients;
+	
+	@ManyToMany(mappedBy="recipe")
+	private List<Restriction> restrictions;
 	
 /////////////// Methods ////////////////
 	
