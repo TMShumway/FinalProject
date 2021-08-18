@@ -47,7 +47,7 @@ class RecipeCommentTest {
 //		|  1 |         1 | THIS IS COOL!!! |       1 | NULL         |                    NULL |
 		assertNotNull(recipeComment);
 		assertEquals("THIS IS COOL!!!", recipeComment.getDetails());
-		assertNull(recipeComment.getDateCreated());
+		assertNotNull(recipeComment.getDateCreated());
 		
 	}
 
