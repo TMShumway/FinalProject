@@ -24,8 +24,8 @@ public class User {
 	@OneToMany(mappedBy="user")
 	private List<Post> posts;
 	
-//	@OneToMany(mappedBy="user")
-//	private List<Rating> ratings;
+	@OneToMany(mappedBy="user")
+	private List<Rating> ratings;
 	
 	@OneToMany(mappedBy="user")
 	private List<PostComment> postComments;
@@ -98,13 +98,13 @@ public class User {
 		this.posts = posts;
 	}
 
-//	public List<Rating> getRatings() {
-//		return ratings;
-//	}
-//
-//	public void setRatings(List<Rating> ratings) {
-//		this.ratings = ratings;
-//	}
+	public List<Rating> getRatings() {
+		return ratings;
+	}
+
+	public void setRatings(List<Rating> ratings) {
+		this.ratings = ratings;
+	}
 
 	public List<PostComment> getPostComments() {
 		return postComments;

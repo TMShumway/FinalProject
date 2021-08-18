@@ -51,10 +51,10 @@ class UserTest {
 		assertEquals(3, user.getPosts().size());
 	}
 	
-//	@Test
-//	void test_user_to_ratings_mapping() {
-//		assertEquals(2, user.getRatings().size());
-//	}
+	@Test
+	void test_user_to_ratings_mapping() {
+		assertEquals(2, user.getRatings().size());
+	}
 	
 	@Test
 	void test_user_to_post_comment_mapping() {
