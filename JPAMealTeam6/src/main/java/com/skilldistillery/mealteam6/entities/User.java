@@ -1,9 +1,12 @@
 package com.skilldistillery.mealteam6.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class User {
@@ -17,6 +20,15 @@ public class User {
 	private Boolean enabled;
 	private String email;
 	private String role;
+	
+	@OneToMany(mappedBy="user")
+	private List<Post> posts;
+	
+//	@OneToMany(mappedBy="user")
+//	private List<Rating> ratings;
+	
+	@OneToMany(mappedBy="user")
+	private List<PostComment> postComments;
 	
 	//TODO: Other user fields
 	
@@ -70,6 +82,30 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public List<Post> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
+	}
+
+//	public List<Rating> getRatings() {
+//		return ratings;
+//	}
+//
+//	public void setRatings(List<Rating> ratings) {
+//		this.ratings = ratings;
+//	}
+
+	public List<PostComment> getPostComments() {
+		return postComments;
+	}
+
+	public void setPostComments(List<PostComment> postComments) {
+		this.postComments = postComments;
 	}
 
 	@Override
