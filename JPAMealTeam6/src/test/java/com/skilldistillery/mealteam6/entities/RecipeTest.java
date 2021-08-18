@@ -1,7 +1,6 @@
 package com.skilldistillery.mealteam6.entities;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -13,12 +12,12 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class PostTest {
+class RecipeTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Post post;
-	
+	private Recipe recipe;
+
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		emf = Persistence.createEntityManagerFactory("JPAMealTeam6");
@@ -32,19 +31,20 @@ class PostTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		post = em.find(Post.class, 1);
+		recipe = em.find(Recipe.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		post = null;
+		recipe = null;
 	}
 
 	@Test
 	void test() {
-		assertNotNull(post);
-		assertEquals("Makin italian tonight!", post.getTitle());
-		assertEquals("spaghet", post.getDescription());
+		assertNotNull(recipe);
+		assertEquals("Spaghetti", recipe.getName());
+		assertEquals("And meatballs!", recipe.getDescription());
 	}
+
 }
