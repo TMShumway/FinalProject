@@ -349,12 +349,14 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `recipe_image` ;
 
 CREATE TABLE IF NOT EXISTS `recipe_image` (
+  `id` INT NOT NULL,
   `recipe_id` INT NOT NULL,
   `image_url` MEDIUMTEXT NULL,
   `date_created` DATETIME NULL,
   `user_id` INT NOT NULL,
   INDEX `fk_recipe_img_recipe1_idx` (`recipe_id` ASC),
   INDEX `fk_recipe_image_user1_idx` (`user_id` ASC),
+  PRIMARY KEY (`id`),
   CONSTRAINT `fk_recipe_img_recipe1`
     FOREIGN KEY (`recipe_id`)
     REFERENCES `recipe` (`id`)
@@ -640,11 +642,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `cookbookdb`;
-INSERT INTO `recipe_image` (`recipe_id`, `image_url`, `date_created`, `user_id`) VALUES (1, 'https://unsplash.com/photos/Ucwd8w-JHwM', NULL, 1);
-INSERT INTO `recipe_image` (`recipe_id`, `image_url`, `date_created`, `user_id`) VALUES (2, 'https://unsplash.com/photos/MqT0asuoIcU', NULL, 2);
-INSERT INTO `recipe_image` (`recipe_id`, `image_url`, `date_created`, `user_id`) VALUES (4, 'https://www.this-is-italy.com/wp-content/uploads/2019/12/Gabagool.jpg', NULL, 3);
-INSERT INTO `recipe_image` (`recipe_id`, `image_url`, `date_created`, `user_id`) VALUES (3, 'https://unsplash.com/photos/WjdOYhgTGCM', NULL, 4);
-INSERT INTO `recipe_image` (`recipe_id`, `image_url`, `date_created`, `user_id`) VALUES (5, 'https://unsplash.com/photos/d8s13D29QiE', NULL, 1);
+INSERT INTO `recipe_image` (`id`, `recipe_id`, `image_url`, `date_created`, `user_id`) VALUES (1, 1, 'https://unsplash.com/photos/Ucwd8w-JHwM', NULL, 1);
+INSERT INTO `recipe_image` (`id`, `recipe_id`, `image_url`, `date_created`, `user_id`) VALUES (2, 2, 'https://unsplash.com/photos/MqT0asuoIcU', NULL, 2);
+INSERT INTO `recipe_image` (`id`, `recipe_id`, `image_url`, `date_created`, `user_id`) VALUES (3, 4, 'https://www.this-is-italy.com/wp-content/uploads/2019/12/Gabagool.jpg', NULL, 3);
+INSERT INTO `recipe_image` (`id`, `recipe_id`, `image_url`, `date_created`, `user_id`) VALUES (4, 3, 'https://unsplash.com/photos/WjdOYhgTGCM', NULL, 4);
+INSERT INTO `recipe_image` (`id`, `recipe_id`, `image_url`, `date_created`, `user_id`) VALUES (5, 5, 'https://unsplash.com/photos/d8s13D29QiE', NULL, 1);
 
 COMMIT;
 
