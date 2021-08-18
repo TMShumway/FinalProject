@@ -34,6 +34,10 @@ public class Post {
 	@JoinColumn(name="user_id")
 	private User user;
 
+	@ManyToOne
+	@JoinColumn(name="recipe_id")
+	private Recipe recipe;
+
 	public int getId() {
 		return id;
 	}
