@@ -26,7 +26,7 @@ public class Category {
 			   joinColumns = @JoinColumn(name = "category_id"),
 			   inverseJoinColumns = @JoinColumn(name = "recipe_id")
 			  )
-	private List<Recipe> recipe;
+	private List<Recipe> recipes;
 	
 	
 	//////////// Methods
