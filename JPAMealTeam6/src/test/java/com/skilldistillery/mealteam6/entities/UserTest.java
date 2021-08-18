@@ -50,12 +50,23 @@ class UserTest {
 	void test_post_to_user_mapping() {
 		assertEquals(3, user.getPosts().size());
 	}
+	
 //	@Test
 //	void test_user_to_ratings_mapping() {
 //		assertEquals(2, user.getRatings().size());
 //	}
+	
 	@Test
 	void test_user_to_post_comment_mapping() {
 		assertEquals(3, user.getPostComments().size());
+	}
+
+	@Test
+	void test_user_to_recipe_comment_mapping() {
+//		| id | recipe_id | details         | user_id | date_created | recipe_comment_reply_id |
+//		+----+-----------+-----------------+---------+--------------+-------------------------+
+//		|  1 |         1 | THIS IS COOL!!! |       1 | NULL         |                    NULL |
+//		|  4 |         3 | Gross.          |       1 | NULL         |                    NULL |
+		assertEquals(2, user.getRecipeComments().size());
 	}
 }

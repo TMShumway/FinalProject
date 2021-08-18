@@ -29,6 +29,12 @@ public class User {
 	
 	@OneToMany(mappedBy="user")
 	private List<PostComment> postComments;
+
+	@OneToMany(mappedBy="user")
+	private List<RecipeComment> recipeComments;
+
+	@OneToMany(mappedBy="user")
+	private List<RecipeImage> recipeImages;
 	
 	//TODO: Other user fields
 	
@@ -106,6 +112,22 @@ public class User {
 
 	public void setPostComments(List<PostComment> postComments) {
 		this.postComments = postComments;
+	}
+
+	public List<RecipeComment> getRecipeComments() {
+		return recipeComments;
+	}
+
+	public void setRecipeComments(List<RecipeComment> recipeComments) {
+		this.recipeComments = recipeComments;
+	}
+
+	public List<RecipeImage> getRecipeImages() {
+		return recipeImages;
+	}
+
+	public void setRecipeImages(List<RecipeImage> recipeImages) {
+		this.recipeImages = recipeImages;
 	}
 
 	@Override
