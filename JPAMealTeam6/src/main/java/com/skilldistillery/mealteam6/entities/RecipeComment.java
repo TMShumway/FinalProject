@@ -1,12 +1,18 @@
 package com.skilldistillery.mealteam6.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -25,7 +31,24 @@ public class RecipeComment {
 	@Column(name="date_created")
 	private LocalDateTime dateCreated;
 
+	@ManyToOne
+	@JoinColumn(name = "recipe_id")
+	private Recipe recipe;
 	
+	@OneToMany
+	@JoinColumn(name = "id")
+	private List<RecipeComment> recipeComment;
+	
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
+	
+	@ManyToMany
+	@JoinTable(name = "recipe_comment_like",
+			   joinColumns = @JoinColumn(name = "recipe_comment_id"),
+			   inverseJoinColumns = @JoinColumn(name = "user_id")
+			  )
+	private List<User> userLikes;
 	///////////////////// Methods
 	public RecipeComment() {}
 	

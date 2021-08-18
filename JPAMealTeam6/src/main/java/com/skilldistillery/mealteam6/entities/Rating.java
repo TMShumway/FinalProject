@@ -7,6 +7,7 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 
 @Entity
 public class Rating {
@@ -23,6 +24,16 @@ public class Rating {
 //	@JoinColumn(name="user_id")
 //	private User user;
 
+	@ManyToOne
+	@JoinColumn(name = "recipe_id")
+	@MapsId(value = "recipeId")
+	private Recipe recipe;
+
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	@MapsId(value = "userId")
+	private User user;
+	
 	public RatingId getId() {
 		return id;
 	}
