@@ -433,7 +433,7 @@ START TRANSACTION;
 USE `cookbookdb`;
 INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`, `date_created`, `image_url`) VALUES (1, 'admin', NULL, 'admin@admintime.com', 'ADMIN', 1, '2021-07-20T21:46:28', NULL);
 INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`, `date_created`, `image_url`) VALUES (2, 'user', 'user', 'user@usermail.com', 'USER', 1, '2021-07-20T21:46:28', NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`, `date_created`, `image_url`) VALUES (3, 'frog', 'frog', 'frog@frogmail.com', 'FROG', 1, '2021-07-20T21:46:28', NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`, `date_created`, `image_url`) VALUES (3, 'frog', 'ZnJvZw==', 'frog@frogmail.com', 'FROG', 1, '2021-07-20T21:46:28', NULL);
 INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`, `date_created`, `image_url`) VALUES (4, 'gorilla', 'gorilla', 'gorilla@gorilla.com', 'BANANA', 1, '2021-07-20T21:46:28', NULL);
 
 COMMIT;
