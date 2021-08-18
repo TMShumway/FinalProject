@@ -12,6 +12,8 @@
 		<class>com.skilldistillery.mealteam6.entities.RecipeImage</class>
 		<class>com.skilldistillery.mealteam6.entities.Restriction</class>
 		<class>com.skilldistillery.mealteam6.entities.User</class>
+		<class>com.skilldistillery.mealteam6.entities.RatingId</class>
+		<class>com.skilldistillery.mealteam6.entities.RecipeImageId</class>
 		<!-- End of Entity List -->
 		<properties>
 			<property name="javax.persistence.jdbc.url"
