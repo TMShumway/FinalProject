@@ -73,6 +73,6 @@ class UserTest {
 	@Test
 	void test_user_to_recipe_image_mapping() {
 
-		assertEquals(2, user.getRecipeImages().size());
+		assertEquals(2, user.getRecipeComments().size());
 	}
 }

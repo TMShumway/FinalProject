@@ -42,12 +42,10 @@ class RecipeCommentTest {
 	
 	@Test
 	void test() {
-//		| id | recipe_id | details         | user_id | date_created | recipe_comment_reply_id |
-//		+----+-----------+-----------------+---------+--------------+-------------------------+
-//		|  1 |         1 | THIS IS COOL!!! |       1 | NULL         |                    NULL |
+
 		assertNotNull(recipeComment);
 		assertEquals("THIS IS COOL!!!", recipeComment.getDetails());
-		assertNull(recipeComment.getDateCreated());
+		assertNotNull(recipeComment.getDateCreated());
 		
 	}
 
