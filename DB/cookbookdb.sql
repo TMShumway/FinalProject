@@ -218,12 +218,12 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `rating` ;
 
 CREATE TABLE IF NOT EXISTS `rating` (
-  `star_rating` TINYINT NULL,
   `recipe_id` INT NOT NULL,
   `user_id` INT NOT NULL,
+  `star_rating` TINYINT NULL,
   INDEX `fk_rating_recipe1_idx` (`recipe_id` ASC),
   INDEX `fk_rating_user1_idx` (`user_id` ASC),
-  PRIMARY KEY (`user_id`, `recipe_id`),
+  PRIMARY KEY (`recipe_id`, `user_id`),
   CONSTRAINT `fk_rating_recipe1`
     FOREIGN KEY (`recipe_id`)
     REFERENCES `recipe` (`id`)
@@ -349,14 +349,13 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `recipe_image` ;
 
 CREATE TABLE IF NOT EXISTS `recipe_image` (
-  `id` INT NOT NULL,
   `recipe_id` INT NOT NULL,
+  `user_id` INT NOT NULL,
   `image_url` MEDIUMTEXT NULL,
   `date_created` DATETIME NULL,
-  `user_id` INT NOT NULL,
   INDEX `fk_recipe_img_recipe1_idx` (`recipe_id` ASC),
   INDEX `fk_recipe_image_user1_idx` (`user_id` ASC),
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`recipe_id`, `user_id`),
   CONSTRAINT `fk_recipe_img_recipe1`
     FOREIGN KEY (`recipe_id`)
     REFERENCES `recipe` (`id`)
@@ -415,10 +414,10 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `cookbookdb`;
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`, `date_created`, `image_url`) VALUES (1, 'admin', NULL, 'admin@admintime.com', 'ADMIN', 1, NULL, NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`, `date_created`, `image_url`) VALUES (2, 'user', 'user', 'user@usermail.com', 'USER', 1, NULL, NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`, `date_created`, `image_url`) VALUES (3, 'frog', 'frog', 'frog@frogmail.com', 'FROG', 1, NULL, NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`, `date_created`, `image_url`) VALUES (4, 'gorilla', 'gorilla', 'gorilla@gorilla.com', 'BANANA', 1, NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`, `date_created`, `image_url`) VALUES (1, 'admin', NULL, 'admin@admintime.com', 'ADMIN', 1, '2021-07-20T21:46:28', NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`, `date_created`, `image_url`) VALUES (2, 'user', 'user', 'user@usermail.com', 'USER', 1, '2021-07-20T21:46:28', NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`, `date_created`, `image_url`) VALUES (3, 'frog', 'frog', 'frog@frogmail.com', 'FROG', 1, '2021-07-20T21:46:28', NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`, `date_created`, `image_url`) VALUES (4, 'gorilla', 'gorilla', 'gorilla@gorilla.com', 'BANANA', 1, '2021-07-20T21:46:28', NULL);
 
 COMMIT;
 
@@ -428,11 +427,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `cookbookdb`;
-INSERT INTO `recipe` (`id`, `name`, `description`, `date_created`, `user_id`, `published`, `recipe_step`) VALUES (1, 'Spaghetti', 'And meatballs!', NULL, 1, NULL, NULL);
-INSERT INTO `recipe` (`id`, `name`, `description`, `date_created`, `user_id`, `published`, `recipe_step`) VALUES (2, 'Pizza', 'with ONLY CHEESE', NULL, 1, NULL, NULL);
-INSERT INTO `recipe` (`id`, `name`, `description`, `date_created`, `user_id`, `published`, `recipe_step`) VALUES (3, 'Ramen', 'SPICY', NULL, 2, NULL, NULL);
-INSERT INTO `recipe` (`id`, `name`, `description`, `date_created`, `user_id`, `published`, `recipe_step`) VALUES (4, 'Gabagool', 'arrivederci', NULL, 3, NULL, NULL);
-INSERT INTO `recipe` (`id`, `name`, `description`, `date_created`, `user_id`, `published`, `recipe_step`) VALUES (5, 'Birthday Cake', 'for the birthday', NULL, 4, NULL, NULL);
+INSERT INTO `recipe` (`id`, `name`, `description`, `date_created`, `user_id`, `published`, `recipe_step`) VALUES (1, 'Spaghetti', 'And meatballs!', '2021-07-20T21:46:28', 1, 1, NULL);
+INSERT INTO `recipe` (`id`, `name`, `description`, `date_created`, `user_id`, `published`, `recipe_step`) VALUES (2, 'Pizza', 'with ONLY CHEESE', '2021-07-20T21:46:28', 1, 1, NULL);
+INSERT INTO `recipe` (`id`, `name`, `description`, `date_created`, `user_id`, `published`, `recipe_step`) VALUES (3, 'Ramen', 'SPICY', '2021-07-20T21:46:28', 2, 1, NULL);
+INSERT INTO `recipe` (`id`, `name`, `description`, `date_created`, `user_id`, `published`, `recipe_step`) VALUES (4, 'Gabagool', 'arrivederci', '2021-07-20T21:46:28', 3, 1, NULL);
+INSERT INTO `recipe` (`id`, `name`, `description`, `date_created`, `user_id`, `published`, `recipe_step`) VALUES (5, 'Birthday Cake', 'for the birthday', '2021-07-20T21:46:28', 4, 1, NULL);
 
 COMMIT;
 
@@ -564,11 +563,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `cookbookdb`;
-INSERT INTO `rating` (`star_rating`, `recipe_id`, `user_id`) VALUES (5, 1, 1);
-INSERT INTO `rating` (`star_rating`, `recipe_id`, `user_id`) VALUES (4, 1, 3);
-INSERT INTO `rating` (`star_rating`, `recipe_id`, `user_id`) VALUES (3, 1, 2);
-INSERT INTO `rating` (`star_rating`, `recipe_id`, `user_id`) VALUES (2, 2, 4);
-INSERT INTO `rating` (`star_rating`, `recipe_id`, `user_id`) VALUES (1, 2, 1);
+INSERT INTO `rating` (`recipe_id`, `user_id`, `star_rating`) VALUES (1, 1, 5);
+INSERT INTO `rating` (`recipe_id`, `user_id`, `star_rating`) VALUES (1, 3, 4);
+INSERT INTO `rating` (`recipe_id`, `user_id`, `star_rating`) VALUES (1, 2, 3);
+INSERT INTO `rating` (`recipe_id`, `user_id`, `star_rating`) VALUES (2, 4, 2);
+INSERT INTO `rating` (`recipe_id`, `user_id`, `star_rating`) VALUES (2, 1, 1);
 
 COMMIT;
 
@@ -595,13 +594,13 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `cookbookdb`;
-INSERT INTO `recipe_comment` (`id`, `recipe_id`, `details`, `user_id`, `date_created`, `recipe_comment_reply_id`) VALUES (1, 1, 'THIS IS COOL!!!', 1, NULL, NULL);
-INSERT INTO `recipe_comment` (`id`, `recipe_id`, `details`, `user_id`, `date_created`, `recipe_comment_reply_id`) VALUES (2, 2, 'THIS SUCKS!!!', 2, NULL, NULL);
-INSERT INTO `recipe_comment` (`id`, `recipe_id`, `details`, `user_id`, `date_created`, `recipe_comment_reply_id`) VALUES (3, 1, 'Not bad. 10/10', 3, NULL, NULL);
-INSERT INTO `recipe_comment` (`id`, `recipe_id`, `details`, `user_id`, `date_created`, `recipe_comment_reply_id`) VALUES (4, 3, 'Gross.', 1, NULL, NULL);
-INSERT INTO `recipe_comment` (`id`, `recipe_id`, `details`, `user_id`, `date_created`, `recipe_comment_reply_id`) VALUES (5, 4, 'Nice!', 2, NULL, NULL);
-INSERT INTO `recipe_comment` (`id`, `recipe_id`, `details`, `user_id`, `date_created`, `recipe_comment_reply_id`) VALUES (6, 5, 'Very GOOD', 3, NULL, 5);
-INSERT INTO `recipe_comment` (`id`, `recipe_id`, `details`, `user_id`, `date_created`, `recipe_comment_reply_id`) VALUES (7, 2, 'YOU ARE WRONG!!!', 3, NULL, 2);
+INSERT INTO `recipe_comment` (`id`, `recipe_id`, `details`, `user_id`, `date_created`, `recipe_comment_reply_id`) VALUES (1, 1, 'THIS IS COOL!!!', 1, '2021-07-20T21:46:28', NULL);
+INSERT INTO `recipe_comment` (`id`, `recipe_id`, `details`, `user_id`, `date_created`, `recipe_comment_reply_id`) VALUES (2, 2, 'THIS SUCKS!!!', 2, '2021-07-20T21:46:28', NULL);
+INSERT INTO `recipe_comment` (`id`, `recipe_id`, `details`, `user_id`, `date_created`, `recipe_comment_reply_id`) VALUES (3, 1, 'Not bad. 10/10', 3, '2021-07-20T21:46:28', NULL);
+INSERT INTO `recipe_comment` (`id`, `recipe_id`, `details`, `user_id`, `date_created`, `recipe_comment_reply_id`) VALUES (4, 3, 'Gross.', 1, '2021-07-20T21:46:28', NULL);
+INSERT INTO `recipe_comment` (`id`, `recipe_id`, `details`, `user_id`, `date_created`, `recipe_comment_reply_id`) VALUES (5, 4, 'Nice!', 2, '2021-07-20T21:46:28', NULL);
+INSERT INTO `recipe_comment` (`id`, `recipe_id`, `details`, `user_id`, `date_created`, `recipe_comment_reply_id`) VALUES (6, 5, 'Very GOOD', 3, '2021-07-20T21:46:28', 5);
+INSERT INTO `recipe_comment` (`id`, `recipe_id`, `details`, `user_id`, `date_created`, `recipe_comment_reply_id`) VALUES (7, 2, 'YOU ARE WRONG!!!', 3, '2021-07-20T21:46:28', 2);
 
 COMMIT;
 
@@ -642,11 +641,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `cookbookdb`;
-INSERT INTO `recipe_image` (`id`, `recipe_id`, `image_url`, `date_created`, `user_id`) VALUES (1, 1, 'https://unsplash.com/photos/Ucwd8w-JHwM', NULL, 1);
-INSERT INTO `recipe_image` (`id`, `recipe_id`, `image_url`, `date_created`, `user_id`) VALUES (2, 2, 'https://unsplash.com/photos/MqT0asuoIcU', NULL, 2);
-INSERT INTO `recipe_image` (`id`, `recipe_id`, `image_url`, `date_created`, `user_id`) VALUES (3, 4, 'https://www.this-is-italy.com/wp-content/uploads/2019/12/Gabagool.jpg', NULL, 3);
-INSERT INTO `recipe_image` (`id`, `recipe_id`, `image_url`, `date_created`, `user_id`) VALUES (4, 3, 'https://unsplash.com/photos/WjdOYhgTGCM', NULL, 4);
-INSERT INTO `recipe_image` (`id`, `recipe_id`, `image_url`, `date_created`, `user_id`) VALUES (5, 5, 'https://unsplash.com/photos/d8s13D29QiE', NULL, 1);
+INSERT INTO `recipe_image` (`recipe_id`, `user_id`, `image_url`, `date_created`) VALUES (1, 1, 'https://unsplash.com/photos/Ucwd8w-JHwM', '2021-07-20T21:46:28');
+INSERT INTO `recipe_image` (`recipe_id`, `user_id`, `image_url`, `date_created`) VALUES (2, 2, 'https://unsplash.com/photos/MqT0asuoIcU', '2021-07-20T21:46:28');
+INSERT INTO `recipe_image` (`recipe_id`, `user_id`, `image_url`, `date_created`) VALUES (4, 3, 'https://www.this-is-italy.com/wp-content/uploads/2019/12/Gabagool.jpg', '2021-07-20T21:46:28');
+INSERT INTO `recipe_image` (`recipe_id`, `user_id`, `image_url`, `date_created`) VALUES (3, 4, 'https://unsplash.com/photos/WjdOYhgTGCM', '2021-07-20T21:46:28');
+INSERT INTO `recipe_image` (`recipe_id`, `user_id`, `image_url`, `date_created`) VALUES (5, 1, 'https://unsplash.com/photos/d8s13D29QiE', '2021-07-20T21:46:28');
 
 COMMIT;
 
