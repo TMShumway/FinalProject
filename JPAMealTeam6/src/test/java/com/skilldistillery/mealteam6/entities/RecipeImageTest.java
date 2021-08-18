@@ -13,11 +13,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class PostTest {
+class RecipeImageTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Post post;
+	private RecipeImage recipeImage;
 	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -32,19 +32,18 @@ class PostTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		post = em.find(Post.class, 1);
+		recipeImage = em.find(RecipeImage.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		post = null;
+		recipeImage = null;
 	}
 
 	@Test
 	void test() {
-		assertNotNull(post);
-		assertEquals("Makin italian tonight!", post.getTitle());
-		assertEquals("spaghet", post.getDescription());
+		assertNotNull(recipeImage);
+		assertEquals("https://unsplash.com/photos/Ucwd8w-JHwM", recipeImage.getImageUrl());
 	}
 }
