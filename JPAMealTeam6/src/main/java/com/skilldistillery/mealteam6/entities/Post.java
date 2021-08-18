@@ -38,6 +38,8 @@ public class Post {
 	@JoinColumn(name="recipe_id")
 	private Recipe recipe;
 
+	public Post() {}
+	
 	public int getId() {
 		return id;
 	}

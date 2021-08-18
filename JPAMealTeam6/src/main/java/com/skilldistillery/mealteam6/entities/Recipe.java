@@ -36,8 +36,8 @@ public class Recipe {
 	@OneToMany(mappedBy="recipe")
 	private List<Rating> ratings;
 	
-	@OneToMany(mappedBy="recipe")
-	private List<Post> posts;
+//	@OneToMany(mappedBy="recipe")
+//	private List<Post> posts;
 	
 	@OneToMany(mappedBy="recipe")
 	private List<RecipeComment> recipeComments;
@@ -48,7 +48,7 @@ public class Recipe {
 	@ManyToMany(mappedBy="recipes")
 	private List<Ingredient> ingredients;
 	
-	@ManyToMany(mappedBy="recipe")
+	@ManyToMany(mappedBy="recipes")
 	private List<Restriction> restrictions;
 	
 /////////////// Methods ////////////////
@@ -83,11 +83,59 @@ public class Recipe {
 	public void setPublished(int published) {
 		this.published = published;
 	}
-	@Override
-	public String toString() {
-		return "Recipe [id=" + id + ", name=" + name + ", description=" + description + ", dateCreated=" + dateCreated
-				+ ", published=" + published + "]";
+	
+	public List<RecipeImage> getRecipeImages() {
+		return recipeImages;
 	}
+	public void setRecipeImages(List<RecipeImage> recipeImages) {
+		this.recipeImages = recipeImages;
+	}
+	public List<Rating> getRatings() {
+		return ratings;
+	}
+	public void setRatings(List<Rating> ratings) {
+		this.ratings = ratings;
+	}
+//	public List<Post> getPosts() {
+//		return posts;
+//	}
+//	public void setPosts(List<Post> posts) {
+//		this.posts = posts;
+//	}
+	public List<RecipeComment> getRecipeComments() {
+		return recipeComments;
+	}
+	public void setRecipeComments(List<RecipeComment> recipeComments) {
+		this.recipeComments = recipeComments;
+	}
+	public List<Category> getCategories() {
+		return categories;
+	}
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
+	}
+	public List<Ingredient> getIngredients() {
+		return ingredients;
+	}
+	public void setIngredients(List<Ingredient> ingredients) {
+		this.ingredients = ingredients;
+	}
+	public List<Restriction> getRestrictions() {
+		return restrictions;
+	}
+	public void setRestrictions(List<Restriction> restrictions) {
+		this.restrictions = restrictions;
+	}
+	public void setPublished(Integer published) {
+		this.published = published;
+	}
+//	@Override
+//	public String toString() {
+//		return "Recipe [id=" + id + ", name=" + name + ", description=" + description + ", dateCreated=" + dateCreated
+//				+ ", published=" + published + ", recipeImages=" + recipeImages + ", ratings=" + ratings + ", posts="
+//				+ posts + ", recipeComments=" + recipeComments + ", categories=" + categories + ", ingredients="
+//				+ ingredients + ", restrictions=" + restrictions + "]";
+//	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
