@@ -28,6 +28,8 @@ public class Post {
 	@Column(name = "image_url")
 	private String imageUrl;
 
+	public Post() {}
+	
 	public int getId() {
 		return id;
 	}

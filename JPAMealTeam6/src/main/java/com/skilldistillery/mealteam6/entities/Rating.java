@@ -26,6 +26,8 @@ public class Rating {
 	@MapsId(value = "userId")
 	private User user;
 	
+	public Rating() {}
+	
 	public RatingId getId() {
 		return id;
 	}
