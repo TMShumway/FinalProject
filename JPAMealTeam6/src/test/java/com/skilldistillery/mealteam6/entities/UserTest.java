@@ -69,4 +69,10 @@ class UserTest {
 //		|  4 |         3 | Gross.          |       1 | NULL         |                    NULL |
 		assertEquals(2, user.getRecipeComments().size());
 	}
+
+	@Test
+	void test_user_to_recipe_image_mapping() {
+
+		assertEquals(2, user.getRecipeImages().size());
+	}
 }
