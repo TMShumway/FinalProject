@@ -6,29 +6,29 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class RatingId implements Serializable {
+public class RecipeImageId implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Column(name = "recipe_id")
-	private int recipeID;
+	private int recipeId;
 	
 	@Column(name = "user_id")
-	private int userID;
+	private int userId;
 
-	public int getRecipeID() {
-		return recipeID;
+	public int getRecipeId() {
+		return recipeId;
 	}
 
-	public void setRecipeID(int recipeID) {
-		this.recipeID = recipeID;
+	public void setRecipeId(int recipeId) {
+		this.recipeId = recipeId;
 	}
 
-	public int getUserID() {
-		return userID;
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setUserID(int userID) {
-		this.userID = userID;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 	public static long getSerialversionuid() {
@@ -39,8 +39,8 @@ public class RatingId implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + recipeID;
-		result = prime * result + userID;
+		result = prime * result + recipeId;
+		result = prime * result + userId;
 		return result;
 	}
 
@@ -52,16 +52,16 @@ public class RatingId implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		RatingId other = (RatingId) obj;
-		if (recipeID != other.recipeID)
+		RecipeImageId other = (RecipeImageId) obj;
+		if (recipeId != other.recipeId)
 			return false;
-		if (userID != other.userID)
+		if (userId != other.userId)
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "RatingId [recipeID=" + recipeID + ", userID=" + userID + "]";
+		return "RecipeImageId [recipeId=" + recipeId + ", userId=" + userId + "]";
 	}
 }
