@@ -22,7 +22,7 @@ public class Restriction {
 	
 	@ManyToMany
 	@JoinTable(name = "restriction_has_recipe",
-			   joinColumns = @JoinColumn(name = "restricion_id"),
+			   joinColumns = @JoinColumn(name = "restriction_id"),
 			   inverseJoinColumns = @JoinColumn(name = "recipe_id")
 			)
 	private List<Recipe> recipes;
