@@ -46,5 +46,19 @@ class RecipeTest {
 		assertEquals("Spaghetti", recipe.getName());
 		assertEquals("And meatballs!", recipe.getDescription());
 	}
+	
+	@Test
+	void test_recipe_recipeImage_entity_mapping() {
+		assertNotNull(recipe.getRecipeImages());
+		assertEquals("https://unsplash.com/photos/Ucwd8w-JHwM",  recipe.getRecipeImages().get(0).getImageUrl());
+		
+	}
+	
+//	@Test
+//	void test_recipe_rating_entity_mapping() {}
+//	
+	
+	
+	
 
 }
