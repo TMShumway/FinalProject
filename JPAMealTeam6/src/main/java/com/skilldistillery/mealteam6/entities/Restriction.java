@@ -16,6 +16,7 @@ public class Restriction {
 	private String description;
 	
 ///////////// Methods /////////////
+	
 	public int getId() {
 		return id;
 	}

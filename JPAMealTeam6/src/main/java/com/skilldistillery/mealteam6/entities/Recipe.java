@@ -24,7 +24,7 @@ public class Recipe {
 	@CreationTimestamp
 	@Column(name="date_created")
 	private LocalDateTime dateCreated;
-	private int published;
+	private Integer published;
 	
 /////////////// Methods ////////////////
 	
