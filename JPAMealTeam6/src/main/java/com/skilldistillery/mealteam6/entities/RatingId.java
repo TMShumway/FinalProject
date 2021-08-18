@@ -15,6 +15,8 @@ public class RatingId implements Serializable {
 	@Column(name = "user_id")
 	private int userId;
 
+	public RatingId() {}
+	
 	public int getRecipeId() {
 		return recipeId;
 	}

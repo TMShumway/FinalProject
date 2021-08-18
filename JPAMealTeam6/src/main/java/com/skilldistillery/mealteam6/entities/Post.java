@@ -34,6 +34,8 @@ public class Post {
 	@JoinColumn(name="user_id")
 	private User user;
 
+	public Post() {}
+	
 	public int getId() {
 		return id;
 	}

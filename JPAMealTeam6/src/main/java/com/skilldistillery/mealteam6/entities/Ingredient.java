@@ -30,6 +30,8 @@ public class Ingredient {
 	  )
 	private List<Recipe> recipes;
 	
+	
+	public Ingredient() {}
 /////////// Methods ////////////	
 	
 	public int getId() {
