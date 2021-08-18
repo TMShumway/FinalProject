@@ -46,5 +46,16 @@ class UserTest {
 		assertNotNull(user);
 		assertEquals("admin", user.getUsername());
 	}
-
+	@Test
+	void test_post_to_user_mapping() {
+		assertEquals(3, user.getPosts().size());
+	}
+//	@Test
+//	void test_user_to_ratings_mapping() {
+//		assertEquals(2, user.getRatings().size());
+//	}
+	@Test
+	void test_user_to_post_comment_mapping() {
+		assertEquals(3, user.getPostComments().size());
+	}
 }

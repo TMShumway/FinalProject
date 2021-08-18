@@ -1,5 +1,7 @@
 package com.skilldistillery.mealteam6.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -9,12 +11,18 @@ import javax.persistence.MapsId;
 
 @Entity
 public class Rating {
+//	implements Serializable {
+//	private static final long serialVersionUID = 1L;
 
 	@EmbeddedId
 	private RatingId id;
 	
 	@Column(name = "star_rating")
 	private int starRating;
+	
+//	@ManyToOne
+//	@JoinColumn(name="user_id")
+//	private User user;
 
 	@ManyToOne
 	@JoinColumn(name = "recipe_id")
@@ -41,6 +49,18 @@ public class Rating {
 	public void setStarRating(int starRating) {
 		this.starRating = starRating;
 	}
+
+//	public User getUser() {
+//		return user;
+//	}
+//
+//	public void setUser(User user) {
+//		this.user = user;
+//	}
+//
+//	public static long getSerialversionuid() {
+//		return serialVersionUID;
+//	}
 
 	@Override
 	public int hashCode() {
