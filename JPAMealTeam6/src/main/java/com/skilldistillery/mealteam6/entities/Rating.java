@@ -10,9 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 
 @Entity
-public class Rating {
-//	implements Serializable {
-//	private static final long serialVersionUID = 1L;
+public class Rating	implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	@EmbeddedId
 	private RatingId id;
@@ -52,17 +51,17 @@ public class Rating {
 		this.starRating = starRating;
 	}
 
-//	public User getUser() {
-//		return user;
-//	}
-//
-//	public void setUser(User user) {
-//		this.user = user;
-//	}
-//
-//	public static long getSerialversionuid() {
-//		return serialVersionUID;
-//	}
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
 	@Override
 	public int hashCode() {
