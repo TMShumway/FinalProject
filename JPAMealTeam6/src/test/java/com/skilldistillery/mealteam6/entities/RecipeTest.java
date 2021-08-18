@@ -53,7 +53,6 @@ class RecipeTest {
 		assertEquals("https://unsplash.com/photos/Ucwd8w-JHwM",  recipe.getRecipeImages().get(0).getImageUrl());
 		
 	}
-	
 //	@Test
 //	void test_recipe_rating_entity_mapping() {}
 //	
