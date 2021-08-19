@@ -25,30 +25,42 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	
 	@GetMapping("users")
-	public List<User> getAllUsers(
-			HttpServletResponse res
-			){
-		List<User> users = userService.index();
+	public List<User> getAllUsers(HttpServletResponse res, Principal principal)
+	{
+		List<User> users = null;
+		users = userService.index();
+		if (users == null) {
+			res.setStatus(404);
+		}
 		return users;
 	}
 	
-//	@GetMapping("users/{uid}")
-//	public User getUserByUsername(
-//			@PathVariable int uid,
-//			HttpServletResponse res
-//			) {
-//		User user = userService. 
-//		return user;
-//	}
-	
-	@GetMapping("users/{username}")
+	@GetMapping("users/{uid}")
 	public User getUserByUsername(
-			@PathVariable String username,
+			@PathVariable int uid,
+			Principal principal,
 			HttpServletResponse res
 			) {
-		User user = userService.userByUsername(username);
+		User user = null;
+		user = userService.userById(uid); 
+		if(user == null) {
+			res.setStatus(404);
+		}
+		return user;
+	}
+	
+	@GetMapping("users/usernames/{username}")
+	public User getUserByUsername(
+			@PathVariable String username,
+			Principal principal,
+			HttpServletResponse res
+			) {
+		User user = null;
+		user = userService.userByUsername(username);
+		if(user == null) {
+			res.setStatus(404);
+		}
 		return user;
 	}
 	
@@ -61,7 +73,9 @@ public class UserController {
 			@PathVariable int uid, 
 			@RequestBody User user) {
 		
+		System.out.println("*******" + user.getUsername());
 		try {
+			user = userService.updateUser(principal.getName(), uid, user); 
 			System.out.println(user);
 			res.setStatus(201);
 			StringBuffer url = req.getRequestURL();
@@ -69,20 +83,21 @@ public class UserController {
 			res.setHeader("Location", url.toString());
 		} catch (Exception e) {
 			res.setStatus(400);
-			return null;
+			e.printStackTrace();
+			user = null;
 		}
-		return userService.update(principal.getName(), uid, user); 
+		return user; 
 	}
 	
 	
-	@DeleteMapping("users/{uid}")
-	public boolean delete(
-			HttpServletRequest req, 
-			HttpServletResponse res, 
-			Principal principal,
-			@PathVariable int uid
-			) {
-		return userService.destroy(uid);
-	}
+//	@DeleteMapping("users/{uid}")
+//	public boolean delete(
+//			HttpServletRequest req, 
+//			HttpServletResponse res, 
+//			Principal principal,
+//			@PathVariable int uid
+//			) {
+//		return userService.destroy(uid);
+//	}
 
 }

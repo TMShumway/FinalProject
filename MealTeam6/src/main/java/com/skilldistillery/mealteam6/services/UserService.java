@@ -10,11 +10,11 @@ public interface UserService {
 
 	User userByUsername(String username);
 
-	User update(String name, int uid, User user);
+	User updateUser(String name, int uid, User user);
 
-	boolean destroy(int uid);
+	User userById(int uid);
 
-//	User userById(int uid);
+//	boolean destroy(int uid);
 
-	
+
 }

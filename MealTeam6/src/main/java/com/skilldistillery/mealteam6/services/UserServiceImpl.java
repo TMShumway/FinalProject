@@ -19,57 +19,75 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private PasswordEncoder encoder;
 	
-	
 	@Override
 	public List<User> index(){
-		return userRepo.findAll();
+		List<User> users;
+		try {
+			users = userRepo.findAll();
+		} catch(Exception e){
+			users = null;
+		}
+		return users;
 	}
 
-//	@Override
-//	public User userById(int uid) {
-//		return userRepo.findById(uid);
-//	}
-	
+	@Override
+	public User userById(int uid) {
+		Optional<User> user = userRepo.findById(uid);
+		if(user.isPresent()) {
+			return user.get();
+		}
+		return null;
+	}
 	
 	@Override
 	public User userByUsername(String username) {
-		return userRepo.findByUsername(username);
+		User user;
+		try {
+			user = userRepo.findByUsername(username); 
+		} catch(Exception e){
+			user = null;
+		}
+		return user;
 	}
-	
-	
-	
 
 	@Override
-	public User update(String name, int uid, User user) {	
-		User managed = userRepo.findByUsername(name);
-		if (managed != null) {
-			if( name == user.getUsername()) {
-				
-				managed.setUsername(user.getUsername());
+	public User updateUser(String name, int uid, User user) {	
+		System.out.println(name);
+//		User managed = userRepo.findByUsername(name);
+		Optional<User> managed = userRepo.findById(uid);
+		User updatedUser = null;
+//		System.out.println(managed.getEmail());
+		if (managed.isPresent()) {
+			updatedUser = managed.get();
+			System.out.println("managed != null" + updatedUser.getUsername());
+			
+			if( name.equals(updatedUser.getUsername())) {
+				System.out.println("Success");
+				updatedUser.setUsername(user.getUsername());
 				if (user.getPassword() != null || user.getPassword().length() > 0) {
-					managed.setPassword(encoder.encode(user.getPassword()));
+					updatedUser.setPassword(encoder.encode(user.getPassword()));
 				}
-				managed.setEnabled(user.getEnabled());
-				managed.setEmail(user.getEmail());
-				managed.setRole(user.getRole());
-				userRepo.saveAndFlush(managed);
+				updatedUser.setEnabled(user.getEnabled());
+				updatedUser.setEmail(user.getEmail());
+				updatedUser.setRole(user.getRole());
+				userRepo.saveAndFlush(updatedUser);
 			}
 			else {
-				managed = null;
+				updatedUser = null;
 			}
 		}
-		return managed;
+		return updatedUser;
 	}
 	
-	@Override
-	public boolean destroy(int uid) {
-		boolean deleted = false;
-		Optional<User> user = userRepo.findById(uid);
-		if (user.isPresent()) {
-			userRepo.deleteById(uid);
-			deleted = true;
-		}
-		return deleted;
-	}
-	
+//	@Override
+//	public boolean destroy(int uid) {
+//		boolean deleted = false;
+//		Optional<User> user = userRepo.findById(uid);
+//		if (user.isPresent()) {
+//			userRepo.deleteById(uid);
+//			deleted = true;
+//		}
+//		return deleted;
+//	}
+
 }
