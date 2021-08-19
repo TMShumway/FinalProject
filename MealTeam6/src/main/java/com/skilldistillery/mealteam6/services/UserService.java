@@ -14,5 +14,7 @@ public interface UserService {
 
 	boolean destroy(int uid);
 
+//	User userById(int uid);
+
 	
 }
