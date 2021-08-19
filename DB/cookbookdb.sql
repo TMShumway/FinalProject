@@ -435,6 +435,11 @@ INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`, `d
 INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`, `date_created`, `image_url`) VALUES (2, 'user', 'user', 'user@usermail.com', 'USER', 1, '2021-07-20T21:46:28', NULL);
 INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`, `date_created`, `image_url`) VALUES (3, 'frog', 'ZnJvZw==', 'frog@frogmail.com', 'FROG', 1, '2021-07-20T21:46:28', NULL);
 INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`, `date_created`, `image_url`) VALUES (4, 'gorilla', 'gorilla', 'gorilla@gorilla.com', 'BANANA', 1, '2021-07-20T21:46:28', NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`, `date_created`, `image_url`) VALUES (5, 'bob', '$2a$10$f94xmW.KSbWFStTG60OemewIZJ8StNhLwgP1O/5CKiDTpGL1ehu1W', 'bob@bob', 'Standard', 1, '2021-07-20T21:46:28', NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`, `date_created`, `image_url`) VALUES (6, 'dog', '$2a$10$OqodcqQ4Of07oE6zb7jbFu.AVwqMx7xp9rALNFOV19ptJO1Zxm6wO', 'dog@dog', 'ADMIN', 1, '2021-07-20T21:46:28', NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`, `date_created`, `image_url`) VALUES (7, 'cat', '$2a$10$fEM8BBl7DoD8r/nqNiB.guay4g2fhAeCvNHH46dwIl7ZIqB5naFmy', 'cat@dog', 'Stand', 1, '2021-07-20T21:46:28', NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`, `date_created`, `image_url`) VALUES (8, 'monkey', '$2a$10$GfVjEDxcgpMoG.9d9mmIz.qMEm0wTYwePVnel5bphkiY0TvtCK.Aa', 'monkey@monkey', NULL, NULL, NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`, `date_created`, `image_url`) VALUES (9, 'tiger', '$2a$10$2yslWBqkIP1EUD2pfoX.KuQ6rm6dqEE1QMpXaNQlNKibB8cvnyNiG', 'tiger@tiger', NULL, NULL, NULL, NULL);
 
 COMMIT;
 
