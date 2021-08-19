@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class User {
 	
@@ -21,19 +23,19 @@ public class User {
 	private Boolean enabled;
 	private String email;
 	private String role;
-	
+	@JsonIgnoreProperties("user")
 	@OneToMany(mappedBy="user")
 	private List<Post> posts;
-	
+	@JsonIgnoreProperties("user")
 	@OneToMany(mappedBy="user")
 	private List<Rating> ratings;
-	
+	@JsonIgnoreProperties("user")
 	@OneToMany(mappedBy="user")
 	private List<PostComment> postComments;
-
+	@JsonIgnoreProperties("user")
 	@OneToMany(mappedBy="user")
 	private List<RecipeComment> recipeComments;
-
+	@JsonIgnoreProperties("user")
 	@OneToMany(mappedBy="user")
 	private List<RecipeImage> recipeImages;
 	
