@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -35,6 +36,9 @@ public class User {
 
 	@OneToMany(mappedBy="user")
 	private List<RecipeImage> recipeImages;
+	
+	@OneToMany(mappedBy = "user")
+	private List<Recipe> recipes;
 	
 	//TODO: Other user fields
 	
