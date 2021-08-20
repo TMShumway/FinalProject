@@ -26,23 +26,34 @@
         <!-- 1 of 3 -->
       </div>
       <div class="col-10">
-        <div *ngFor="let r of recipes" class="card mt-3 mx-auto">
+        <div *ngFor="let r of recipes; let i = index"  class="card mt-3 mx-auto">
+          <!-- <script> uid = 'x' + r.id </script> -->
           <img class="card-img-top" src="https://assets.simpleviewinc.com/simpleview/image/fetch/c_fill,h_600,q_75,w_900/https://assets.simpleviewinc.com/simpleview/image/upload/v1/clients/flaglercountyfl/Photo_Mar_22_1_00_00_PM_a26f2f50-508f-4f20-898f-65cf5566ea72.jpg" alt="Card image cap">
           <div class="card-body">
            <h5 class="card-title">{{r.name}}</h5>
             <!-- Inner Nav -->
             <nav>
-              <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Recipe</button>
-                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Comments</button>
-                <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Rating</button>
+              <div class="nav nav-tabs" id="nav-tab uid" role="tablist">
+                <button class="nav-link" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true" (click)="recipeStatus(i)" [ngClass]="recipeStatusTF[i] ? 'active' : ''">Recipe</button>
+                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false" (click)="commentStatus(i)" [ngClass]="commentStatusTF[i] ? 'active' : ''" >Comments</button>
+                <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false" (click)="ratingStatus(i)" [ngClass]="ratingStatusTF[i] ? 'active' : ''">Rating</button>
+                <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false" (click)="postStatus(i)" [ngClass]="postStatusTF[i] ? 'active' : ''">Posts</button>
               </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
-              <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">{{r.description}}</div>
-              <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">Comments html go here...</div>
-              <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">Ratings go here...</div>
+              <div class="tab-pane fade" id="nav-home" [ngClass]="recipeStatusTF[i] ? 'show active' : ''"  role="tabpanel" aria-labelledby="nav-home-tab">{{r.description}}</div>
+              <div class="tab-pane fade" id="nav-profile" [ngClass]="commentStatusTF[i] ? 'show active' : ''" role="tabpanel" aria-labelledby="nav-profile-tab">
+                <div *ngFor="let rc of r.recipeComments">{{rc.details}} <br>
+                  <p *ngFor="let reply of rc.replies">
+                    &emsp////{{reply.details}}
+                  </p>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="nav-contact" [ngClass]="ratingStatusTF[i] ? 'show active' : ''" role="tabpanel" aria-labelledby="nav-contact-tab">Ratings go here...</div>
+              <div class="tab-pane fade" id="nav-contact" [ngClass]="postStatusTF[i] ? 'show active' : ''" role="tabpanel" aria-labelledby="nav-contact-tab">Posts go here...</div>
             </div>
+          </div>
+          <div class="card-footer text-muted">
             <a href="#" class="btn btn-primary">See Recipe</a>
           </div>
         </div>
