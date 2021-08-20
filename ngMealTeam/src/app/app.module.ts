@@ -10,6 +10,7 @@ import { SplashpageComponent } from './components/splashpage/splashpage.componen
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthService } from './services/auth.service';
+import { RegistrationComponent } from './components/registration/registration.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 
 @NgModule({
@@ -19,7 +20,8 @@ import { NavigationComponent } from './components/navigation/navigation.componen
     LogoutComponent,
     HomeComponent,
     SplashpageComponent,
-    NavigationComponent
+    NavigationComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
