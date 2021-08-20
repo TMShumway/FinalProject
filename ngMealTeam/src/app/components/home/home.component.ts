@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Recipe } from 'src/app/models/recipe';
+import { RecipeService } from 'src/app/services/recipe.service';
 
 @Component({
   selector: 'app-home',
@@ -7,13 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  recipes: Recipe[] = [];
+
+  constructor(private recipeService: RecipeService) { }
 
   ngOnInit(): void {
-
-
+    this.loadAllRecipes();
   }
 
+  loadAllRecipes() {
+    this.recipeService.index().subscribe(
+      data => { this.recipes = data;},
 
-
+      error => { console.error('Error retrieving recipes from recipeService: ' + error);}
+    );
+  }
 }
