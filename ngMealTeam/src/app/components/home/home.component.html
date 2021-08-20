@@ -1,7 +1,68 @@
-<h1>homepage</h1>
-
-<div *ngFor="let r of recipes">
-  {{r.name}} {{r.description}}
+<!-- <h1>homepage</h1> -->
+<div class="card mt-3 mx-auto" style="width: 75%; background-color:cornflowerblue">
+  <div class="card-body">
+    Sortable options [x] [x] [x]...Different View buttons [Post Feed] [Recipe Feed]
+  </div>
 </div>
 
+<!-- Row 1 -->
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <!-- 1 of 3 -->
+    </div>
+    <div class="col-6">
+      <!-- 2 of 3 (wider) -->
+    </div>
+    <div class="col">
+      <!-- 3 of 3 -->
+    </div>
+  </div>
+
+  <!-- Row 2 -->
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <!-- 1 of 3 -->
+      </div>
+      <div class="col-10">
+        <div *ngFor="let r of recipes" class="card mt-3 mx-auto">
+          <img class="card-img-top" src="https://assets.simpleviewinc.com/simpleview/image/fetch/c_fill,h_600,q_75,w_900/https://assets.simpleviewinc.com/simpleview/image/upload/v1/clients/flaglercountyfl/Photo_Mar_22_1_00_00_PM_a26f2f50-508f-4f20-898f-65cf5566ea72.jpg" alt="Card image cap">
+          <div class="card-body">
+           <h5 class="card-title">{{r.name}}</h5>
+            <!-- Inner Nav -->
+            <nav>
+              <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Recipe</button>
+                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Comments</button>
+                <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Rating</button>
+              </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+              <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">{{r.description}}</div>
+              <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">Comments html go here...</div>
+              <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">Ratings go here...</div>
+            </div>
+            <a href="#" class="btn btn-primary">See Recipe</a>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <!-- 3 of 3 -->
+      </div>
+    </div>
+
+    <!-- Row 3 -->
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <!-- 1 of 3 -->
+        </div>
+        <div class="col-6">
+          <!-- 2 of 3 (wider) -->
+        </div>
+        <div class="col">
+          <!-- 3 of 3 -->
+        </div>
+      </div>
 
