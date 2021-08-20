@@ -10,7 +10,7 @@
       <a class="nav-item nav-link" [routerLink]="['/']" *ngIf="loggedIn()">My Recipes</a>
       <a class="nav-item nav-link" [routerLink]="['/about']">About</a>
       <a class="nav-item nav-link" [routerLink]="['/contact']">Contact</a>
-      <a class="nav-item nav-link" [routerLink]="['/register']">Register</a>
+      <a class="nav-item nav-link" [routerLink]="['/register']" *ngIf="!loggedIn()">Register</a>
       <div *ngIf="!loggedIn()">
         <app-login></app-login>
       </div>
