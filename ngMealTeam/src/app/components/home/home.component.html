@@ -28,7 +28,7 @@
       <div class="col-10">
         <div *ngFor="let r of recipes; let i = index"  class="card mt-3 mx-auto">
           <!-- <script> uid = 'x' + r.id </script> -->
-          <img class="card-img-top" src="https://assets.simpleviewinc.com/simpleview/image/fetch/c_fill,h_600,q_75,w_900/https://assets.simpleviewinc.com/simpleview/image/upload/v1/clients/flaglercountyfl/Photo_Mar_22_1_00_00_PM_a26f2f50-508f-4f20-898f-65cf5566ea72.jpg" alt="Card image cap">
+          <img class="card-img-top" src="{{r.recipeImages[i].imageUrl}}" alt="Card image cap">
           <div class="card-body">
            <h5 class="card-title">{{r.name}}</h5>
             <!-- Inner Nav -->
