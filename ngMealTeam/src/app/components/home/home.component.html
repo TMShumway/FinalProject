@@ -46,11 +46,6 @@
               <div class="tab-pane fade" id="nav-home" [ngClass]="recipeStatusTF[i] ? 'show active' : ''"  role="tabpanel" aria-labelledby="nav-home-tab">{{r.recipeStep}}</div>
               <div class="tab-pane fade" id="nav-profile" [ngClass]="commentStatusTF[i] ? 'show active' : ''" role="tabpanel" aria-labelledby="nav-profile-tab">
                 <div *ngFor="let rc of r.recipeComments">
-<<<<<<< HEAD
-                  <div class="card mt-2">
-                    <div class="card-body">
-                      USERNAME: {{rc.details}}
-=======
                   <br>
                   USERNAME
                   <div class="card mt-1">
@@ -61,7 +56,6 @@
                           {{reply.details}}
                         </p>
                       </div>
->>>>>>> af7ef2fb2492ae49dc472d5173dce1bda8b71c24
                     </div>
                   </div>
                 </div>

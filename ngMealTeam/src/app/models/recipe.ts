@@ -1,5 +1,6 @@
 import { Ratings } from "./ratings";
 import { RecipeComments } from "./recipe-comments";
+import { RecipeImage } from "./recipe-image";
 import { User } from "./user";
 
 export class Recipe {
@@ -12,6 +13,7 @@ export class Recipe {
   recipeComments: RecipeComments[];
   ratings: Ratings[];
   recipeStep: String[];
+  recipeImages: RecipeImage[];
 
   constructor(
     id = 0,
@@ -22,7 +24,8 @@ export class Recipe {
     user = new User(),
     recipeComments = [],
     ratings = [],
-    recipeStep = []
+    recipeStep = [],
+    recipeImages = []
     ){
     this.id = id;
     this.name = name;
@@ -33,5 +36,6 @@ export class Recipe {
     this.recipeComments = recipeComments;
     this.ratings = ratings;
     this.recipeStep = recipeStep;
+    this.recipeImages = recipeImages;
   }
 }
