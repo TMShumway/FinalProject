@@ -11,6 +11,7 @@ export class Recipe {
   user: User;
   recipeComments: RecipeComments[];
   ratings: Ratings[];
+  recipeStep: String[];
 
   constructor(
     id = 0,
@@ -20,7 +21,8 @@ export class Recipe {
     published = false,
     user = new User(),
     recipeComments = [],
-    ratings = []
+    ratings = [],
+    recipeStep = []
     ){
     this.id = id;
     this.name = name;
@@ -30,5 +32,6 @@ export class Recipe {
     this.user = user;
     this.recipeComments = recipeComments;
     this.ratings = ratings;
+    this.recipeStep = recipeStep;
   }
 }
