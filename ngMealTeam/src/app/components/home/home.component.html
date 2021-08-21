@@ -34,19 +34,34 @@
             <!-- Inner Nav -->
             <nav>
               <div class="nav nav-tabs" id="nav-tab uid" role="tablist">
-                <button class="nav-link" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true" (click)="recipeStatus(i)" [ngClass]="recipeStatusTF[i] ? 'active' : ''">Recipe</button>
+                <button class="nav-link" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true" (click)="descriptionStatus(i)" [ngClass]="descriptionStatusTF[i] ? 'active' : ''">Description</button>
+                <button class="nav-link" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="false" (click)="recipeStatus(i)" [ngClass]="recipeStatusTF[i] ? 'active' : ''">Recipe</button>
                 <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false" (click)="commentStatus(i)" [ngClass]="commentStatusTF[i] ? 'active' : ''" >Comments</button>
                 <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false" (click)="ratingStatus(i)" [ngClass]="ratingStatusTF[i] ? 'active' : ''">Rating</button>
                 <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false" (click)="postStatus(i)" [ngClass]="postStatusTF[i] ? 'active' : ''">Posts</button>
               </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
-              <div class="tab-pane fade" id="nav-home" [ngClass]="recipeStatusTF[i] ? 'show active' : ''"  role="tabpanel" aria-labelledby="nav-home-tab">{{r.description}}</div>
+              <div class="tab-pane fade" id="nav-home" [ngClass]="descriptionStatusTF[i] ? 'show active' : ''"  role="tabpanel" aria-labelledby="nav-home-tab">{{r.description}}</div>
+              <div class="tab-pane fade" id="nav-home" [ngClass]="recipeStatusTF[i] ? 'show active' : ''"  role="tabpanel" aria-labelledby="nav-home-tab">{{r.recipeStep}}</div>
               <div class="tab-pane fade" id="nav-profile" [ngClass]="commentStatusTF[i] ? 'show active' : ''" role="tabpanel" aria-labelledby="nav-profile-tab">
                 <div *ngFor="let rc of r.recipeComments">
+<<<<<<< HEAD
                   <div class="card mt-2">
                     <div class="card-body">
                       USERNAME: {{rc.details}}
+=======
+                  <br>
+                  USERNAME
+                  <div class="card mt-1">
+                    <div class="card-body" >
+                      {{rc.details}}
+                      <div *ngFor="let reply of rc.recipeComments">
+                        <p style="margin-left:2">
+                          {{reply.details}}
+                        </p>
+                      </div>
+>>>>>>> af7ef2fb2492ae49dc472d5173dce1bda8b71c24
                     </div>
                   </div>
                 </div>

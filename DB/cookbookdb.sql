@@ -623,6 +623,10 @@ INSERT INTO `recipe_comment` (`id`, `recipe_id`, `details`, `user_id`, `date_cre
 INSERT INTO `recipe_comment` (`id`, `recipe_id`, `details`, `user_id`, `date_created`, `recipe_comment_reply_id`) VALUES (5, 4, 'Nice!', 2, '2021-07-20T21:46:28', NULL);
 INSERT INTO `recipe_comment` (`id`, `recipe_id`, `details`, `user_id`, `date_created`, `recipe_comment_reply_id`) VALUES (6, 5, 'Very GOOD', 3, '2021-07-20T21:46:28', 5);
 INSERT INTO `recipe_comment` (`id`, `recipe_id`, `details`, `user_id`, `date_created`, `recipe_comment_reply_id`) VALUES (7, 2, 'YOU ARE WRONG!!!', 3, '2021-07-20T21:46:28', 2);
+INSERT INTO `recipe_comment` (`id`, `recipe_id`, `details`, `user_id`, `date_created`, `recipe_comment_reply_id`) VALUES (8, 1, 'Reply 1', 1, '2021-07-20T21:46:28', 1);
+INSERT INTO `recipe_comment` (`id`, `recipe_id`, `details`, `user_id`, `date_created`, `recipe_comment_reply_id`) VALUES (9, 1, 'reply 2!!', 5, '2021-07-20T21:46:28', 8);
+INSERT INTO `recipe_comment` (`id`, `recipe_id`, `details`, `user_id`, `date_created`, `recipe_comment_reply_id`) VALUES (10, 1, 'Shut up!', 6, '2021-07-20T21:46:28', 9);
+INSERT INTO `recipe_comment` (`id`, `recipe_id`, `details`, `user_id`, `date_created`, `recipe_comment_reply_id`) VALUES (11, 1, 'Nice!', 7, '2021-07-20T21:46:28', 10);
 
 COMMIT;
 
