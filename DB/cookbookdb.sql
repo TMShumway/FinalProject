@@ -667,11 +667,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `cookbookdb`;
-INSERT INTO `recipe_image` (`recipe_id`, `user_id`, `image_url`, `date_created`) VALUES (1, 1, 'https://unsplash.com/photos/Ucwd8w-JHwM', '2021-07-20T21:46:28');
-INSERT INTO `recipe_image` (`recipe_id`, `user_id`, `image_url`, `date_created`) VALUES (2, 2, 'https://unsplash.com/photos/MqT0asuoIcU', '2021-07-20T21:46:28');
+INSERT INTO `recipe_image` (`recipe_id`, `user_id`, `image_url`, `date_created`) VALUES (1, 1, 'https://images.unsplash.com/photo-1589227365533-cee630bd59bd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80', '2021-07-20T21:46:28');
+INSERT INTO `recipe_image` (`recipe_id`, `user_id`, `image_url`, `date_created`) VALUES (2, 2, 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=714&q=80', '2021-07-20T21:46:28');
 INSERT INTO `recipe_image` (`recipe_id`, `user_id`, `image_url`, `date_created`) VALUES (4, 3, 'https://www.this-is-italy.com/wp-content/uploads/2019/12/Gabagool.jpg', '2021-07-20T21:46:28');
-INSERT INTO `recipe_image` (`recipe_id`, `user_id`, `image_url`, `date_created`) VALUES (3, 4, 'https://unsplash.com/photos/WjdOYhgTGCM', '2021-07-20T21:46:28');
-INSERT INTO `recipe_image` (`recipe_id`, `user_id`, `image_url`, `date_created`) VALUES (5, 1, 'https://unsplash.com/photos/d8s13D29QiE', '2021-07-20T21:46:28');
+INSERT INTO `recipe_image` (`recipe_id`, `user_id`, `image_url`, `date_created`) VALUES (3, 4, 'https://images.unsplash.com/photo-1618889482923-38250401a84e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1350&q=80', '2021-07-20T21:46:28');
+INSERT INTO `recipe_image` (`recipe_id`, `user_id`, `image_url`, `date_created`) VALUES (5, 1, 'https://images.unsplash.com/photo-1545696563-af8f6ec2295a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1264&q=80', '2021-07-20T21:46:28');
 
 COMMIT;
 
