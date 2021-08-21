@@ -1,3 +1,4 @@
+import { Ratings } from "./ratings";
 import { RecipeComments } from "./recipe-comments";
 import { User } from "./user";
 
@@ -9,6 +10,7 @@ export class Recipe {
   published: boolean;
   user: User;
   recipeComments: RecipeComments[];
+  ratings: Ratings[];
 
   constructor(
     id = 0,
@@ -17,7 +19,8 @@ export class Recipe {
     dateCreated = '',
     published = false,
     user = new User(),
-    recipeComments = []
+    recipeComments = [],
+    ratings = []
     ){
     this.id = id;
     this.name = name;
@@ -26,5 +29,6 @@ export class Recipe {
     this.published = published;
     this.user = user;
     this.recipeComments = recipeComments;
+    this.ratings = ratings;
   }
 }

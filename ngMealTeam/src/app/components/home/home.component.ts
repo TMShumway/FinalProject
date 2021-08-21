@@ -78,8 +78,17 @@ export class HomeComponent implements OnInit {
     this.postStatusTF[index] = true;
   }
 
+  getRatingAverage(i: number){
+    let average = 0;
+    for (let index = 0; index < this.recipes[i].ratings.length; index++) {
+      average += this.recipes[i].ratings[index].starRating;
+    }
+    return average /= this.recipes[i].ratings.length;
+  }
 
-
+  checkNaN(n: number){
+    return Number.isNaN(n);
+  }
 
 }
 

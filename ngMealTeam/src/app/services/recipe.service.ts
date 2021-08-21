@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Recipe } from '../models/recipe';
@@ -15,7 +15,7 @@ export class RecipeService {
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
-  public index(){
+  public index() : Observable<Recipe[]>{
     return this.http.get<Recipe[]>(this.url, this.getHttpOptions())
       .pipe(
         catchError((err: any) => {
