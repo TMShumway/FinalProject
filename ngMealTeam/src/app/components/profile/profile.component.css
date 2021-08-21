@@ -1,0 +1,15 @@
+/* .scroll {
+  position: absolute;
+  overflow-y: scroll;
+} */
+
+
+.scroller {
+  overflow-y: scroll;
+  height: 100vh;
+}
+
+.theProfile {
+  height: 100%;
+
+}

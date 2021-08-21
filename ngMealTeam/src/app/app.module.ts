@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from './services/auth.service';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { NavigationComponent } from './components/navigation/navigation.componen
     HomeComponent,
     SplashpageComponent,
     NavigationComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

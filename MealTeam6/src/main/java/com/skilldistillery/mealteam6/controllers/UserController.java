@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,7 @@ import com.skilldistillery.mealteam6.entities.User;
 import com.skilldistillery.mealteam6.services.UserService;
 
 @RestController
+@CrossOrigin({ "*", "http://localhost:1776" })
 @RequestMapping("api")
 public class UserController {
 	
