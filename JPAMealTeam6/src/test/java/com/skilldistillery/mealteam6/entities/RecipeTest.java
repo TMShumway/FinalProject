@@ -45,12 +45,13 @@ class RecipeTest {
 		assertNotNull(recipe);
 		assertEquals("Spaghetti", recipe.getName());
 		assertEquals("And meatballs!", recipe.getDescription());
+		assertNotNull(recipe.getRecipeStep());
 	}
 	
 	@Test
 	void test_recipe_recipeImage_entity_mapping() {
 		assertNotNull(recipe.getRecipeImages());
-		assertEquals("https://unsplash.com/photos/Ucwd8w-JHwM",  recipe.getRecipeImages().get(0).getImageUrl());
+		assertEquals("https://images.unsplash.com/photo-1589227365533-cee630bd59bd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",  recipe.getRecipeImages().get(0).getImageUrl());
 		
 	}
 	@Test
@@ -83,11 +84,12 @@ class RecipeTest {
 		assertEquals("Gluten-Free", recipe.getRestrictions().get(0).getName());
 		
 	}
-	
-	
-	
-	
-	
+	@Test
+	void test_recipe_post_entity_mapping() {
+		assertNotNull(recipe.getPosts());
+		assertEquals("Makin italian tonight!", recipe.getPosts().get(0).getTitle());
+		
+	}
 	
 	
 	

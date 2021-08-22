@@ -30,7 +30,9 @@ public class Recipe {
 	@CreationTimestamp
 	@Column(name = "date_created")
 	private LocalDateTime dateCreated;
-	private Integer published;
+	private Integer published;	
+	@Column(name = "recipe_step")
+	private String recipeStep;
 
 	@OneToMany(mappedBy = "recipe")
 	private List<RecipeImage> recipeImages;
@@ -167,6 +169,14 @@ public class Recipe {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public String getRecipeStep() {
+		return recipeStep;
+	}
+
+	public void setRecipeStep(String recipeStep) {
+		this.recipeStep = recipeStep;
 	}
 
 	// @Override
