@@ -36,11 +36,23 @@ public class RecipeController {
 		}
 		return recipes;
 	}
-
+	
+	//Get posts by username with PathVariable username
 	@GetMapping("recipes/usernames/{username}")
 	private List<Recipe> indexByUsername(HttpServletResponse res, Principal principal, @PathVariable String username) {
 		List<Recipe> recipes = null;
 		recipes = recipeService.indexByUsername(username);
+		if (recipes == null) {
+			res.setStatus(404);
+		}
+		return recipes;
+	}
+
+	//Get posts by username from logged in user	
+	@GetMapping("recipes/username")
+	private List<Recipe> indexByUsername(HttpServletResponse res, Principal principal) {
+		List<Recipe> recipes = null;
+		recipes = recipeService.indexByUsername(principal.getName());
 		if (recipes == null) {
 			res.setStatus(404);
 		}
