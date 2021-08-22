@@ -16,4 +16,7 @@ export class NavigationComponent implements OnInit {
   loggedIn(): boolean{
     return this.auth.checkLogin();
   }
+
+
+
 }

@@ -13,6 +13,9 @@ import { AuthService } from './services/auth.service';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { AboutComponent } from './components/about/about.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { UserRecipesComponent } from './components/user-recipes/user-recipes.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { ProfileComponent } from './components/profile/profile.component';
     SplashpageComponent,
     NavigationComponent,
     RegistrationComponent,
-    ProfileComponent
+    ProfileComponent,
+    AboutComponent,
+    ContactComponent,
+    UserRecipesComponent
   ],
   imports: [
     BrowserModule,
