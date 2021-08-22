@@ -30,7 +30,9 @@ public class Recipe {
 	@CreationTimestamp
 	@Column(name = "date_created")
 	private LocalDateTime dateCreated;
-	private Integer published;
+	private Integer published;	
+	@Column(name = "recipe_step")
+	private String recipeStep;
 
 	@OneToMany(mappedBy = "recipe")
 	private List<RecipeImage> recipeImages;
@@ -39,8 +41,8 @@ public class Recipe {
 	@OneToMany(mappedBy = "recipe")
 	private List<Rating> ratings;
 
-//	@OneToMany(mappedBy="recipe")
-//	private List<Post> posts;
+	@OneToMany(mappedBy="recipe")
+	private List<Post> posts;
 
 	@OneToMany(mappedBy = "recipe")
 	private List<RecipeComment> recipeComments;
@@ -118,12 +120,13 @@ public class Recipe {
 		this.ratings = ratings;
 	}
 
-//	public List<Post> getPosts() {
-//		return posts;
-//	}
-//	public void setPosts(List<Post> posts) {
-//		this.posts = posts;
-//	}
+	public List<Post> getPosts() {
+		return posts;
+	}
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
+	}
+	
 	public List<RecipeComment> getRecipeComments() {
 		return recipeComments;
 	}
@@ -166,6 +169,14 @@ public class Recipe {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public String getRecipeStep() {
+		return recipeStep;
+	}
+
+	public void setRecipeStep(String recipeStep) {
+		this.recipeStep = recipeStep;
 	}
 
 	// @Override
