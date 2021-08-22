@@ -25,6 +25,16 @@ export class RecipeService {
       );
   }
 
+  public indexByUsername() : Observable<Recipe[]>{
+    return this.http.get<Recipe[]>(this.url + "/username", this.getHttpOptions())
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError("Error getting recipes in RecipeService:" + err);
+        })
+      );
+  }
+
   getHttpOptions(){
     const credentials = this.authService.getCredentials();
     const httpOptions = {

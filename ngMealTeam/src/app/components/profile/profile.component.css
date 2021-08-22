@@ -13,3 +13,14 @@
   height: 100%;
 
 }
+
+.vertical-menu {
+  margin: auto;
+  max-width: 216 px;
+  background-color: bisque;
+  border: black 2px solid;
+}
+.sideNavBtn {
+  margin-bottom: 5px;
+  margin-left: 5px;
+}
