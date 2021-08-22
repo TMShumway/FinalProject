@@ -28,7 +28,7 @@
       <div class="col-10">
         <div *ngFor="let r of recipes; let i = index"  class="card mt-3 mx-auto">
           <!-- <script> uid = 'x' + r.id </script> -->
-          <img class="card-img-top" src="{{r.recipeImages[i].imageUrl}}" alt="Card image cap">
+          <img class="card-img-top" src="{{r.recipeImages[0].imageUrl}}" alt="Card image cap">
           <div class="card-body">
            <h5 class="card-title">{{r.name}}</h5>
             <!-- Inner Nav -->
