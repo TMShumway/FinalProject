@@ -34,17 +34,25 @@
             <!-- Inner Nav -->
             <nav>
               <div class="nav nav-tabs" id="nav-tab uid" role="tablist">
-                <button class="nav-link" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true" (click)="descriptionStatus(i)" [ngClass]="descriptionStatusTF[i] ? 'active' : ''">Description</button>
-                <button class="nav-link" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="false" (click)="recipeStatus(i)" [ngClass]="recipeStatusTF[i] ? 'active' : ''">Recipe</button>
-                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false" (click)="commentStatus(i)" [ngClass]="commentStatusTF[i] ? 'active' : ''" >Comments</button>
-                <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false" (click)="ratingStatus(i)" [ngClass]="ratingStatusTF[i] ? 'active' : ''">Rating</button>
-                <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false" (click)="postStatus(i)" [ngClass]="postStatusTF[i] ? 'active' : ''">Posts</button>
+                <!-- <button class="nav-link" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true" (click)="descriptionStatus(i)" [ngClass]="descriptionStatusTF[i] ? 'active' : ''">Description</button> -->
+                <button class="nav-link" id="nav-description-tab" data-bs-toggle="tab" data-bs-target="#nav-description" type="button" role="tab" aria-controls="nav-description" aria-selected="true" (click)="descriptionStatus(i)" [ngClass]="descriptionStatusTF[i] ? 'active' : ''">Description</button>
+                <button class="nav-link" id="nav-recipe-tab" data-bs-toggle="tab" data-bs-target="#nav-recipe" type="button" role="tab" aria-controls="nav-recipe" aria-selected="false" (click)="recipeStatus(i)" [ngClass]="recipeStatusTF[i] ? 'active' : ''">Recipe</button>
+                <button class="nav-link" id="nav-comment-tab" data-bs-toggle="tab" data-bs-target="#nav-comment" type="button" role="tab" aria-controls="nav-comment" aria-selected="false" (click)="commentStatus(i)" [ngClass]="commentStatusTF[i] ? 'active' : ''" >Comments</button>
+                <button class="nav-link" id="nav-rating-tab" data-bs-toggle="tab" data-bs-target="#nav-rating" type="button" role="tab" aria-controls="nav-contact" aria-selected="false" (click)="ratingStatus(i)" [ngClass]="ratingStatusTF[i] ? 'active' : ''">Rating</button>
+                <button class="nav-link" id="nav-post-tab" data-bs-toggle="tab" data-bs-target="#nav-post" type="button" role="tab" aria-controls="nav-post" aria-selected="false" (click)="postStatus(i)" [ngClass]="postStatusTF[i] ? 'active' : ''">Posts</button>
               </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
-              <div class="tab-pane fade" id="nav-home" [ngClass]="descriptionStatusTF[i] ? 'show active' : ''"  role="tabpanel" aria-labelledby="nav-home-tab">{{r.description}}</div>
-              <div class="tab-pane fade" id="nav-home" [ngClass]="recipeStatusTF[i] ? 'show active' : ''"  role="tabpanel" aria-labelledby="nav-home-tab">{{r.recipeStep}}</div>
-              <div class="tab-pane fade" id="nav-profile" [ngClass]="commentStatusTF[i] ? 'show active' : ''" role="tabpanel" aria-labelledby="nav-profile-tab">
+              <!-- Description -->
+              <div class="tab-pane fade" id="nav-description" [ngClass]="descriptionStatusTF[i] ? 'show active' : ''"  role="tabpanel" aria-labelledby="nav-description-tab">
+                {{r.description}}
+              </div>
+              <!-- Recipe Steps -->
+              <div class="tab-pane fade" id="nav-recipe" [ngClass]="recipeStatusTF[i] ? 'show active' : ''"  role="tabpanel" aria-labelledby="nav-recipe-tab">
+                {{r.recipeStep}}
+              </div>
+              <!-- Comments -->
+              <div class="tab-pane fade" id="nav-comment" [ngClass]="commentStatusTF[i] ? 'show active' : ''" role="tabpanel" aria-labelledby="nav-comment-tab">
                 <div *ngFor="let rc of r.recipeComments">
                   <br>
                   USERNAME
@@ -60,12 +68,35 @@
                   </div>
                 </div>
               </div>
-              <div class="tab-pane fade" id="nav-contact" [ngClass]="ratingStatusTF[i] ? 'show active' : ''" role="tabpanel" aria-labelledby="nav-contact-tab"><p *ngIf="!checkNaN(getRatingAverage(i))">This Recipe Rated: {{getRatingAverage(i)}} STARS!</p><p *ngIf="checkNaN(getRatingAverage(i))">Not Yet Rated...</p> </div>
-              <div class="tab-pane fade" id="nav-contact" [ngClass]="postStatusTF[i] ? 'show active' : ''" role="tabpanel" aria-labelledby="nav-contact-tab">Posts go here...</div>
-            </div>
+              <!-- Ratings -->
+              <div class="tab-pane fade" id="nav-rating" [ngClass]="ratingStatusTF[i] ? 'show active' : ''" role="tabpanel" aria-labelledby="nav-rating-tab">
+                <p *ngIf="!checkNaN(getRatingAverage(i))">
+                  This Recipe Rated: {{getRatingAverage(i)}} STARS!
+                </p>
+                <p *ngIf="checkNaN(getRatingAverage(i))">
+                  Not Yet Rated...
+                </p>
+              </div>
+              <!-- Posts -->
+              <div class="tab-pane fade" id="nav-post" [ngClass]="postStatusTF[i] ? 'show active' : ''" role="tabpanel" aria-labelledby="nav-post-tab">
+                <div *ngFor="let post of r.posts">
+                  <br>
+                  <div class="card mt-1">
+                    <div class="card-body" >
+                      {{post.user.username}}
+                      <p style="margin-left:2">
+                        {{post.title}}
+                        {{post.description}}
+                        {{post.imageUrl}}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
           </div>
+          <!-- Card Button -->
           <div class="card-footer text-muted">
-            <a href="#" class="btn btn-primary">See Recipe</a>
+            <a href="#" class="btn btn-primary">Add Recipe</a>
           </div>
         </div>
       </div>
