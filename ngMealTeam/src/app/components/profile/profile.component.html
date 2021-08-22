@@ -1,21 +1,62 @@
-
-<div class="row theProfile">
-  <div class="col-md-2">  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque tenetur delectus enim, ipsam quod pariatur facilis totam commodi officia maiores obcaecati exercitationem voluptates aut rerum dolor error numquam facere! Reprehenderit.
+<!-- Row 1 -->
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <!-- 1 of 3 -->
+    </div>
+    <div class="col-6">
+      <!-- 2 of 3 (wider) -->
+    </div>
+    <div class="col">
+      <!-- 3 of 3 -->
+    </div>
   </div>
-  <div class="col-md-8 scroller">
+
+  <!-- Row 2 -->
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <!-- 1 of 3 -->
+      </div>
+      <div class="col-10">
+<div class="row theProfile">
+  <div class="col-md-3">  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque tenetur delectus enim, ipsam quod pariatur facilis totam commodi officia maiores obcaecati exercitationem voluptates aut rerum dolor error numquam facere! Reprehenderit.
+  </div>
+  <div class="col-md-6 scroller">
     <div >
     <p class="scrollable">
-      <div *ngFor="let p of posts">
-        <h3>{{p.description}}</h3>
+      <div *ngFor="let p of posts; let i = index"  class="card mt-3 mx-auto">
+        <p>{{p.user.username}}</p>
+        <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/7/74/Beijing_bouddhist_monk_2009_IMG_1486.JPG" alt="Card image cap">
+        <!-- <img class="card-img-top" *ngIf="postHasImage(i)" src="{{p.imageUrl}}" alt="Card image cap"> -->
+        <div class="card-body">
+         <h5 class="card-title">{{p.title}}</h5>
+         <p>{{p.description}}</p>
 
-
+          <!-- Inner Nav -->
+          <nav>
+            <div class="nav nav-tabs" id="nav-tab uid" role="tablist">
+              <button class="nav-link" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="false" >Recipe</button>
+              <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false" >Comments</button>
+              <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false" >Likes</button>
+            </div>
+          </nav>
+          <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade" id="nav-home"  role="tabpanel" aria-labelledby="nav-home-tab">{{p.description}}</div>
+            <div class="tab-pane fade" id="nav-home"  role="tabpanel" aria-labelledby="nav-home-tab">{{p.user}}</div>
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+     <div class="col">
      </div>
-    </div>
-    </div>
-  <div class="col-md-2">  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque tenetur delectus enim, ipsam quod pariatur facilis totam commodi officia maiores obcaecati exercitationem voluptates aut rerum dolor error numquam facere! Reprehenderit.
-  </div>
-</div>
-<!-- <div class="row">
+  <!-- <div class="col-md-2">  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque tenetur delectus enim, ipsam quod pariatur facilis totam commodi officia maiores obcaecati exercitationem voluptates aut rerum dolor error numquam facere! Reprehenderit.
+  </div> -->
+ <!-- <div class="row">
   <div class="col-*-*">Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis eligendi sit rem totam dolore, expedita iure quaerat quae veniam, laudantium molestias consequatur beatae cupiditate magnam. Optio, dignissimos. Dignissimos, iusto iste?</div>
   <div class="col-*-*"></div>
   <div class="col-*-*"></div>

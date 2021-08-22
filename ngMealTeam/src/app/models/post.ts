@@ -6,6 +6,7 @@ export class Post {
   description: string;
   dateCreated: string;
   imageUrl: string;
+  hasImage: boolean;
   user: User;
 
   constructor(
@@ -14,6 +15,7 @@ export class Post {
     description = '',
     dateCreated = '',
     imageUrl = '',
+    hasImage = false,
     user = new User()
     ){
     this.id = id;
@@ -21,6 +23,7 @@ export class Post {
     this.description = description;
     this.dateCreated = dateCreated;
     this.imageUrl = imageUrl;
+    this.hasImage = hasImage;
     this.user = user;
   }
 }

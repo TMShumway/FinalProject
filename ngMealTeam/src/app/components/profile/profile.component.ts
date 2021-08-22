@@ -10,6 +10,7 @@ import { PostService } from 'src/app/services/post.service';
 export class ProfileComponent implements OnInit {
 
   posts: Post[] = [];
+
   constructor(private postService: PostService) { }
 
 
@@ -24,5 +25,11 @@ export class ProfileComponent implements OnInit {
       error => { console.error('Error retrieving posts from postService: ' + error);}
     );
   }
-
+  postHasImage(i: number) {
+  if(this.posts[i].imageUrl === null){
+    return false;
+  } else {
+    return true;
+  }
+  }
 }
