@@ -16,6 +16,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { UserRecipesComponent } from './components/user-recipes/user-recipes.component';
+import { RecipeFormModalComponent } from './components/recipe-form-modal/recipe-form-modal.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -29,14 +31,16 @@ import { UserRecipesComponent } from './components/user-recipes/user-recipes.com
     ProfileComponent,
     AboutComponent,
     ContactComponent,
-    UserRecipesComponent
+    UserRecipesComponent,
+    RecipeFormModalComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    NgbModule
   ],
   providers: [
     AuthService
