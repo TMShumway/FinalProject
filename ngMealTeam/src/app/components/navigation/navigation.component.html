@@ -1,25 +1,23 @@
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #f96358;">
-  <div class="col-2"></div>
-  <a class="navbar-brand" href="#">Meal Team Six</a>
-  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-      <a class="nav-item nav-link" [routerLink]="['/home']" *ngIf="loggedIn()">Home</a>
-      <a class="nav-item nav-link" [routerLink]="['/home']" *ngIf="!loggedIn()">Browse Recipes</a>
-      <a class="nav-item nav-link" [routerLink]="['/userRecipes']" *ngIf="loggedIn()">My Recipes</a>
-      <a class="nav-item nav-link" [routerLink]="['/profile']" *ngIf="loggedIn()">My Profile</a>
-      <a class="nav-item nav-link" [routerLink]="['/about']">About</a>
-      <a class="nav-item nav-link" [routerLink]="['/contact']">Contact</a>
-      <a class="nav-item nav-link" [routerLink]="['/register']" *ngIf="!loggedIn()">Register</a>
-      <div *ngIf="!loggedIn()">
-        <app-login></app-login>
+      <a class="navbar-brand" href="#">Meal Team Six</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" [routerLink]="['/home']" *ngIf="loggedIn()">Home</a>
+          <a class="nav-item nav-link" [routerLink]="['/home']" *ngIf="!loggedIn()">Browse Recipes</a>
+          <a class="nav-item nav-link" [routerLink]="['/userRecipes']" *ngIf="loggedIn()">My Recipes</a>
+          <a class="nav-item nav-link" [routerLink]="['/profile']" *ngIf="loggedIn()">My Profile</a>
+          <a class="nav-item nav-link" [routerLink]="['/about']">About</a>
+          <a class="nav-item nav-link" [routerLink]="['/contact']">Contact</a>
+          <a class="nav-item nav-link" [routerLink]="['/register']" *ngIf="!loggedIn()">Register</a>
+          <div *ngIf="!loggedIn()">
+            <app-login></app-login>
+          </div>
+          <div *ngIf="loggedIn()">
+          <app-logout></app-logout>
+         </div>
+        </div>
       </div>
-      <div *ngIf="loggedIn()">
-        <app-logout></app-logout>
-      </div>
-    </div>
-  </div>
-  <div class="col-2"></div>
 </nav>

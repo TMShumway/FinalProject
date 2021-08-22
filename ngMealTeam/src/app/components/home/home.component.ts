@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
   descriptionStatusTF: boolean[] = [];
   recipeStatusTF: boolean[] = [];
   commentStatusTF: boolean[] = [];
-  ratingStatusTF: boolean[] = [];
+  // ratingStatusTF: boolean[] = [];
   postStatusTF: boolean[] = [];
 
   constructor(private recipeService: RecipeService) { }
@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit {
       this.descriptionStatusTF.push(true);
       this.recipeStatusTF.push(false);
       this.commentStatusTF.push(false);
-      this.ratingStatusTF.push(false);
+      // this.ratingStatusTF.push(false);
       this.postStatusTF.push(false);
     }
   }
@@ -59,35 +59,35 @@ export class HomeComponent implements OnInit {
     this.descriptionStatusTF[index] = true;
     this.recipeStatusTF[index] = false;
     this.commentStatusTF[index] = false;
-    this.ratingStatusTF[index] = false;
+    // this.ratingStatusTF[index] = false;
     this.postStatusTF[index] = false;
   }
   recipeStatus(index : number){
     this.descriptionStatusTF[index] = false;
     this.recipeStatusTF[index] = true;
     this.commentStatusTF[index] = false;
-    this.ratingStatusTF[index] = false;
+    // this.ratingStatusTF[index] = false;
     this.postStatusTF[index] = false;
   }
   commentStatus(index : number){
     this.descriptionStatusTF[index] = false;
     this.recipeStatusTF[index] = false;
     this.commentStatusTF[index] = true;
-    this.ratingStatusTF[index] = false;
+    // this.ratingStatusTF[index] = false;
     this.postStatusTF[index] = false;
   }
   ratingStatus(index : number){
     this.descriptionStatusTF[index] = false;
     this.recipeStatusTF[index] = false;
     this.commentStatusTF[index] = false;
-    this.ratingStatusTF[index] = true;
+    // this.ratingStatusTF[index] = true;
     this.postStatusTF[index] = false;
   }
   postStatus(index : number){
     this.descriptionStatusTF[index] = false;
     this.recipeStatusTF[index] = false;
     this.commentStatusTF[index] = false;
-    this.ratingStatusTF[index] = false;
+    // this.ratingStatusTF[index] = false;
     this.postStatusTF[index] = true;
   }
 
