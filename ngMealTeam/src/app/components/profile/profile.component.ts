@@ -4,6 +4,7 @@ import { Recipe } from 'src/app/models/recipe';
 import { PostService } from 'src/app/services/post.service';
 import { RecipeService } from 'src/app/services/recipe.service';
 
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',

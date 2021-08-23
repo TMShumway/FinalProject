@@ -30,10 +30,11 @@ public class Recipe {
 	@CreationTimestamp
 	@Column(name = "date_created")
 	private LocalDateTime dateCreated;
-	private Integer published;	
+	private boolean published;	
 	@Column(name = "recipe_step")
 	private String recipeStep;
 
+	@JsonIgnoreProperties("recipe")
 	@OneToMany(mappedBy = "recipe")
 	private List<RecipeImage> recipeImages;
 
@@ -96,11 +97,11 @@ public class Recipe {
 		this.dateCreated = dateCreated;
 	}
 
-	public int getPublished() {
+	public boolean getPublished() {
 		return published;
 	}
 
-	public void setPublished(int published) {
+	public void setPublished(boolean published) {
 		this.published = published;
 	}
 
@@ -159,10 +160,6 @@ public class Recipe {
 		this.restrictions = restrictions;
 	}
 
-	public void setPublished(Integer published) {
-		this.published = published;
-	}
-
 	public User getUser() {
 		return user;
 	}
@@ -179,22 +176,24 @@ public class Recipe {
 		this.recipeStep = recipeStep;
 	}
 
-	// @Override
-//	public String toString() {
-//		return "Recipe [id=" + id + ", name=" + name + ", description=" + description + ", dateCreated=" + dateCreated
-//				+ ", published=" + published + ", recipeImages=" + recipeImages + ", ratings=" + ratings + ", posts="
-//				+ posts + ", recipeComments=" + recipeComments + ", categories=" + categories + ", ingredients="
-//				+ ingredients + ", restrictions=" + restrictions + "]";
-//	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((categories == null) ? 0 : categories.hashCode());
 		result = prime * result + ((dateCreated == null) ? 0 : dateCreated.hashCode());
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + id;
+		result = prime * result + ((ingredients == null) ? 0 : ingredients.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + published;
+		result = prime * result + ((posts == null) ? 0 : posts.hashCode());
+		result = prime * result + (published ? 1231 : 1237);
+		result = prime * result + ((ratings == null) ? 0 : ratings.hashCode());
+		result = prime * result + ((recipeComments == null) ? 0 : recipeComments.hashCode());
+		result = prime * result + ((recipeImages == null) ? 0 : recipeImages.hashCode());
+		result = prime * result + ((recipeStep == null) ? 0 : recipeStep.hashCode());
+		result = prime * result + ((restrictions == null) ? 0 : restrictions.hashCode());
+		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
 	}
 
@@ -207,6 +206,11 @@ public class Recipe {
 		if (getClass() != obj.getClass())
 			return false;
 		Recipe other = (Recipe) obj;
+		if (categories == null) {
+			if (other.categories != null)
+				return false;
+		} else if (!categories.equals(other.categories))
+			return false;
 		if (dateCreated == null) {
 			if (other.dateCreated != null)
 				return false;
@@ -219,12 +223,52 @@ public class Recipe {
 			return false;
 		if (id != other.id)
 			return false;
+		if (ingredients == null) {
+			if (other.ingredients != null)
+				return false;
+		} else if (!ingredients.equals(other.ingredients))
+			return false;
 		if (name == null) {
 			if (other.name != null)
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
+		if (posts == null) {
+			if (other.posts != null)
+				return false;
+		} else if (!posts.equals(other.posts))
+			return false;
 		if (published != other.published)
+			return false;
+		if (ratings == null) {
+			if (other.ratings != null)
+				return false;
+		} else if (!ratings.equals(other.ratings))
+			return false;
+		if (recipeComments == null) {
+			if (other.recipeComments != null)
+				return false;
+		} else if (!recipeComments.equals(other.recipeComments))
+			return false;
+		if (recipeImages == null) {
+			if (other.recipeImages != null)
+				return false;
+		} else if (!recipeImages.equals(other.recipeImages))
+			return false;
+		if (recipeStep == null) {
+			if (other.recipeStep != null)
+				return false;
+		} else if (!recipeStep.equals(other.recipeStep))
+			return false;
+		if (restrictions == null) {
+			if (other.restrictions != null)
+				return false;
+		} else if (!restrictions.equals(other.restrictions))
+			return false;
+		if (user == null) {
+			if (other.user != null)
+				return false;
+		} else if (!user.equals(other.user))
 			return false;
 		return true;
 	}

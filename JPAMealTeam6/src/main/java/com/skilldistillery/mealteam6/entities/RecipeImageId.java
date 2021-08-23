@@ -15,6 +15,13 @@ public class RecipeImageId implements Serializable {
 	@Column(name = "user_id")
 	private int userId;
 
+	public RecipeImageId() {}
+	
+	public RecipeImageId(int recipeId, int userId) {
+		this.recipeId = recipeId;
+		this.userId = userId;
+	}
+	
 	public int getRecipeId() {
 		return recipeId;
 	}

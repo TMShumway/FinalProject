@@ -1,0 +1,31 @@
+<form>
+  <div class="form-group">
+    <label for="name">Recipe Name</label><br>
+    <input type="text" class="form-control mt-2" id="name" name="name" required>
+  </div>
+  <div class="form-group">
+    <label for="recipeImage">Recipe Image Url</label><br>
+    <input type="text" class="form-control mt-2" id="recipeImage" name="recipeImage">
+  </div>
+  <div class="form-group">
+    <label for="description">Description</label><br>
+    <input type="text" class="form-control mt-2" id="description" name="description">
+  </div>
+  <div class="form-group">
+    <label for="recipeStep">Recipe Instructions</label><br>
+    <textarea class="form-control mt-2" id="recipeStep" name="recipeStep" rows="8" required></textarea>
+  </div>
+  <!-- <div class="form-group">
+    <label for="exampleFormControlSelect2">Example multiple select</label>
+    <select multiple class="form-control" id="exampleFormControlSelect2">
+      <option *ngFor=""></option>
+    </select>
+  </div> -->
+  <div>
+    <label for="published">Public Visibility</label>
+    <input type="checkbox" class="form-control mt-2" id="published" name="published" checked>
+  </div>
+  <button class="btn btn-success mt-2">Sumbit</button>
+  <button class="btn btn-danger mt-2">Cancel</button>
+</form>
+

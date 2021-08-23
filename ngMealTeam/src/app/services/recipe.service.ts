@@ -46,4 +46,15 @@ export class RecipeService {
     };
   return httpOptions;
   }
+
+  public create(recipe: Recipe, rImageUrl: string){
+    rImageUrl = btoa(rImageUrl);
+    return this.http.post<Recipe>(this.url + "/" + rImageUrl, recipe, this.getHttpOptions())
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError('Error creating recipe: ' + err);
+        })
+      );
+  }
 }
