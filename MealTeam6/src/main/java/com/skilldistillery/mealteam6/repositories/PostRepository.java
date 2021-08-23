@@ -9,4 +9,5 @@ import com.skilldistillery.mealteam6.entities.Post;
 public interface PostRepository extends JpaRepository<Post, Integer> {
 	// SELECT * from POST 
 	List<Post> findByDescriptionContainingIgnoreCaseOrTitleIgnoreCaseContaining(String keyword, String keyword1);
+	List<Post> findByUser_Username(String username);
 }

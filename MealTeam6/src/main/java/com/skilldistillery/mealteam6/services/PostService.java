@@ -12,6 +12,6 @@ public interface PostService {
 	public Post update(Post post);
 	public boolean destroy(int id);
 	public List<Post> showAllPosts();
-	
+	public List<Post> showPostsByUsername(String username);
 	
 }

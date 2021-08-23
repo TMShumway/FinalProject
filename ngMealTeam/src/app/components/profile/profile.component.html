@@ -58,7 +58,7 @@
        <div *ngIf="postIsVisible" >
         <div *ngFor="let p of posts; let i = index"  class="card mt-3 mx-auto">
           <p>{{p.user.username}}</p>
-          <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/7/74/Beijing_bouddhist_monk_2009_IMG_1486.JPG" alt="Card image cap">
+          <!-- <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/7/74/Beijing_bouddhist_monk_2009_IMG_1486.JPG" alt="Card image cap"> -->
           <img class="card-img-top" *ngIf="postHasImage(i)" src="{{p.imageUrl}}" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">{{p.title}}</h5>
@@ -184,6 +184,7 @@
         </div>
       </div>
        </div>
+
     </div>
   </div>
 </div>

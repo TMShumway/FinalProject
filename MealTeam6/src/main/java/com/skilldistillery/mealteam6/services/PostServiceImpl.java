@@ -69,4 +69,15 @@ public class PostServiceImpl implements PostService {
 		return postRepo.findAll();
 	}
 
+	@Override
+	public List<Post> showPostsByUsername(String username) {
+		List<Post> posts = null;
+		try {
+			posts = postRepo.findByUser_Username(username);
+		} catch (Exception e) {
+			posts = null;
+		}
+		return posts;
+	}
+
 }
