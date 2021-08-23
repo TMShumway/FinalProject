@@ -12,4 +12,6 @@ export class PostFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  update(){}
+
 }

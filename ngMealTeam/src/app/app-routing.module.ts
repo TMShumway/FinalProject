@@ -8,6 +8,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { AboutComponent } from './components/about/about.component';
 import { UserRecipesComponent } from './components/user-recipes/user-recipes.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { PostFormComponent } from './components/post-form/post-form.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'welcome'},
@@ -18,8 +20,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'welcome', component: SplashpageComponent},
   { path: 'register', component: RegistrationComponent},
-  { path: 'profile', component: ProfileComponent}
-
+  { path: 'profile', component: ProfileComponent},
+  { path: 'update', component: EditProfileComponent},
+  { path: 'post', component: PostFormComponent}
 ];
 
 @NgModule({
