@@ -3,6 +3,7 @@ import { Post } from 'src/app/models/post';
 import { Recipe } from 'src/app/models/recipe';
 import { PostService } from 'src/app/services/post.service';
 import { RecipeService } from 'src/app/services/recipe.service';
+import { UserService } from 'src/app/services/user.service';
 
 
 @Component({
@@ -24,24 +25,32 @@ export class ProfileComponent implements OnInit {
   postStatusTF: boolean[] = [];
 
 
-  constructor(private postService: PostService, private recipeService: RecipeService) { }
+  constructor(private postService: PostService, private userService: UserService, private recipeService: RecipeService) { }
 
 
   ngOnInit(): void {
-    this.loadAllPosts();
+    this.loadUserPosts();
     this.loadUserRecipes();
   }
 
   loadAllPosts() {
     this.postService.index().subscribe(
-      data => { this.posts = data;},
+      data => { this.posts = data.reverse();},
 
       error => { console.error('Error retrieving posts from postService: ' + error);}
     );
   }
 
+  loadUserPosts() {
+    this.userService.indexPostsByUsername().subscribe(
+      data => { this.posts = data;},
+
+      error => { console.error('Error retrieving posts from userService: ' + error);}
+    );
+  }
+
   loadUserRecipes() {
-    this.recipeService.index().subscribe(
+    this.recipeService.indexByUsername().subscribe(
       data => { this.recipes = data;
         this.initializeArrays();
       },
@@ -61,6 +70,7 @@ export class ProfileComponent implements OnInit {
   showPostDiv() {
     this.recipeIsVisible = false;
     this.postIsVisible = true;
+    this.loadUserPosts();
     return this.postIsVisible;
   }
 
