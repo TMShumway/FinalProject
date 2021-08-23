@@ -43,5 +43,5 @@ label.star:hover {
 
 label.star:before {
   content: '\f006';
-  font-family: FontAwesome
+  font-family: FontAwesome;
 }
