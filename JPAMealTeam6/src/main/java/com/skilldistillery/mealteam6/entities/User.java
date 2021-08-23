@@ -35,9 +35,9 @@ public class User {
 	@JsonIgnoreProperties("user")
 	@OneToMany(mappedBy="user")
 	private List<RecipeComment> recipeComments;
-	@JsonIgnoreProperties("user")
-	@OneToMany(mappedBy="user")
-	private List<RecipeImage> recipeImages;
+//	@JsonIgnoreProperties("user")
+//	@OneToMany(mappedBy="user")
+//	private List<RecipeImage> recipeImages;
 	
 	@OneToMany(mappedBy = "user")
 	private List<Recipe> recipes;
@@ -128,13 +128,13 @@ public class User {
 		this.recipeComments = recipeComments;
 	}
 
-	public List<RecipeImage> getRecipeImages() {
-		return recipeImages;
-	}
-
-	public void setRecipeImages(List<RecipeImage> recipeImages) {
-		this.recipeImages = recipeImages;
-	}
+//	public List<RecipeImage> getRecipeImages() {
+//		return recipeImages;
+//	}
+//
+//	public void setRecipeImages(List<RecipeImage> recipeImages) {
+//		this.recipeImages = recipeImages;
+//	}
 
 	@Override
 	public String toString() {
