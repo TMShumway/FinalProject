@@ -17,6 +17,7 @@ import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { UserRecipesComponent } from './components/user-recipes/user-recipes.component';
 import { RecipeFormModalComponent } from './components/recipe-form-modal/recipe-form-modal.component';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -32,7 +33,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AboutComponent,
     ContactComponent,
     UserRecipesComponent,
-    RecipeFormModalComponent
+    RecipeFormModalComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,
