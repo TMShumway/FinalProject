@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -16,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skilldistillery.mealteam6.entities.Post;
 import com.skilldistillery.mealteam6.entities.User;
+import com.skilldistillery.mealteam6.services.PostService;
 import com.skilldistillery.mealteam6.services.UserService;
 
 @RestController
@@ -26,6 +27,9 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private PostService postService;
 	
 	@GetMapping("users")
 	public List<User> getAllUsers(HttpServletResponse res, Principal principal)
@@ -91,6 +95,16 @@ public class UserController {
 		return user; 
 	}
 	
+	
+	@GetMapping("posts/username")
+	private List<Post> indexByUsername(HttpServletResponse res, Principal principal) {
+		List<Post> posts = null;
+		posts = postService.showPostsByUsername(principal.getName());
+		if (posts == null) {
+			res.setStatus(404);
+		}
+		return posts;
+	}
 	
 //	@DeleteMapping("users/{uid}")
 //	public boolean delete(
