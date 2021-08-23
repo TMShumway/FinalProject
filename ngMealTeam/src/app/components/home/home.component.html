@@ -3,7 +3,7 @@
   <div class="card-body">
     Sortable options [x] [x] [x]...Different View buttons [Post Feed] [Recipe Feed]
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="createRecipeForm()">
       Add a recipe
     </button>
 
@@ -53,6 +53,42 @@ Row 1
       <!-- 1 of 3 -->
     </div>
     <div class="col-8">
+      <div *ngIf="createRecipeTF">
+        <div class="card mt-3 mx-auto">
+          <div class="card-body">
+            <form>
+              <div class="form-group">
+                <label for="name">Recipe Name</label><br>
+                <input type="text" class="form-control mt-2" id="name" name="name" [(ngModel)]="newRecipe.name" required>
+              </div>
+              <div class="form-group">
+                <label for="recipeImage">Recipe Image Url</label><br>
+                <input type="text" class="form-control mt-2" id="recipeImage" name="recipeImage" [(ngModel)]="rImageUrl">
+              </div>
+              <div class="form-group">
+                <label for="description">Description</label><br>
+                <input type="text" class="form-control mt-2" id="description" name="description" [(ngModel)]="newRecipe.description">
+              </div>
+              <div class="form-group">
+                <label for="recipeStep">Recipe Instructions</label><br>
+                <textarea class="form-control mt-2" id="recipeStep" name="recipeStep" rows="8" [(ngModel)]="newRecipe.recipeStep" required></textarea>
+              </div>
+              <!-- <div class="form-group">
+                <label for="exampleFormControlSelect2">Example multiple select</label>
+                <select multiple class="form-control" id="exampleFormControlSelect2">
+                  <option *ngFor=""></option>
+                </select>
+              </div> -->
+              <div>
+                <label for="published">Public Visibility</label>
+                <input type="checkbox" class="smt-2" id="published" name="published" [(ngModel)]="newRecipe.published" checked>
+              </div>
+              <button class="btn btn-success mt-2" (click)="createNewRecipe()">Submit</button>
+              <button class="btn btn-danger mt-2" (click)="createRecipeForm()">Cancel</button>
+            </form>
+          </div>
+        </div>
+      </div>
       <div *ngFor="let r of recipes; let i = index"  class="card mt-3 mx-auto">
         <!-- <script> uid = 'x' + r.id </script> -->
         <img class="card-img-top" src="{{r.recipeImages[0].imageUrl}}" alt="Card image cap">

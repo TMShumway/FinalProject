@@ -1,5 +1,6 @@
 package com.skilldistillery.mealteam6.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -7,7 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.mealteam6.entities.Recipe;
+import com.skilldistillery.mealteam6.entities.RecipeImage;
+import com.skilldistillery.mealteam6.entities.RecipeImageId;
 import com.skilldistillery.mealteam6.entities.User;
+import com.skilldistillery.mealteam6.repositories.RecipeImageRepository;
 import com.skilldistillery.mealteam6.repositories.RecipeRepository;
 import com.skilldistillery.mealteam6.repositories.UserRepository;
 
@@ -19,6 +23,9 @@ public class RecipeServiceImpl implements RecipeService {
 
 	@Autowired
 	private UserRepository userRepo;
+
+	@Autowired
+	private RecipeImageRepository recipeImageRepo;
 	
 	
 	// Return all recipes
@@ -59,15 +66,30 @@ public class RecipeServiceImpl implements RecipeService {
 
 	// Create a recipe
 	@Override
-	public Recipe createRecipe(Recipe recipe, String username) {
+	public Recipe createRecipe(Recipe recipe, String username, String imageUrl) {
+		
 		try {
 			User user = userRepo.findByUsername(username);
 			recipe.setUser(user);
+			recipeRepo.save(recipe);
+			List <RecipeImage> rImages = new ArrayList<>();
+			rImages.add(addImageToRecipe(recipe, imageUrl));
+			recipe.setRecipeImages(rImages);
 			recipeRepo.saveAndFlush(recipe);
 		} catch (Exception e) {
 			recipe = null;
 		}
 		return recipe;
+	}
+
+	@Override
+	public RecipeImage addImageToRecipe(Recipe recipe, String imageUrl) throws Exception {
+		RecipeImageId rId = new RecipeImageId(recipe.getId(), recipe.getUser().getId());
+		RecipeImage rImage = new RecipeImage();
+		rImage.setId(rId);
+		rImage.setImageUrl(imageUrl);
+		rImage.setRecipe(recipe);
+		return recipeImageRepo.saveAndFlush(rImage);
 	}
 
 	// Update a recipe

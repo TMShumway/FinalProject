@@ -31,11 +31,51 @@ public class RecipeImage {
 	@MapsId(value = "recipeId")
 	private Recipe recipe;
 
-	@ManyToOne
-	@JoinColumn(name = "user_id")
-	@MapsId(value = "userId")
-	private User user;
+//	@ManyToOne
+//	@JoinColumn(name = "user_id")
+//	@MapsId(value = "userId")
+//	private User user;
 	
+	public RecipeImage() {}
+	
+	
+	
+	public RecipeImageId getId() {
+		return id;
+	}
+
+
+
+	public void setId(RecipeImageId id) {
+		this.id = id;
+	}
+
+
+
+	public Recipe getRecipe() {
+		return recipe;
+	}
+
+
+
+	public void setRecipe(Recipe recipe) {
+		this.recipe = recipe;
+	}
+//
+//
+//
+//	public User getUser() {
+//		return user;
+//	}
+//
+//
+//
+//	public void setUser(User user) {
+//		this.user = user;
+//	}
+
+
+
 	public String getImageUrl() {
 		return imageUrl;
 	}
