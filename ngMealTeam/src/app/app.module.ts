@@ -17,6 +17,7 @@ import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { UserRecipesComponent } from './components/user-recipes/user-recipes.component';
 import { RecipeFormModalComponent } from './components/recipe-form-modal/recipe-form-modal.component';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { RecipeFormModalComponent } from './components/recipe-form-modal/recipe-
     AboutComponent,
     ContactComponent,
     UserRecipesComponent,
-    RecipeFormModalComponent
+    RecipeFormModalComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,
