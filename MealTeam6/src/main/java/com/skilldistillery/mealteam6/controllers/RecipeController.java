@@ -1,6 +1,7 @@
 package com.skilldistillery.mealteam6.controllers;
 
 import java.security.Principal;
+import java.util.Base64;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -71,10 +72,11 @@ public class RecipeController {
 		return recipe;
 	}
 
-	@PostMapping("recipes")
-	public Recipe create(HttpServletRequest req, HttpServletResponse res, @RequestBody Recipe recipe, Principal principal) {
+	@PostMapping("recipes/{encodedUrl}")
+	public Recipe create(HttpServletRequest req, HttpServletResponse res, @RequestBody Recipe recipe, Principal principal, @PathVariable byte[] encodedUrl) {
+		String imageUrl = new String(Base64.getDecoder().decode(encodedUrl));
 		try {
-			recipe = recipeService.createRecipe(recipe, principal.getName());
+			recipe = recipeService.createRecipe(recipe, principal.getName(), imageUrl);
 			res.setStatus(201);
 			StringBuffer url = req.getRequestURL();
 			url.append("/").append(recipe.getId());
