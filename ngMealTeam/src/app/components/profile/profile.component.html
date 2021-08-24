@@ -210,8 +210,8 @@
         <input name="imgUrl" id="imgUrl" type="text" [(ngModel)]="editUser.imgUrl"><br>
 
         <label for="password">Password</label><br>
-        <input name="password" [(ngModel)]="editUser.password"><br><br>
-        <input type="submit" (click)=updateUser()>
+        <input type="password" name="password" [(ngModel)]="editUser.password"><br><br>
+        <input type="submit" (click)=updateUser(editUser)>
       </form>
       </div>
       </div>

@@ -99,13 +99,27 @@ export class ProfileComponent implements OnInit {
     return this.editProfileIsVisible;
   }
 
-  updateUser() {
-    // this.userService.index().subscribe(
-    //   data => { this.posts = data;},
+  updateUser(user: User) {
+    this.userService.updateUser(user).subscribe(
+      data => {  },
 
-    //   error => { console.error('Error retrieving posts from postService: ' + error);}
-    // );
+      error => { console.error('Error retrieving user from userService: ' + error);}
+    );
   }
+
+//   this.todoService.update(todo).subscribe(
+//     data => {
+//       this.reload();
+//     },
+//     error => {
+//       console.log(error);
+//       console.log("error updating todo through service")
+//     }
+//   );
+//   this.editTodo = null;
+//   this.selected = null;
+//   // this.todos = this.todoService.index();
+// }
 
   showRecipeDiv() {
     this.postIsVisible = false;
