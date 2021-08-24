@@ -60,8 +60,11 @@ public class UserServiceImpl implements UserService {
 //		System.out.println(managed.getEmail());
 		if (managed.isPresent()) {
 			updatedUser = managed.get();
-			System.out.println("managed != null" + updatedUser.getUsername());
-			
+//			System.out.println("managed != null" + updatedUser.getUsername());
+			System.out.println(user);
+			System.out.println(user.getPassword());
+			System.out.println(updatedUser);
+			System.out.println(updatedUser.getPassword());
 			if( name.equals(updatedUser.getUsername())) {
 				System.out.println("Success");
 				updatedUser.setUsername(user.getUsername());

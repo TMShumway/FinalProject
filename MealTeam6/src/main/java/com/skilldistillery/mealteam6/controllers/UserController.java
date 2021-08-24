@@ -92,7 +92,7 @@ public class UserController {
 			Principal principal,
 			@PathVariable int uid, 
 			@RequestBody User user) {
-		
+		System.out.println(user);
 		try {
 			user = userService.updateUser(principal.getName(), uid, user); 
 			res.setStatus(201);
