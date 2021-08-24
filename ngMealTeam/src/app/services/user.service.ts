@@ -13,6 +13,7 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class UserService {
+
   private url = environment.baseUrl + "api/users";
 
   constructor(private http: HttpClient, private authService: AuthService) { }
@@ -58,5 +59,15 @@ export class UserService {
 
   return httpOptions;
   }
+
+  updateUser(user: User) {
+    return this.http.put<User>(this.url + '/' + user.id, user, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Error updating user: ' + user.id);
+      })
+    )
+  }
+
 
 }
