@@ -45,7 +45,7 @@ public class RecipeServiceImpl implements RecipeService {
 	public List<Recipe> indexByUsername(String username) {
 		List<Recipe> recipes;
 		try {
-			recipes = recipeRepo.findByPublishedAndUser_Username(true, username);
+			recipes = recipeRepo.findByPublishedTrueAndPersonalTrueAndUser_Username(username);
 		} catch (Exception e) {
 			recipes = null;
 		}
