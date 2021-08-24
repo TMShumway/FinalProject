@@ -16,6 +16,7 @@ export class Recipe {
   recipeStep: String[];
   recipeImages: RecipeImage[];
   posts: Post[];
+  personal: boolean;
 
   constructor(
     id = 0,
@@ -28,7 +29,8 @@ export class Recipe {
     ratings = [],
     recipeStep = [],
     recipeImages = [],
-    posts = []
+    posts = [],
+    personal = false
     ){
     this.id = id;
     this.name = name;
@@ -41,5 +43,6 @@ export class Recipe {
     this.recipeStep = recipeStep;
     this.recipeImages = recipeImages;
     this.posts = posts;
+    this.personal = personal;
   }
 }

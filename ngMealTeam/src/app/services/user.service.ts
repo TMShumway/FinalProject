@@ -38,7 +38,10 @@ export class UserService {
       );
   }
   public addRecipeToUserList(recipe: Recipe){
-    return this.http.put<Recipe>(this.url + "/recipe", recipe, this.getHttpOptions())
+    recipe.user = new User();
+    recipe.personal = true;
+    console.log(recipe.user);
+    return this.http.post<Recipe>(environment.baseUrl + "api/recipes/userlist", recipe, this.getHttpOptions())
       .pipe(
         catchError((err: any) => {
           console.log(err);

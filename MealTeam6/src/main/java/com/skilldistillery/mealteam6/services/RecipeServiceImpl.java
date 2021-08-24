@@ -33,7 +33,7 @@ public class RecipeServiceImpl implements RecipeService {
 	public List<Recipe> index() {
 		List<Recipe> recipes;
 		try {
-			recipes = recipeRepo.findAll();
+			recipes = recipeRepo.findByPublishedTrue();
 		} catch (Exception e) {
 			recipes = null;
 		}
@@ -45,7 +45,7 @@ public class RecipeServiceImpl implements RecipeService {
 	public List<Recipe> indexByUsername(String username) {
 		List<Recipe> recipes;
 		try {
-			recipes = recipeRepo.findByUser_Username(username);
+			recipes = recipeRepo.findByPublishedTrueAndPersonalTrueAndUser_Username(username);
 		} catch (Exception e) {
 			recipes = null;
 		}
@@ -111,5 +111,32 @@ public class RecipeServiceImpl implements RecipeService {
 		return managedRecipe;
 	}
 	
-	// TODO: Destroy
+	public boolean deleteRecipe(int recipeId) {
+		Recipe recipeToDelete = null;
+		try {
+			Optional<Recipe> recipeOptional = recipeRepo.findById(recipeId);
+			if(recipeOptional.isPresent()) {
+				recipeToDelete = recipeOptional.get();
+				recipeToDelete.setPublished(false);
+				recipeRepo.saveAndFlush(recipeToDelete);
+			}
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+	
+	// Create a recipe
+		@Override
+		public Recipe createRecipe(Recipe recipe, String username) {
+			try {
+				User user = userRepo.findByUsername(username);
+				recipe.setUser(user);
+				recipeRepo.saveAndFlush(recipe);
+			} catch (Exception e) {
+				recipe = null;
+			}
+			return recipe;
+		}
+			
 }

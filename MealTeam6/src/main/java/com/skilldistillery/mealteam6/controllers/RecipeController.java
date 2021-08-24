@@ -87,6 +87,21 @@ public class RecipeController {
 		}
 		return recipe;
 	}
+
+	@PostMapping("recipes/userlist")
+	public Recipe create(HttpServletRequest req, HttpServletResponse res, @RequestBody Recipe recipe, Principal principal) {
+		try {
+			recipe = recipeService.createRecipe(recipe, principal.getName());
+			res.setStatus(201);
+			StringBuffer url = req.getRequestURL();
+			url.append("/").append(recipe.getId());
+			res.setHeader("Location", url.toString());
+		} catch (Exception e) {
+			res.setStatus(400);
+			recipe = null;
+		}
+		return recipe;
+	}
 	
     @PutMapping("recipes/{recipeId}")
 	public Recipe update(HttpServletRequest req, HttpServletResponse res, @PathVariable int recipeId, @RequestBody Recipe recipe, Principal principal) {

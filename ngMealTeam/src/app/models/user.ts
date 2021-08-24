@@ -14,8 +14,8 @@ export class User {
     email = '',
     role = '',
     enabled = false,
-  imgUrl = '',
-  dateCreated = ''
+    imgUrl = '',
+    dateCreated = '',
   ){
     this.id = id;
     this.username = username;
@@ -23,7 +23,7 @@ export class User {
     this.email = email;
     this.role = role;
     this.enabled = enabled;
-  this.imgUrl = imgUrl;
-  this.dateCreated = dateCreated;
+    this.imgUrl = imgUrl;
+    this.dateCreated = dateCreated;
   }
 }
