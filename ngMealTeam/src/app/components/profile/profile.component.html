@@ -34,7 +34,7 @@
           Username: {{editUser.username}}
         </p>
         <p class="sideNavBtn">
-          User since: {{editUser.dateCreated}}
+          User since: {{editUser.dateCreated | date: "mediumDate"}}
         </p>
         <p class="sideNavBtn">
           Recipes Contributed: TBD
@@ -211,12 +211,13 @@
 
         <label for="password">Password</label><br>
         <input type="password" name="password" [(ngModel)]="editUser.password"><br><br>
+        <br><br>
         <input type="submit" (click)=updateUser(editUser)>
       </form>
       </div>
       </div>
 
-      <!------------------------------------  Edit Profile ------------------------------------------------>
+      <!------------------------------------ End Edit Profile ------------------------------------------------>
 
     </div>
 
