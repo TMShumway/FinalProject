@@ -74,11 +74,11 @@ export class ProfileComponent implements OnInit {
     );
   }
   postHasImage(i: number) {
-  if(this.posts[i].imageUrl === null){
-    return false;
-  } else {
-    return true;
-  }
+    if(this.posts[i].imageUrl === null){
+      return false;
+    } else {
+      return true;
+    }
   }
 
   showPostDiv() {
@@ -108,14 +108,10 @@ export class ProfileComponent implements OnInit {
   }
 
   showRecipeDiv() {
-    this.postService.index().subscribe(
-      data => { this.posts = data;},
-
-      error => { console.error('Error retrieving posts from postService: ' + error);}
-    );
     this.postIsVisible = false;
     this.editProfileIsVisible = false;
     this.recipeIsVisible = true;
+    this.loadUserRecipes();
     return this.recipeIsVisible;
   }
 
