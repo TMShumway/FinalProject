@@ -25,32 +25,35 @@
   </div> -->
 
   <div class="row theProfile">
-
+    <!-- https://upload.wikimedia.org/wikipedia/commons/8/84/Sylvester_Stallone_Cannes_2019.jpg -->
     <div class="col-md-3">
       <div class="vertical-menu card mt-3 mx-auto">
-        <img height="216 px" class="mx-auto" src="https://upload.wikimedia.org/wikipedia/commons/8/84/Sylvester_Stallone_Cannes_2019.jpg" alt="">
+        <div class="card-body">
+        <img class="card-img-top" src="{{editUser.imgUrl}}" alt="">
         <p class="sideNavBtn">
-          Username:
+          Username: {{editUser.username}}
         </p>
         <p class="sideNavBtn">
-          User since:
+          User since: {{editUser.dateCreated}}
         </p>
         <p class="sideNavBtn">
-          Recipes Contributed:
+          Recipes Contributed: TBD
         </p>
         <p class="sideNavBtn">
           Friends:
         </p>
 
         <hr>
-        <button class="btn btn-success sideNavBtn"> Edit Profile</button><br>
-        <button class="btn btn-success sideNavBtn" (click)="showRecipeDiv()">My Recipes</button><br>
-        <button class="btn btn-success sideNavBtn">Friends Posts</button><br>
-        <button class="btn btn-success sideNavBtn" (click)="showPostDiv()"> My Posts</button>
-
+        <div style="text-align:center">
+        <button class="btn btn-success sideNavBtn mx-auto" (click)="showEditProfileDiv()"> Edit Profile</button><br>
+        <button class="btn btn-success sideNavBtn mx-auto" (click)="showRecipeDiv()">My Recipes</button><br>
+        <button class="btn btn-success sideNavBtn mx-auto">Friends Posts</button><br>
+        <button class="btn btn-success sideNavBtn mx-auto" (click)="showPostDiv()"> My Posts</button>
+        </div>
 
 
       </div>
+    </div>
     </div>
 
     <div class="col-md-6 scroller">
@@ -183,9 +186,43 @@
           </div>
         </div>
       </div>
+
+
        </div>
 
+
+      <!------------------------------------  Edit Profile ------------------------------------------------>
+
+      <!-- <div  *ngIf="editProfileIsVisible">
+        <app-edit-profile></app-edit-profile>
+      </div> -->
+
+
+    <div  *ngIf="editProfileIsVisible">
+      <div class="card mt-3 mx-auto">
+        <h1>Update Account Information</h1>
+      <form >
+        <label for="username">Username</label><br>
+        <input name ="username" type="text" [(ngModel)]="editUser.username"> <br>
+        <label for="email">Email</label><br>
+        <input name="email" [(ngModel)]="editUser.email"><br>
+
+        <label for="imgUrl">Image URL</label><br>
+        <input name="imgUrl" id="imgUrl" type="text" [(ngModel)]="editUser.imgUrl"><br>
+
+        <label for="password">Password</label><br>
+        <input name="password" [(ngModel)]="editUser.password"><br><br>
+        <input type="submit" (click)=updateUser()>
+      </form>
+      </div>
+      </div>
+
+      <!------------------------------------  Edit Profile ------------------------------------------------>
+
     </div>
+
+
+
   </div>
 </div>
 

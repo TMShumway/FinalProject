@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Post } from '../models/post';
+import { User } from '../models/user';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -25,6 +26,15 @@ export class UserService {
       );
   }
 
+  public getUserByUsername() : Observable<User>{
+    return this.http.get<User>(this.url + "/principal", this.getHttpOptions())
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError("Error getting user in UserService:" + err);
+        })
+      );
+  }
   getHttpOptions(){
     const credentials = this.authService.getCredentials();
     const httpOptions = {
