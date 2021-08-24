@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Recipe } from 'src/app/models/recipe';
 import { RecipeService } from 'src/app/services/recipe.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -24,7 +25,7 @@ export class HomeComponent implements OnInit {
   postStatusTF: boolean[] = [];
   createRecipeTF: boolean = false;
 
-  constructor(private recipeService: RecipeService) { }
+  constructor(private recipeService: RecipeService, private userService: UserService) { }
 
   ngOnInit(): void {
     this.loadAllRecipes();
@@ -119,6 +120,14 @@ export class HomeComponent implements OnInit {
       err => { console.error('Observer error in homeComponent createNewRecipe(): ' + err) }
     );
     this.newRecipe = new Recipe();
+  }
+
+  addToMyRecipeList(r: Recipe){
+    this.userService.addRecipeToUserList(r).subscribe(
+      data => { },
+
+      err => { console.error('Observer error: ' + err) }
+    );
   }
 
 }

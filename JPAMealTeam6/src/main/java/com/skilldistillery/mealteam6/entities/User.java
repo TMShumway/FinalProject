@@ -1,13 +1,17 @@
 package com.skilldistillery.mealteam6.entities;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -23,6 +27,11 @@ public class User {
 	private Boolean enabled;
 	private String email;
 	private String role;
+	@CreationTimestamp
+	@Column(name="date_created")
+	private LocalDateTime dateCreated;
+	@Column(name="image_url")
+	private String imgUrl;
 	@JsonIgnoreProperties("user")
 	@OneToMany(mappedBy="user")
 	private List<Post> posts;
@@ -39,6 +48,14 @@ public class User {
 //	@OneToMany(mappedBy="user")
 //	private List<RecipeImage> recipeImages;
 	
+//	@OneToMany
+//	@JsonIgnoreProperties("followedUsers")
+//	private List<User> followedUsers;
+//	
+//	@OneToMany
+//	@JsonIgnoreProperties("usersFollowingMe")
+//	private List<User> usersFollowingMe;
+//	
 	@OneToMany(mappedBy = "user")
 	private List<Recipe> recipes;
 	
@@ -127,6 +144,10 @@ public class User {
 	public void setRecipeComments(List<RecipeComment> recipeComments) {
 		this.recipeComments = recipeComments;
 	}
+	
+	public void addRecipeToRecipes(Recipe recipe) {
+		this.recipes.add(recipe);
+	}
 
 //	public List<RecipeImage> getRecipeImages() {
 //		return recipeImages;
@@ -135,6 +156,46 @@ public class User {
 //	public void setRecipeImages(List<RecipeImage> recipeImages) {
 //		this.recipeImages = recipeImages;
 //	}
+
+//	public List<User> getFollowedUsers() {
+//		return followedUsers;
+//	}
+//
+//	public void setFollowedUsers(List<User> followedUsers) {
+//		this.followedUsers = followedUsers;
+//	}
+//
+//	public List<User> getUsersFollowingMe() {
+//		return usersFollowingMe;
+//	}
+//
+//	public void setUsersFollowingMe(List<User> usersFollowingMe) {
+//		this.usersFollowingMe = usersFollowingMe;
+//	}
+
+	public List<Recipe> getRecipes() {
+		return recipes;
+	}
+
+	public void setRecipes(List<Recipe> recipes) {
+		this.recipes = recipes;
+	}
+
+	public String getImgUrl() {
+		return imgUrl;
+	}
+
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
+	}
+
+	public LocalDateTime getDateCreated() {
+		return dateCreated;
+	}
+
+	public void setDateCreated(LocalDateTime dateCreated) {
+		this.dateCreated = dateCreated;
+	}
 
 	@Override
 	public String toString() {
