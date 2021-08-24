@@ -124,7 +124,7 @@ export class HomeComponent implements OnInit {
 
   addToMyRecipeList(r: Recipe){
     this.userService.addRecipeToUserList(r).subscribe(
-      data => { },
+      data => { }, //Display success or failure message
 
       err => { console.error('Observer error: ' + err) }
     );

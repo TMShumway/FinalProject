@@ -125,5 +125,18 @@ public class RecipeServiceImpl implements RecipeService {
 		}
 		return true;
 	}
+	
+	// Create a recipe
+		@Override
+		public Recipe createRecipe(Recipe recipe, String username) {
+			try {
+				User user = userRepo.findByUsername(username);
+				recipe.setUser(user);
+				recipeRepo.saveAndFlush(recipe);
+			} catch (Exception e) {
+				recipe = null;
+			}
+			return recipe;
+		}
 			
 }
