@@ -7,8 +7,10 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.aspectj.lang.annotation.DeclareMixin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -118,4 +120,16 @@ public class RecipeController {
 		return recipe;
 	}
     
+    @DeleteMapping("recipes/{recipeId}")
+    public void unPublishRecipe(@PathVariable int recipeId, HttpServletResponse res, Principal Principal) {
+    	boolean deleted = false;
+    	deleted = recipeService.deleteRecipe(recipeId);
+    	if (deleted) {
+			res.setStatus(204);
+		} else {
+			res.setStatus(403);
+		}
+    	
+    }
 }
+
