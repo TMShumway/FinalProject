@@ -89,12 +89,21 @@ Row 1
           </div>
         </div>
       </div>
+
+      <!-- Recipes Cards -->
+
       <div *ngFor="let r of recipes; let i = index"  class="card mt-3 mx-auto">
         <!-- <script> uid = 'x' + r.id </script> -->
+
+        <!-- Recipe Image -->
+
         <img class="card-img-top" src="{{r.recipeImages[0].imageUrl}}" alt="Card image cap">
         <div class="card-body">
           <div class="row">
             <div class="col">
+
+              <!-- Recipe Name -->
+
               <h3 class="card-title">{{r.name}} </h3>
             </div>
             <div class="col">
@@ -196,9 +205,45 @@ Row 1
                 </div>
               </div>
         </div>
-        <!-- Card Button -->
+        <!-- Card Footer Buttons -->
         <div class="card-footer text-muted">
-          <button type="button" class="btn btn-outline-success" (click)="addToMyRecipeList(r)">Add Recipe</button>
+          <button type="button" class="btn btn-outline-success" (click)="addToMyRecipeList(r)">Add to My Recipes</button>
+          <button *ngIf="checkUserMatches(r)" type="button" class="btn btn-outline-warning" (click)="editRecipeTF[i] = !editRecipeTF[i]">Edit this Recipe</button>
+          <button *ngIf="checkUserMatches(r)" type="button" class="btn btn-outline-danger" (click)="deletefromMyRecipeList(r)">Delete this Recipe</button>
+          <br>
+          <div *ngIf="editRecipeTF[i]">
+              <!-- <div class="card mt-3 mx-auto"> -->
+                <!-- <div class="card-body"> -->
+                  <form>
+                    <div class="form-group">
+                      <label for="name">Recipe Name</label><br>
+                      <input type="text" class="form-control mt-2" id="name" name="name"  [(ngModel)]="editRecipe[i].name" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="recipeImage">Recipe Image Url</label><br>
+                      <input type="text" class="form-control mt-2" id="recipeImage"  name="recipeImage" [(ngModel)]="editRecipe[i].recipeImages[0].imageUrl">
+                    </div>
+                    <div class="form-group">
+                      <label for="description">Description</label><br>
+                      <input type="text" class="form-control mt-2" id="description" name="description" [(ngModel)]="editRecipe[i].description">
+                    </div>
+                    <div class="form-group">
+                      <label for="recipeStep">Recipe Instructions</label><br>
+                      <textarea class="form-control mt-2" id="recipeStep" name="recipeStep" rows="8" [(ngModel)]="editRecipe[i].recipeStep" required></textarea>
+                    </div>
+                    <!-- <div class="form-group">
+                      <label for="exampleFormControlSelect2">Example multiple select</label>
+                      <select multiple class="form-control" id="exampleFormControlSelect2">
+                        <option *ngFor=""></option>
+                      </select>
+                    </div> -->
+
+                    <button class="btn btn-success mt-2" (click)="editMyRecipe(i); editRecipeTF[i] = !editRecipeTF[i]">Submit</button>
+                    <button class="btn btn-danger mt-2" (click)="editRecipeTF[i] = !editRecipeTF[i]">Cancel</button>
+                  </form>
+                <!-- </div> -->
+              <!-- </div> -->
+            </div>
         </div>
       </div>
     </div>

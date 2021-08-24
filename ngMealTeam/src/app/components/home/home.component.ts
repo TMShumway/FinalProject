@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Recipe } from 'src/app/models/recipe';
+import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { RecipeService } from 'src/app/services/recipe.service';
 import { UserService } from 'src/app/services/user.service';
@@ -13,24 +14,28 @@ export class HomeComponent implements OnInit {
 
   recipes: Recipe[] = [];
   newRecipe: Recipe = new Recipe();
+  editRecipe: Recipe[] = [];
   rImageUrl: string = '';
 
   // recipeImages:
   // Posts
   // Comments
+  loggedInUser: User = new User();
   selected: Recipe | null = null;
+
   descriptionStatusTF: boolean[] = [];
   recipeStatusTF: boolean[] = [];
   commentStatusTF: boolean[] = [];
-  // ratingStatusTF: boolean[] = [];
+  editRecipeTF: boolean[] = [];
   postStatusTF: boolean[] = [];
   createRecipeTF: boolean = false;
 
-  constructor(private recipeService: RecipeService, private userService: UserService, private authService: AuthService) { }
+  constructor(private recipeService: RecipeService, private userService: UserService) { }
 
 
 
   ngOnInit(): void {
+    this.loadUser();
     this.loadAllRecipes();
   }
 
@@ -53,12 +58,20 @@ export class HomeComponent implements OnInit {
   }
 
   initializeArrays() {
+    this.descriptionStatusTF = [];
+    this.recipeStatusTF = [];
+    this.commentStatusTF = [];
+    this.editRecipeTF = [];
+    this.postStatusTF = [];
+    this.editRecipe = [];
     for (let i = 0; i < this.recipes.length; i++) {
       this.descriptionStatusTF.push(true);
       this.recipeStatusTF.push(false);
       this.commentStatusTF.push(false);
       // this.ratingStatusTF.push(false);
       this.postStatusTF.push(false);
+      this.editRecipeTF.push(false);
+      this.editRecipe[i] = Object.assign({}, this.recipes[i]);
     }
   }
 
@@ -126,21 +139,59 @@ export class HomeComponent implements OnInit {
   }
 
   addToMyRecipeList(recipe: Recipe){
+    // delete recipe["id"];
+    // recipe.id = 0;
     this.userService.addRecipeToUserList(recipe).subscribe(
-      data => { }, //Display success or failure message
+      data => {
+        this.loadAllRecipes();
+      }, //Display success or failure message
 
       err => { console.error('Observer error: ' + err) }
-    );
-  }
-
-  deletefromMyRecipeList(recipe: Recipe){
-    console.log(this.authService.getCredentials)
-    console.log(this.authService.getCredentials.name)
-    if (this.authService.getCredentials.name == recipe.user.username){
-      recipe.published = false;
-      this.recipeService
+      );
     }
-  }
+
+    loadUser() {
+      this.userService.getUserByUsername().subscribe(
+        data => { this.loggedInUser = data;
+          // this.initializeArrays();
+        },
+
+        error => { console.error('Error retrieving user from userService: ' + error);}
+        );
+      }
+
+      checkUserMatches(recipe: Recipe){
+        return this.loggedInUser.username === recipe.user.username;
+      }
+
+      deletefromMyRecipeList(recipe: Recipe){
+        // this.loadUser();
+        console.log(this.loggedInUser?.username);
+        if (this.loggedInUser?.username == recipe.user.username){
+          recipe.published = false;
+          this.recipeService.delete(recipe).subscribe(
+            data => { this.loadAllRecipes();  },
+            err => { console.error('Observer error: ' + err) }
+            );
+          }
+        }
+      //   // this.loadUser();
+      //   this.recipeService.edit(recipe, recipe.recipeImages[0].imageUrl).subscribe(
+      //     data => { this.loadAllRecipes();  },
+      //     err => { console.error('Observer error: ' + err) }
+      //     );
+      //   }
+      // }
+
+      editMyRecipe(index: number){
+        if (this.loggedInUser?.username == this.editRecipe[index].user.username){
+          this.recipeService.edit(this.editRecipe[index], this.editRecipe[index].recipeImages[0].imageUrl).subscribe(
+            data => { this.loadAllRecipes();
+              },
+              err => { console.error('Observer error in homeComponent createNewRecipe(): ' + err) }
+              );
+              this.newRecipe = new Recipe();
+            }
+      }
 
 }
-

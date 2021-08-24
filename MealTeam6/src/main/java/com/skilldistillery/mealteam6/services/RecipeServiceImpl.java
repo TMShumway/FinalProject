@@ -33,7 +33,7 @@ public class RecipeServiceImpl implements RecipeService {
 	public List<Recipe> index() {
 		List<Recipe> recipes;
 		try {
-			recipes = recipeRepo.findByPublishedTrue();
+			recipes = recipeRepo.findByPublishedTrueAndPersonalFalse();
 		} catch (Exception e) {
 			recipes = null;
 		}
@@ -94,7 +94,7 @@ public class RecipeServiceImpl implements RecipeService {
 
 	// Update a recipe
 	@Override
-	public Recipe updateRecipe(Recipe recipe, int recipeId) {
+	public Recipe updateRecipe(Recipe recipe, int recipeId, String imageUrl) {
 		Recipe managedRecipe = null;
 		try {
 			Optional<Recipe> recipeOptional = recipeRepo.findById(recipeId);
@@ -102,6 +102,8 @@ public class RecipeServiceImpl implements RecipeService {
 				managedRecipe = recipeOptional.get();
 				managedRecipe.setName(recipe.getName());
 				managedRecipe.setDescription(recipe.getDescription());
+				managedRecipe.getRecipeImages().get(0).setImageUrl(imageUrl);
+				managedRecipe.setRecipeStep(recipe.getRecipeStep());
 				recipeRepo.saveAndFlush(managedRecipe);
 				// TODO: How will we update other relational mappings?
 			}
@@ -133,6 +135,11 @@ public class RecipeServiceImpl implements RecipeService {
 			try {
 				User user = userRepo.findByUsername(username);
 				recipe.setUser(user);
+				recipe.setPersonal(true);
+				recipeRepo.save(recipe);
+				List <RecipeImage> rImages = new ArrayList<>();
+				rImages.add(addImageToRecipe(recipe, recipe.getRecipeImages().get(0).getImageUrl()));
+				recipe.setRecipeImages(rImages);
 				recipeRepo.saveAndFlush(recipe);
 			} catch (Exception e) {
 				recipe = null;
