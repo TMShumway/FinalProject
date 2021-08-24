@@ -65,7 +65,7 @@ public class UserServiceImpl implements UserService {
 			if( name.equals(updatedUser.getUsername())) {
 				System.out.println("Success");
 				updatedUser.setUsername(user.getUsername());
-				if (user.getPassword() != null || user.getPassword().length() > 0) {
+				if (user.getPassword() != null && user.getPassword().length() > 0) {
 					updatedUser.setPassword(encoder.encode(user.getPassword()));
 				}
 				updatedUser.setEnabled(user.getEnabled());

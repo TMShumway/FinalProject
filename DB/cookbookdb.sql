@@ -25,10 +25,10 @@ CREATE TABLE IF NOT EXISTS `user` (
   `username` VARCHAR(45) NOT NULL,
   `password` VARCHAR(200) NULL,
   `email` VARCHAR(100) NOT NULL,
-  `role` VARCHAR(45) NULL,
+  `role` VARCHAR(45) NULL DEFAULT 'Standard',
   `enabled` TINYINT NULL DEFAULT 1,
   `date_created` DATETIME NULL,
-  `image_url` VARCHAR(45) NULL,
+  `image_url` MEDIUMTEXT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC))
 ENGINE = InnoDB;
@@ -46,6 +46,7 @@ CREATE TABLE IF NOT EXISTS `recipe` (
   `date_created` DATETIME NULL,
   `user_id` INT NOT NULL,
   `published` TINYINT NULL,
+  `personal` TINYINT NULL,
   `recipe_step` MEDIUMTEXT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_recipe_user1_idx` (`user_id` ASC),
@@ -431,15 +432,15 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `cookbookdb`;
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`, `date_created`, `image_url`) VALUES (1, 'admin', NULL, 'admin@admintime.com', 'ADMIN', 1, '2021-07-20T21:46:28', NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`, `date_created`, `image_url`) VALUES (2, 'user', 'user', 'user@usermail.com', 'USER', 1, '2021-07-20T21:46:28', NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`, `date_created`, `image_url`) VALUES (3, 'frog', 'frog', 'frog@frogmail.com', 'FROG', 1, '2021-07-20T21:46:28', NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`, `date_created`, `image_url`) VALUES (4, 'gorilla', 'gorilla', 'gorilla@gorilla.com', 'BANANA', 1, '2021-07-20T21:46:28', NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`, `date_created`, `image_url`) VALUES (5, 'bob', '$2a$10$f94xmW.KSbWFStTG60OemewIZJ8StNhLwgP1O/5CKiDTpGL1ehu1W', 'bob@bob ', 'Standard', 1, '2021-07-20T21:46:28', NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`, `date_created`, `image_url`) VALUES (6, 'dog', '$2a$10$OqodcqQ4Of07oE6zb7jbFu.AVwqMx7xp9rALNFOV19ptJO1Zxm6wO', 'dog@dog', 'Standard', 1, '2021-07-20T21:46:28', NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`, `date_created`, `image_url`) VALUES (7, 'cat', '$2a$10$fEM8BBl7DoD8r/nqNiB.guay4g2fhAeCvNHH46dwIl7ZIqB5naFmy', 'cat@dog', 'Standard', 1, '2021-07-20T21:46:28', NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`, `date_created`, `image_url`) VALUES (8, 'monkey', '$2a$10$GfVjEDxcgpMoG.9d9mmIz.qMEm0wTYwePVnel5bphkiY0TvtCK.Aa', 'monkey', 'Standard', 1, '2021-07-20T21:46:28', NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`, `date_created`, `image_url`) VALUES (9, 'tiger', '$2a$10$2yslWBqkIP1EUD2pfoX.KuQ6rm6dqEE1QMpXaNQlNKibB8cvnyNiG', 'tiger', 'Standard', 1, '2021-07-20T21:46:28', NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`, `date_created`, `image_url`) VALUES (1, 'admin', '$2a$10$1YP2Iq4TE4bGpQ2mgZTGW.tptntXukJgcy3QzP73Fty1RzRateu0S', 'admin@admintime.com', 'ADMIN', 1, '2021-07-20T21:46:28', 'https://www.clipartmax.com/png/full/140-1401578_chef-with-hat-comments-cozinheiro-icon-png.png');
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`, `date_created`, `image_url`) VALUES (2, 'user', '$2a$10$ApoO08F/FvYOcDbNLOiseeB84aHM5t2t81gE0MxGNLUfCJ1HdFKWG', 'user@usermail.com', 'Standard', 1, '2021-07-20T21:46:28', 'https://www.clipartmax.com/png/full/140-1401578_chef-with-hat-comments-cozinheiro-icon-png.png');
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`, `date_created`, `image_url`) VALUES (3, 'frog', '$2a$10$Zn.dWCUX0lN8P8nSq/9pR.IsZxV/uLG7aHOycvZ0CNLQ1kJlK1r0S', 'frog@frogmail.com', 'Standard', 1, '2021-07-20T21:46:28', 'https://www.clipartmax.com/png/full/140-1401578_chef-with-hat-comments-cozinheiro-icon-png.png');
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`, `date_created`, `image_url`) VALUES (4, 'gorilla', '$2a$10$WCEJ51E9FTO5ICDqbJiY.u06xg4gpQy/xc5DJPgsZIin.q1L0Obz.', 'gorilla@gorilla.com', 'Standard', 1, '2021-07-20T21:46:28', 'https://www.clipartmax.com/png/full/140-1401578_chef-with-hat-comments-cozinheiro-icon-png.png');
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`, `date_created`, `image_url`) VALUES (5, 'bob', '$2a$10$f94xmW.KSbWFStTG60OemewIZJ8StNhLwgP1O/5CKiDTpGL1ehu1W', 'bob@bobmail.com', 'Standard', 1, '2021-07-20T21:46:28', 'https://www.clipartmax.com/png/full/140-1401578_chef-with-hat-comments-cozinheiro-icon-png.png');
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`, `date_created`, `image_url`) VALUES (6, 'dog', '$2a$10$OqodcqQ4Of07oE6zb7jbFu.AVwqMx7xp9rALNFOV19ptJO1Zxm6wO', 'dog@dogmail.com', 'Standard', 1, '2021-07-20T21:46:28', 'https://www.clipartmax.com/png/full/140-1401578_chef-with-hat-comments-cozinheiro-icon-png.png');
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`, `date_created`, `image_url`) VALUES (7, 'cat', '$2a$10$fEM8BBl7DoD8r/nqNiB.guay4g2fhAeCvNHH46dwIl7ZIqB5naFmy', 'cat@dogmail.com', 'Standard', 1, '2021-07-20T21:46:28', 'https://www.clipartmax.com/png/full/140-1401578_chef-with-hat-comments-cozinheiro-icon-png.png');
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`, `date_created`, `image_url`) VALUES (8, 'monkey', '$2a$10$GfVjEDxcgpMoG.9d9mmIz.qMEm0wTYwePVnel5bphkiY0TvtCK.Aa', 'monkey@yahoo.com', 'Standard', 1, '2021-07-20T21:46:28', 'https://www.clipartmax.com/png/full/140-1401578_chef-with-hat-comments-cozinheiro-icon-png.png');
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `role`, `enabled`, `date_created`, `image_url`) VALUES (9, 'tiger', '$2a$10$2yslWBqkIP1EUD2pfoX.KuQ6rm6dqEE1QMpXaNQlNKibB8cvnyNiG', 'tiger@tigersdirect.com', 'Standard', 1, '2021-07-20T21:46:28', 'https://www.clipartmax.com/png/full/140-1401578_chef-with-hat-comments-cozinheiro-icon-png.png');
 
 COMMIT;
 
@@ -449,11 +450,17 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `cookbookdb`;
-INSERT INTO `recipe` (`id`, `name`, `description`, `date_created`, `user_id`, `published`, `recipe_step`) VALUES (1, 'Spaghetti', 'And meatballs!', '2021-07-20T21:46:28', 1, 1, NULL);
-INSERT INTO `recipe` (`id`, `name`, `description`, `date_created`, `user_id`, `published`, `recipe_step`) VALUES (2, 'Pizza', 'with ONLY CHEESE', '2021-07-20T21:46:28', 1, 1, NULL);
-INSERT INTO `recipe` (`id`, `name`, `description`, `date_created`, `user_id`, `published`, `recipe_step`) VALUES (3, 'Ramen', 'SPICY', '2021-07-20T21:46:28', 2, 1, NULL);
-INSERT INTO `recipe` (`id`, `name`, `description`, `date_created`, `user_id`, `published`, `recipe_step`) VALUES (4, 'Gabagool', 'arrivederci', '2021-07-20T21:46:28', 3, 1, NULL);
-INSERT INTO `recipe` (`id`, `name`, `description`, `date_created`, `user_id`, `published`, `recipe_step`) VALUES (5, 'Birthday Cake', 'for the birthday', '2021-07-20T21:46:28', 4, 1, NULL);
+INSERT INTO `recipe` (`id`, `name`, `description`, `date_created`, `user_id`, `published`, `personal`, `recipe_step`) VALUES (1, 'Spaghetti', 'Easy weeknight friendly spaghetti and meat sauce that’s made completely from scratch', '2021-07-20T21:46:28', 1, 1, 0, 'MAKE SAUCE\nHeat the oil in a large pot over medium-high heat (we use a Dutch oven). Add the meat and cook until browned, about 8 minutes. As the meat cooks, use a wooden spoon to break it up into smaller crumbles.\n\nAdd the onions and cook, stirring every once and a while, until softened, about 5 minutes.\n\nStir in the garlic, tomato paste, oregano, and red pepper flakes and cook, stirring continuously for about 1 minute.\n\nPour in the water and use a wooden spoon to scrape up any bits of meat or onion stuck to the bottom of the pot. Stir in the tomatoes, 3/4 teaspoon of salt, and a generous pinch of black pepper. Bring the sauce to a low simmer. Cook, uncovered, at a low simmer for 25 minutes. As it cooks, stir and taste the sauce a few times so you can adjust the seasoning accordingly (see notes for suggestions).\n\nCOOK SPAGHETTI\nAbout 15 minutes before the sauce is finished cooking, bring a large pot of salted water to the boil then cook pasta according to package directions, but check for doneness a minute or two before the suggested cooking time.\n\nTO FINISH\nTake the sauce off of the heat, and then stir in the basil. Toss in the cooked pasta, and then leave for a minute so that the pasta absorbs some of the sauce. Toss again, and then serve with parmesan sprinkled on top');
+INSERT INTO `recipe` (`id`, `name`, `description`, `date_created`, `user_id`, `published`, `personal`, `recipe_step`) VALUES (2, 'Pizza', 'This easy pizza dough recipe is great for beginners and produces a soft homemade pizza crust. Skip the pizza delivery because you only need 6 basic ingredients to begin!', '2021-07-20T21:46:28', 1, 1, 0, '1. Preheat the oven to 450');
+INSERT INTO `recipe` (`id`, `name`, `description`, `date_created`, `user_id`, `published`, `personal`, `recipe_step`) VALUES (3, 'Ramen', 'EXTRA SPICY', '2021-07-20T21:46:28', 2, 1, 0, '1. Boil water');
+INSERT INTO `recipe` (`id`, `name`, `description`, `date_created`, `user_id`, `published`, `personal`, `recipe_step`) VALUES (4, 'Gabagool', 'arrivederci', '2021-07-20T21:46:28', 3, 1, 0, '1. Go to the store');
+INSERT INTO `recipe` (`id`, `name`, `description`, `date_created`, `user_id`, `published`, `personal`, `recipe_step`) VALUES (5, 'Birthday Cake', 'for the birthday', '2021-07-20T21:46:28', 4, 1, 0, '1. Preheat the oven to 350');
+INSERT INTO `recipe` (`id`, `name`, `description`, `date_created`, `user_id`, `published`, `personal`, `recipe_step`) VALUES (6, 'Chicken Alfredo', 'Homemade alfredo on a weeknight? Yes! ', '2021-07-20T21:46:28', 2, 0, 0, 'Boil a pot of water:\nPut a large pot of water on the stove and bring to a boil. Salt liberally.\n\nStart the sauce:\nAdd the butter, cream, salt, black pepper, and nutmeg to small or medium-sized sauce pan. Heat over medium-low heat until the butter melts and the mixture comes to a slight simmer. Then turn heat down to low and simmer the sauce, stirring regularly to prevent scalding, until the sauce thickens slightly, enough to coat the back of a spoon easily.');
+INSERT INTO `recipe` (`id`, `name`, `description`, `date_created`, `user_id`, `published`, `personal`, `recipe_step`) VALUES (7, 'Apple Pie', 'Grandma\'s recipe', '2021-07-20T21:46:28', 6, 0, 1, '\nHeat oven to 425°F. Place 1 pie crust in ungreased 9-inch glass pie plate. Press firmly against side and bottom.');
+INSERT INTO `recipe` (`id`, `name`, `description`, `date_created`, `user_id`, `published`, `personal`, `recipe_step`) VALUES (8, 'Thai Curry', 'Hits the spot', '2021-07-20T21:46:28', 6, 1, 0, 'Take out a large skillet and add to it the chicken, peppers, and onions. Drizzle with oil and turn the burner up to medium high heat. Stir everything around and cook for 6-8 minutes, cooking chicken just through. \n');
+INSERT INTO `recipe` (`id`, `name`, `description`, `date_created`, `user_id`, `published`, `personal`, `recipe_step`) VALUES (9, 'Fried Tofu', 'Best air-fried', '2021-07-20T21:46:28', 6, 0, 0, 'Place two paper towels on a plate then place the entire block of tofu (drained from its packaging liquid) onto the plate. Place two more paper towels on top of the tofu then put a heavy item on top. Not TOO heavy that it would completely crush the tofu but heavy enough that it can squeeze out liquid.');
+INSERT INTO `recipe` (`id`, `name`, `description`, `date_created`, `user_id`, `published`, `personal`, `recipe_step`) VALUES (10, 'Guacamole', 'Dippin advised', '2021-07-20T21:46:28', 6, 1, 0, 'In a medium bowl, mash together the avocados, lime juice, and salt. Mix in onion, cilantro, tomatoes, and garlic. Stir in cayenne pepper. Refrigerate 1 hour for best flavor, or serve immediately.');
+INSERT INTO `recipe` (`id`, `name`, `description`, `date_created`, `user_id`, `published`, `personal`, `recipe_step`) VALUES (11, 'Burrito', 'Chipotle secret', '2021-07-20T21:46:28', 1, 1, 0, 'Make the Marinade: Place the onion, garlic, adobo sauce, olive oil, chile powder, cumin, oregano, salt, and pepper into a food processor or blender and process until smooth. Pour the marinade into a 1-cup measuring cup and add enough water to reach to 1 cup.');
 
 COMMIT;
 
@@ -463,14 +470,15 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `cookbookdb`;
-INSERT INTO `post` (`id`, `title`, `description`, `date_created`, `user_id`, `recipe_id`, `image_url`) VALUES (1, 'Makin italian tonight!', 'spaghet', NULL, 1, 1, NULL);
-INSERT INTO `post` (`id`, `title`, `description`, `date_created`, `user_id`, `recipe_id`, `image_url`) VALUES (2, 'Went to OLIVE GARDEN', NULL, NULL, 1, NULL, NULL);
-INSERT INTO `post` (`id`, `title`, `description`, `date_created`, `user_id`, `recipe_id`, `image_url`) VALUES (3, 'HEllo', 'First post', NULL, 1, 2, NULL);
-INSERT INTO `post` (`id`, `title`, `description`, `date_created`, `user_id`, `recipe_id`, `image_url`) VALUES (4, 'Pizza time', NULL, NULL, 2, 1, NULL);
-INSERT INTO `post` (`id`, `title`, `description`, `date_created`, `user_id`, `recipe_id`, `image_url`) VALUES (5, 'Ramen is so great', NULL, NULL, 2, 4, NULL);
-INSERT INTO `post` (`id`, `title`, `description`, `date_created`, `user_id`, `recipe_id`, `image_url`) VALUES (6, 'Happy birthday!!!', NULL, NULL, 3, 5, NULL);
-INSERT INTO `post` (`id`, `title`, `description`, `date_created`, `user_id`, `recipe_id`, `image_url`) VALUES (7, NULL, NULL, NULL, 2, 3, NULL);
-INSERT INTO `post` (`id`, `title`, `description`, `date_created`, `user_id`, `recipe_id`, `image_url`) VALUES (8, NULL, NULL, NULL, 4, 5, NULL);
+INSERT INTO `post` (`id`, `title`, `description`, `date_created`, `user_id`, `recipe_id`, `image_url`) VALUES (1, 'Making italian tonight!', 'spaghetti time', NULL, 6, NULL, 'https://images.unsplash.com/photo-1609582848349-215e8bf397d3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80');
+INSERT INTO `post` (`id`, `title`, `description`, `date_created`, `user_id`, `recipe_id`, `image_url`) VALUES (2, 'Went to OLIVE GARDEN', 'IT WAS AWFUL. I\'ll make my own alfredo next time', NULL, 1, NULL, NULL);
+INSERT INTO `post` (`id`, `title`, `description`, `date_created`, `user_id`, `recipe_id`, `image_url`) VALUES (3, 'Hello All!', 'First post', NULL, 1, 2, NULL);
+INSERT INTO `post` (`id`, `title`, `description`, `date_created`, `user_id`, `recipe_id`, `image_url`) VALUES (4, 'Pizza time', 'makin da pizza-pie', NULL, 2, 1, 'https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1225&q=80');
+INSERT INTO `post` (`id`, `title`, `description`, `date_created`, `user_id`, `recipe_id`, `image_url`) VALUES (5, 'Ramen is so great', 'I tried out this recipe and it was awesome!', NULL, 6, 3, 'https://images.unsplash.com/photo-1526318896980-cf78c088247c?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmFtZW58ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60');
+INSERT INTO `post` (`id`, `title`, `description`, `date_created`, `user_id`, `recipe_id`, `image_url`) VALUES (6, 'Happy birthday!!!', 'This was an awesome recipe. They loved it!', NULL, 3, 5, 'https://images.unsplash.com/photo-1455732063391-5f50f4df1854?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1350&q=80');
+INSERT INTO `post` (`id`, `title`, `description`, `date_created`, `user_id`, `recipe_id`, `image_url`) VALUES (7, 'This website is great!', 'can\'t wait to try it all', NULL, 6, 3, 'https://pbs.twimg.com/media/DmR3LlsU4AAj7Ls.jpg');
+INSERT INTO `post` (`id`, `title`, `description`, `date_created`, `user_id`, `recipe_id`, `image_url`) VALUES (8, 'This is my post!', 'STAY AWAY', NULL, 6, 5, NULL);
+INSERT INTO `post` (`id`, `title`, `description`, `date_created`, `user_id`, `recipe_id`, `image_url`) VALUES (9, 'I LOVE CHIPOTLE', 'perfect', NULL, 1, 11, NULL);
 
 COMMIT;
 
@@ -480,13 +488,14 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `cookbookdb`;
-INSERT INTO `post_comment` (`id`, `details`, `date_created`, `post_id`, `user_id`, `post_comment_reply_id`) VALUES (1, 'you have a good opinion', NULL, 1, 1, NULL);
-INSERT INTO `post_comment` (`id`, `details`, `date_created`, `post_id`, `user_id`, `post_comment_reply_id`) VALUES (2, 'you have a bad opinion', NULL, 1, 2, 1);
-INSERT INTO `post_comment` (`id`, `details`, `date_created`, `post_id`, `user_id`, `post_comment_reply_id`) VALUES (3, 'i don\'t have any opinion', NULL, 1, 1, NULL);
-INSERT INTO `post_comment` (`id`, `details`, `date_created`, `post_id`, `user_id`, `post_comment_reply_id`) VALUES (4, 'please die', NULL, 1, 3, NULL);
-INSERT INTO `post_comment` (`id`, `details`, `date_created`, `post_id`, `user_id`, `post_comment_reply_id`) VALUES (5, 'wow, you are right', NULL, 2, 4, NULL);
-INSERT INTO `post_comment` (`id`, `details`, `date_created`, `post_id`, `user_id`, `post_comment_reply_id`) VALUES (6, 'okay neat', NULL, 3, 3, NULL);
-INSERT INTO `post_comment` (`id`, `details`, `date_created`, `post_id`, `user_id`, `post_comment_reply_id`) VALUES (7, 'stop it', NULL, 1, 1, 2);
+INSERT INTO `post_comment` (`id`, `details`, `date_created`, `post_id`, `user_id`, `post_comment_reply_id`) VALUES (1, 'you have a good opinion', '2021-07-20T21:46:28', 1, 1, NULL);
+INSERT INTO `post_comment` (`id`, `details`, `date_created`, `post_id`, `user_id`, `post_comment_reply_id`) VALUES (2, 'you have a bad opinion', '2021-07-20T21:46:28', 1, 2, 1);
+INSERT INTO `post_comment` (`id`, `details`, `date_created`, `post_id`, `user_id`, `post_comment_reply_id`) VALUES (3, 'i don\'t have any opinion', '2021-07-20T21:46:28', 1, 1, NULL);
+INSERT INTO `post_comment` (`id`, `details`, `date_created`, `post_id`, `user_id`, `post_comment_reply_id`) VALUES (4, 'please die', '2021-07-20T21:46:28', 1, 3, NULL);
+INSERT INTO `post_comment` (`id`, `details`, `date_created`, `post_id`, `user_id`, `post_comment_reply_id`) VALUES (5, 'wow, you are right', '2021-07-20T21:46:28', 2, 4, NULL);
+INSERT INTO `post_comment` (`id`, `details`, `date_created`, `post_id`, `user_id`, `post_comment_reply_id`) VALUES (6, 'okay neat', '2021-07-20T21:46:28', 3, 3, NULL);
+INSERT INTO `post_comment` (`id`, `details`, `date_created`, `post_id`, `user_id`, `post_comment_reply_id`) VALUES (7, 'stop it', '2021-07-20T21:46:28', 1, 1, 2);
+INSERT INTO `post_comment` (`id`, `details`, `date_created`, `post_id`, `user_id`, `post_comment_reply_id`) VALUES (8, 'NO.', '2021-07-20T21:46:28', 1, 3, 7);
 
 COMMIT;
 
@@ -504,6 +513,7 @@ INSERT INTO `restriction` (`id`, `name`, `description`) VALUES (5, 'Diabetic', N
 INSERT INTO `restriction` (`id`, `name`, `description`) VALUES (6, 'Low Cholestrol ', NULL);
 INSERT INTO `restriction` (`id`, `name`, `description`) VALUES (7, 'Nut-allergy', NULL);
 INSERT INTO `restriction` (`id`, `name`, `description`) VALUES (8, 'Water-allergy', NULL);
+INSERT INTO `restriction` (`id`, `name`, `description`) VALUES (9, NULL, NULL);
 
 COMMIT;
 
@@ -642,6 +652,8 @@ INSERT INTO `post_like` (`post_id`, `user_id`) VALUES (1, 2);
 INSERT INTO `post_like` (`post_id`, `user_id`) VALUES (1, 3);
 INSERT INTO `post_like` (`post_id`, `user_id`) VALUES (2, 4);
 INSERT INTO `post_like` (`post_id`, `user_id`) VALUES (3, 3);
+INSERT INTO `post_like` (`post_id`, `user_id`) VALUES (3, 4);
+INSERT INTO `post_like` (`post_id`, `user_id`) VALUES (3, 1);
 
 COMMIT;
 
@@ -672,6 +684,12 @@ INSERT INTO `recipe_image` (`recipe_id`, `user_id`, `image_url`, `date_created`)
 INSERT INTO `recipe_image` (`recipe_id`, `user_id`, `image_url`, `date_created`) VALUES (4, 3, 'https://www.this-is-italy.com/wp-content/uploads/2019/12/Gabagool.jpg', '2021-07-20T21:46:28');
 INSERT INTO `recipe_image` (`recipe_id`, `user_id`, `image_url`, `date_created`) VALUES (3, 4, 'https://images.unsplash.com/photo-1618889482923-38250401a84e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1350&q=80', '2021-07-20T21:46:28');
 INSERT INTO `recipe_image` (`recipe_id`, `user_id`, `image_url`, `date_created`) VALUES (5, 1, 'https://images.unsplash.com/photo-1545696563-af8f6ec2295a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1264&q=80', '2021-07-20T21:46:28');
+INSERT INTO `recipe_image` (`recipe_id`, `user_id`, `image_url`, `date_created`) VALUES (8, 6, 'https://www.thespruceeats.com/thmb/d0UnpGxaVl1EyG-5_w3lVQLnYtY=/960x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/thai-red-curry-with-chicken-recipe-3217262-hero-01-1099358354ca43b89d2c7cc3409a079b.jpg', '2021-07-20T21:46:28');
+INSERT INTO `recipe_image` (`recipe_id`, `user_id`, `image_url`, `date_created`) VALUES (9, 6, 'https://www.tablefortwoblog.com/wp-content/uploads/2018/09/pan-fried-spicy-garlic-tofu-recipe-photos-tablefortwoblog-4.jpg.webp', '2021-07-20T21:46:28');
+INSERT INTO `recipe_image` (`recipe_id`, `user_id`, `image_url`, `date_created`) VALUES (10, 6, 'https://images.unsplash.com/photo-1600728256404-aaa448921ad9?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Z3VhY2Ftb2xlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60', '2021-07-20T21:46:28');
+INSERT INTO `recipe_image` (`recipe_id`, `user_id`, `image_url`, `date_created`) VALUES (6, 6, 'https://images.unsplash.com/photo-1546549032-9571cd6b27df?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1234&q=80', '2021-07-20T21:46:28');
+INSERT INTO `recipe_image` (`recipe_id`, `user_id`, `image_url`, `date_created`) VALUES (7, 6, 'https://images.unsplash.com/photo-1572383672419-ab35444a6934?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', '2021-07-20T21:46:28');
+INSERT INTO `recipe_image` (`recipe_id`, `user_id`, `image_url`, `date_created`) VALUES (11, 1, 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/copycat-chipotle-chicken-horizontal-1531452615.jpg?crop=1xw:1xh;center,top&resize=768:*', '2021-07-20T21:46:28');
 
 COMMIT;
 
@@ -685,6 +703,17 @@ INSERT INTO `favorite_user` (`user_id`, `favorite_id`) VALUES (1, 2);
 INSERT INTO `favorite_user` (`user_id`, `favorite_id`) VALUES (2, 1);
 INSERT INTO `favorite_user` (`user_id`, `favorite_id`) VALUES (3, 4);
 INSERT INTO `favorite_user` (`user_id`, `favorite_id`) VALUES (4, 2);
+INSERT INTO `favorite_user` (`user_id`, `favorite_id`) VALUES (5, 3);
+INSERT INTO `favorite_user` (`user_id`, `favorite_id`) VALUES (6, 4);
+INSERT INTO `favorite_user` (`user_id`, `favorite_id`) VALUES (7, 5);
+INSERT INTO `favorite_user` (`user_id`, `favorite_id`) VALUES (1, 3);
+INSERT INTO `favorite_user` (`user_id`, `favorite_id`) VALUES (1, 4);
+INSERT INTO `favorite_user` (`user_id`, `favorite_id`) VALUES (1, 5);
+INSERT INTO `favorite_user` (`user_id`, `favorite_id`) VALUES (1, 6);
+INSERT INTO `favorite_user` (`user_id`, `favorite_id`) VALUES (2, 3);
+INSERT INTO `favorite_user` (`user_id`, `favorite_id`) VALUES (2, 4);
+INSERT INTO `favorite_user` (`user_id`, `favorite_id`) VALUES (2, 5);
+INSERT INTO `favorite_user` (`user_id`, `favorite_id`) VALUES (2, 6);
 
 COMMIT;
 
