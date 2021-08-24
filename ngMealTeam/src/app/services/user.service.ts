@@ -37,7 +37,9 @@ export class UserService {
         })
       );
   }
+
   public addRecipeToUserList(recipe: Recipe){
+    // recipe.id = 0;
     recipe.user = new User();
     recipe.personal = true;
     console.log(recipe.user);

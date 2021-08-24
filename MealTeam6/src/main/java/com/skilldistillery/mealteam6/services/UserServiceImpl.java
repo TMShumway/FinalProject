@@ -84,6 +84,7 @@ public class UserServiceImpl implements UserService {
 	public User addToUserRecipes(String username, Recipe recipe) {
 		User user = null;
 		try {
+//			recipe.setId(0);
 			user = userRepo.findByUsername(username);
 			user.addRecipeToRecipes(recipe);
 			userRepo.saveAndFlush(user);

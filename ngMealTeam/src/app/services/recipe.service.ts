@@ -58,19 +58,19 @@ export class RecipeService {
       );
   }
 
-  // public edit(recipe: Recipe, rImageUrl: string){
-  //   rImageUrl = btoa(rImageUrl);
-  //   return this.http.put<Recipe>(this.url + "/" + rImageUrl, recipe, this.getHttpOptions())
-  //     .pipe(
-  //       catchError((err: any) => {
-  //         console.log(err);
-  //         return throwError('Error creating recipe: ' + err);
-  //       })
-  //     );
-  // }
-
   public delete(recipe: Recipe){
     return this.http.delete<Recipe>(this.url + "/" + recipe.id, this.getHttpOptions())
+    .pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Error creating recipe: ' + err);
+      })
+      );
+  }
+
+  public edit(recipe: Recipe, rImageUrl: string){
+    rImageUrl = btoa(rImageUrl);
+    return this.http.put<Recipe>(this.url + "/" + recipe.id + "/" + rImageUrl, recipe, this.getHttpOptions())
       .pipe(
         catchError((err: any) => {
           console.log(err);
@@ -78,4 +78,5 @@ export class RecipeService {
         })
       );
   }
+
 }
