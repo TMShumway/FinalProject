@@ -55,6 +55,19 @@ public class UserController {
 		}
 		return user;
 	}
+
+	@GetMapping("users/principal")
+	public User getUserByPrincipal(
+			Principal principal,
+			HttpServletResponse res
+			) {
+		User user = null;
+		user = userService.userByUsername(principal.getName()); 
+		if(user == null) {
+			res.setStatus(404);
+		}
+		return user;
+	}
 	
 	@GetMapping("users/usernames/{username}")
 	public User getUserByUsername(
