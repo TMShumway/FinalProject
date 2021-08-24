@@ -13,5 +13,5 @@ public interface RecipeService {
 	Recipe createRecipe(Recipe recipe, String username, String imageUrl);
 	Recipe updateRecipe(Recipe recipe, int recipeId);
 	RecipeImage addImageToRecipe(Recipe recipe, String imageUrl) throws Exception;
-	
+	boolean deleteRecipe(int recipeId);
 }

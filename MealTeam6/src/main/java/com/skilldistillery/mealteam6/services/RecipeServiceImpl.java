@@ -111,5 +111,19 @@ public class RecipeServiceImpl implements RecipeService {
 		return managedRecipe;
 	}
 	
-	// TODO: Destroy
+	public boolean deleteRecipe(int recipeId) {
+		Recipe recipeToDelete = null;
+		try {
+			Optional<Recipe> recipeOptional = recipeRepo.findById(recipeId);
+			if(recipeOptional.isPresent()) {
+				recipeToDelete = recipeOptional.get();
+				recipeToDelete.setPublished(false);
+				recipeRepo.saveAndFlush(recipeToDelete);
+			}
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+			
 }
