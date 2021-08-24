@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Post } from 'src/app/models/post';
 import { Recipe } from 'src/app/models/recipe';
 import { User } from 'src/app/models/user';
+import { AuthService } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
 import { RecipeService } from 'src/app/services/recipe.service';
 import { UserService } from 'src/app/services/user.service';
@@ -28,7 +29,7 @@ export class ProfileComponent implements OnInit {
   editUser = new User();
 
 
-  constructor(private postService: PostService, private userService: UserService, private recipeService: RecipeService) { }
+  constructor(private postService: PostService, private userService: UserService, private recipeService: RecipeService, private authService: AuthService) { }
 
 
   ngOnInit(): void {
@@ -67,6 +68,7 @@ export class ProfileComponent implements OnInit {
   loadUser() {
     this.userService.getUserByUsername().subscribe(
       data => { this.editUser = data;
+        this.editUser.password = '';
         this.initializeArrays();
       },
 
@@ -101,25 +103,33 @@ export class ProfileComponent implements OnInit {
 
   updateUser(user: User) {
     this.userService.updateUser(user).subscribe(
-      data => {  },
+      data => {
+      this.authService.logout();
+      this.authService.login(user.username, user.password).subscribe(
+       loggedIn => {
+         console.log('Logged in')
+       },
+       failed => {
+         console.error('Error logging back in.')
+       }
+      );
+       },
 
       error => { console.error('Error retrieving user from userService: ' + error);}
     );
   }
 
-//   this.todoService.update(todo).subscribe(
-//     data => {
-//       this.reload();
-//     },
-//     error => {
-//       console.log(error);
-//       console.log("error updating todo through service")
-//     }
-//   );
-//   this.editTodo = null;
-//   this.selected = null;
-//   // this.todos = this.todoService.index();
-// }
+
+  // reload() {
+  //   this.todoService.index().subscribe(
+  //     data => {
+  //       this.todos = data;
+  //     },
+  //     err => {
+  //       console.log("Error retreiving todos from service")
+  //     }
+  //   );
+  // }
 
   showRecipeDiv() {
     this.postIsVisible = false;
