@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -42,6 +43,7 @@ public class Recipe {
 	@OneToMany(mappedBy = "recipe")
 	private List<Rating> ratings;
 
+	@JsonIgnore
 	@OneToMany(mappedBy="recipe")
 	private List<Post> posts;
 
@@ -58,7 +60,7 @@ public class Recipe {
 	private List<Restriction> restrictions;
 
 	
-	@JsonIgnoreProperties(value = {"posts", "ratings", "postComments", "recipeComments", "recipeImages"})
+	@JsonIgnoreProperties(value = {"posts", "ratings", "postComments", "recipeComments", "recipeImages", "recipes"})
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;

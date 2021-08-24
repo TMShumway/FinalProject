@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Post } from '../models/post';
+import { User } from '../models/user';
 import { Recipe } from '../models/recipe';
 import { AuthService } from './auth.service';
 
@@ -26,6 +27,15 @@ export class UserService {
       );
   }
 
+  public getUserByUsername() : Observable<User>{
+    return this.http.get<User>(this.url + "/principal", this.getHttpOptions())
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError("Error getting user in UserService:" + err);
+        })
+      );
+  }
   public addRecipeToUserList(recipe: Recipe){
     return this.http.put<Recipe>(this.url + "/recipe", recipe, this.getHttpOptions())
       .pipe(
@@ -45,6 +55,7 @@ export class UserService {
         'Authorization': `Basic ${credentials}`
       })
     };
+
   return httpOptions;
   }
 

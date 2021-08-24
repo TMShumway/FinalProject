@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from 'src/app/models/post';
 import { Recipe } from 'src/app/models/recipe';
+import { User } from 'src/app/models/user';
 import { PostService } from 'src/app/services/post.service';
 import { RecipeService } from 'src/app/services/recipe.service';
 import { UserService } from 'src/app/services/user.service';
@@ -16,6 +17,7 @@ export class ProfileComponent implements OnInit {
   posts: Post[] = [];
   recipes: Recipe[] = [];
   postIsVisible: Boolean = true;
+  editProfileIsVisible: Boolean = false;
   recipeIsVisible: Boolean = false;
   selected: Recipe | null = null;
   descriptionStatusTF: boolean[] = [];
@@ -23,6 +25,7 @@ export class ProfileComponent implements OnInit {
   commentStatusTF: boolean[] = [];
   // ratingStatusTF: boolean[] = [];
   postStatusTF: boolean[] = [];
+  editUser = new User();
 
 
   constructor(private postService: PostService, private userService: UserService, private recipeService: RecipeService) { }
@@ -31,6 +34,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.loadUserPosts();
     this.loadUserRecipes();
+    this.loadUser();
   }
 
   loadAllPosts() {
@@ -43,7 +47,8 @@ export class ProfileComponent implements OnInit {
 
   loadUserPosts() {
     this.userService.indexPostsByUsername().subscribe(
-      data => { this.posts = data;},
+      data => { this.posts = data;
+      },
 
       error => { console.error('Error retrieving posts from userService: ' + error);}
     );
@@ -59,6 +64,15 @@ export class ProfileComponent implements OnInit {
     );
   }
 
+  loadUser() {
+    this.userService.getUserByUsername().subscribe(
+      data => { this.editUser = data;
+        this.initializeArrays();
+      },
+
+      error => { console.error('Error retrieving user from userService: ' + error);}
+    );
+  }
   postHasImage(i: number) {
     if(this.posts[i].imageUrl === null){
       return false;
@@ -70,12 +84,32 @@ export class ProfileComponent implements OnInit {
   showPostDiv() {
     this.recipeIsVisible = false;
     this.postIsVisible = true;
+    this.editProfileIsVisible = false;
+
     this.loadUserPosts();
     return this.postIsVisible;
   }
 
+  showEditProfileDiv() {
+    this.editProfileIsVisible = true;
+    this.postIsVisible = false;
+    this.recipeIsVisible = false;
+
+    // this.loadUserPosts();
+    return this.editProfileIsVisible;
+  }
+
+  updateUser() {
+    // this.userService.index().subscribe(
+    //   data => { this.posts = data;},
+
+    //   error => { console.error('Error retrieving posts from postService: ' + error);}
+    // );
+  }
+
   showRecipeDiv() {
     this.postIsVisible = false;
+    this.editProfileIsVisible = false;
     this.recipeIsVisible = true;
     this.loadUserRecipes();
     return this.recipeIsVisible;
