@@ -127,6 +127,10 @@ public class User {
 	public void setRecipeComments(List<RecipeComment> recipeComments) {
 		this.recipeComments = recipeComments;
 	}
+	
+	public void addRecipeToRecipes(Recipe recipe) {
+		this.recipes.add(recipe);
+	}
 
 //	public List<RecipeImage> getRecipeImages() {
 //		return recipeImages;

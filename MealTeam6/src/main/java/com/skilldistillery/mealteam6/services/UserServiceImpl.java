@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.mealteam6.entities.Recipe;
 import com.skilldistillery.mealteam6.entities.User;
 import com.skilldistillery.mealteam6.repositories.UserRepository;
 
@@ -77,6 +78,19 @@ public class UserServiceImpl implements UserService {
 			}
 		}
 		return updatedUser;
+	}
+	
+	@Override
+	public User addToUserRecipes(String username, Recipe recipe) {
+		User user = null;
+		try {
+			user = userRepo.findByUsername(username);
+			user.addRecipeToRecipes(recipe);
+			userRepo.saveAndFlush(user);
+		} catch (Exception e) {
+			user = null;
+		}
+		return user;	
 	}
 	
 //	@Override
