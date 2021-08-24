@@ -33,7 +33,7 @@ public class RecipeServiceImpl implements RecipeService {
 	public List<Recipe> index() {
 		List<Recipe> recipes;
 		try {
-			recipes = recipeRepo.findAll();
+			recipes = recipeRepo.findByPublishedTrue();
 		} catch (Exception e) {
 			recipes = null;
 		}
@@ -45,7 +45,7 @@ public class RecipeServiceImpl implements RecipeService {
 	public List<Recipe> indexByUsername(String username) {
 		List<Recipe> recipes;
 		try {
-			recipes = recipeRepo.findByUser_Username(username);
+			recipes = recipeRepo.findByPublishedAndUser_Username(true, username);
 		} catch (Exception e) {
 			recipes = null;
 		}
