@@ -32,6 +32,7 @@ public class Recipe {
 	@Column(name = "date_created")
 	private LocalDateTime dateCreated;
 	private boolean published;	
+	private boolean personal;	
 	@Column(name = "recipe_step")
 	private String recipeStep;
 
@@ -105,6 +106,14 @@ public class Recipe {
 
 	public void setPublished(boolean published) {
 		this.published = published;
+	}
+
+	public boolean isPersonal() {
+		return personal;
+	}
+
+	public void setPersonal(boolean personal) {
+		this.personal = personal;
 	}
 
 	public List<RecipeImage> getRecipeImages() {
@@ -188,6 +197,7 @@ public class Recipe {
 		result = prime * result + id;
 		result = prime * result + ((ingredients == null) ? 0 : ingredients.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + (personal ? 1231 : 1237);
 		result = prime * result + ((posts == null) ? 0 : posts.hashCode());
 		result = prime * result + (published ? 1231 : 1237);
 		result = prime * result + ((ratings == null) ? 0 : ratings.hashCode());
@@ -235,6 +245,8 @@ public class Recipe {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
+		if (personal != other.personal)
+			return false;
 		if (posts == null) {
 			if (other.posts != null)
 				return false;
@@ -275,4 +287,15 @@ public class Recipe {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "Recipe [id=" + id + ", name=" + name + ", description=" + description + ", dateCreated=" + dateCreated
+				+ ", published=" + published + ", personal=" + personal + ", recipeStep=" + recipeStep
+				+ ", recipeImages=" + recipeImages + ", ratings=" + ratings + ", posts=" + posts + ", recipeComments="
+				+ recipeComments + ", categories=" + categories + ", ingredients=" + ingredients + ", restrictions="
+				+ restrictions + ", user=" + user + "]";
+	}
+
+	
+	
 }
