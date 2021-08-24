@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Recipe } from 'src/app/models/recipe';
+import { AuthService } from 'src/app/services/auth.service';
 import { RecipeService } from 'src/app/services/recipe.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -25,7 +26,9 @@ export class HomeComponent implements OnInit {
   postStatusTF: boolean[] = [];
   createRecipeTF: boolean = false;
 
-  constructor(private recipeService: RecipeService, private userService: UserService) { }
+  constructor(private recipeService: RecipeService, private userService: UserService, private authService: AuthService) { }
+
+
 
   ngOnInit(): void {
     this.loadAllRecipes();
@@ -122,12 +125,21 @@ export class HomeComponent implements OnInit {
     this.newRecipe = new Recipe();
   }
 
-  addToMyRecipeList(r: Recipe){
-    this.userService.addRecipeToUserList(r).subscribe(
+  addToMyRecipeList(recipe: Recipe){
+    this.userService.addRecipeToUserList(recipe).subscribe(
       data => { }, //Display success or failure message
 
       err => { console.error('Observer error: ' + err) }
     );
+  }
+
+  deletefromMyRecipeList(recipe: Recipe){
+    console.log(this.authService.getCredentials)
+    console.log(this.authService.getCredentials.name)
+    if (this.authService.getCredentials.name == recipe.user.username){
+      recipe.published = false;
+      this.recipeService
+    }
   }
 
 }
