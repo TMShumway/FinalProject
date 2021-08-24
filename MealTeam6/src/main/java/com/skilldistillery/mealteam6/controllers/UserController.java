@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.mealteam6.entities.Post;
+import com.skilldistillery.mealteam6.entities.Recipe;
 import com.skilldistillery.mealteam6.entities.User;
 import com.skilldistillery.mealteam6.services.PostService;
 import com.skilldistillery.mealteam6.services.UserService;
@@ -79,10 +80,8 @@ public class UserController {
 			@PathVariable int uid, 
 			@RequestBody User user) {
 		
-		System.out.println("*******" + user.getUsername());
 		try {
 			user = userService.updateUser(principal.getName(), uid, user); 
-			System.out.println(user);
 			res.setStatus(201);
 			StringBuffer url = req.getRequestURL();
 			url.append("/").append(user.getId());
@@ -105,6 +104,20 @@ public class UserController {
 		}
 		return posts;
 	}
+	
+	@PutMapping("users/recipe")
+	private User updateUserRecipeList(HttpServletRequest req, HttpServletResponse res, Principal principal, @RequestBody Recipe recipe) {
+		User user = null;
+		try {
+			user = userService.addToUserRecipes(principal.getName(), recipe); 
+			res.setStatus(200);
+		} catch (Exception e) {
+			res.setStatus(400);
+			e.printStackTrace();
+		}
+		return user;
+	}
+	
 	
 //	@DeleteMapping("users/{uid}")
 //	public boolean delete(
