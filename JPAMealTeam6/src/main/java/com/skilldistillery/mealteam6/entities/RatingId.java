@@ -17,6 +17,12 @@ public class RatingId implements Serializable {
 
 	public RatingId() {}
 	
+	public RatingId(int ratingId, int userId) {
+		this.recipeId = ratingId;
+		this.userId = userId;
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getRecipeId() {
 		return recipeId;
 	}

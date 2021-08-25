@@ -59,9 +59,18 @@ public class Rating	implements Serializable {
 		this.user = user;
 	}
 
+	public Recipe getRecipe() {
+		return recipe;
+	}
+
+	public void setRecipe(Recipe recipe) {
+		this.recipe = recipe;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
 
 	@Override
 	public int hashCode() {

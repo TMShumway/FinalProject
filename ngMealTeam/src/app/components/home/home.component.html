@@ -1,77 +1,117 @@
 <!-- <h1>homepage</h1> -->
-<div class="card mt-3 mx-auto" style="width: 75%; background-color:cornflowerblue">
+<div
+  class="card mt-3 mx-auto"
+  style="width: 75%; background-color: cornflowerblue"
+>
   <div class="card-body">
-    Sortable options [x] [x] [x]...Different View buttons [Post Feed] [Recipe Feed]
+    Sortable options [x] [x] [x]...Different View buttons [Post Feed] [Recipe
+    Feed]
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="createRecipeForm()">
+    <button
+      type="button"
+      class="btn btn-primary"
+      data-toggle="modal"
+      data-target="#exampleModal"
+      (click)="createRecipeForm()"
+    >
       Add a recipe
     </button>
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
-            ...
-          </div>
+          <div class="modal-body">...</div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
             <button type="button" class="btn btn-primary">Save changes</button>
           </div>
         </div>
       </div>
     </div>
-
   </div>
 </div>
-<!--
-Row 1
+
+<!-- Container -->
 <div class="container">
   <div class="row">
-    <div class="col">
-      1 of 3
-    </div>
-    <div class="col-6">
-      2 of 3 (wider)
-    </div>
-    <div class="col">
-      3 of 3
-    </div>
-  </div>
-
-   -->
-  <!-- Row 2 -->
-<div class="container ">
-  <div class="row">
+    <!-- 1 of 3 -->
     <div class="col-2">
-      <!-- 1 of 3 -->
+
     </div>
+
+    <!-- 2 of 3 -->
     <div class="col-8">
+      <!-- Create a Recipe Card -->
       <div *ngIf="createRecipeTF">
         <div class="card mt-3 mx-auto">
           <div class="card-body">
             <form>
               <div class="form-group">
-                <label for="name">Recipe Name</label><br>
-                <input type="text" class="form-control mt-2" id="name" name="name" [(ngModel)]="newRecipe.name" required>
+                <label for="name">Recipe Name</label><br />
+                <input
+                  type="text"
+                  class="form-control mt-2"
+                  id="name"
+                  name="name"
+                  [(ngModel)]="newRecipe.name"
+                  required
+                />
               </div>
               <div class="form-group">
-                <label for="recipeImage">Recipe Image Url</label><br>
-                <input type="text" class="form-control mt-2" id="recipeImage" name="recipeImage" [(ngModel)]="rImageUrl">
+                <label for="recipeImage">Recipe Image Url</label><br />
+                <input
+                  type="text"
+                  class="form-control mt-2"
+                  id="recipeImage"
+                  name="recipeImage"
+                  [(ngModel)]="rImageUrl"
+                />
               </div>
               <div class="form-group">
-                <label for="description">Description</label><br>
-                <input type="text" class="form-control mt-2" id="description" name="description" [(ngModel)]="newRecipe.description">
+                <label for="description">Description</label><br />
+                <input
+                  type="text"
+                  class="form-control mt-2"
+                  id="description"
+                  name="description"
+                  [(ngModel)]="newRecipe.description"
+                />
               </div>
               <div class="form-group">
-                <label for="recipeStep">Recipe Instructions</label><br>
-                <textarea class="form-control mt-2" id="recipeStep" name="recipeStep" rows="8" [(ngModel)]="newRecipe.recipeStep" required></textarea>
+                <label for="recipeStep">Recipe Instructions</label><br />
+                <textarea
+                  class="form-control mt-2"
+                  id="recipeStep"
+                  name="recipeStep"
+                  rows="8"
+                  [(ngModel)]="newRecipe.recipeStep"
+                  required
+                ></textarea>
               </div>
               <!-- <div class="form-group">
                 <label for="exampleFormControlSelect2">Example multiple select</label>
@@ -81,10 +121,21 @@ Row 1
               </div> -->
               <div>
                 <label for="published">Public Visibility</label>
-                <input type="checkbox" class="smt-2" id="published" name="published" [(ngModel)]="newRecipe.published" checked>
+                <input
+                  type="checkbox"
+                  class="smt-2"
+                  id="published"
+                  name="published"
+                  [(ngModel)]="newRecipe.published"
+                  checked
+                />
               </div>
-              <button class="btn btn-success mt-2" (click)="createNewRecipe()">Submit</button>
-              <button class="btn btn-danger mt-2" (click)="createRecipeForm()">Cancel</button>
+              <button class="btn btn-success mt-2" (click)="createNewRecipe()">
+                Submit
+              </button>
+              <button class="btn btn-danger mt-2" (click)="createRecipeForm()">
+                Cancel
+              </button>
             </form>
           </div>
         </div>
@@ -92,95 +143,200 @@ Row 1
 
       <!-- Recipes Cards -->
 
-      <div *ngFor="let r of recipes; let i = index"  class="card mt-3 mx-auto">
-        <!-- <script> uid = 'x' + r.id </script> -->
-
+      <div *ngFor="let r of recipes; let i = index" class="card mt-3 mx-auto">
         <!-- Recipe Image -->
 
-        <img class="card-img-top" src="{{r.recipeImages[0].imageUrl}}" alt="Card image cap">
+        <img
+          class="card-img-top"
+          src="{{ r.recipeImages[0].imageUrl }}"
+          alt="Card image cap"
+        />
         <div class="card-body">
+          <!-- Card Title Row -->
           <div class="row">
-            <div class="col">
-
+            <div class="col-8">
               <!-- Recipe Name -->
-
-              <h3 class="card-title">{{r.name}} </h3>
+              <h3 class="card-title">{{ r.name }}</h3>
             </div>
-            <div class="col">
-              <div class="row">
-                <div class="form-row">
-                  <div class="col rating-col">
-                    <div class="stars float: right">
-                      <input class="star star-5" value="5" id="star-5" type="radio" name="ratingStars"  />
-                      <label class="star star-5" for="star-5">
-                        <!-- <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="star star-5" for="star-5" viewBox="0 0 16 16">
-                          <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
-                        </svg> -->
-                      </label>
-                      <input class="star star-4" value="4" id="star-4" type="radio" name="ratingStars" />
-                      <label class="star star-4" for="star-4"></label>
-                      <input class="star star-3" value="3" id="star-3" type="radio" name="ratingStars" />
-                      <label class="star star-3" for="star-3"></label>
-                      <input class="star star-2" value="2" id="star-2" type="radio" name="ratingStars" />
-                      <label class="star star-2" for="star-2"></label>
-                      <input class="star star-1" value="1" id="star-1" type="radio" name="ratingStars" />
-                      <label class="star star-1" for="star-1"></label>
-                    </div>
+            <div class="col-4">
+              <div class="form-row">
+                <!-- <div class="col rating-col"> -->
+                  <!-- Star Rating -->
+                <div class="stars" style="float: right">
+                  <input
+                    class="star star-5"
+                    [value]="5"
+                    id="star-5"
+                    type="radio"
+                    name="ratingStars"
+                    [(ngModel)]="userRating[i]"
+                    (change)="addRating(r, i)"
+                    />
+                    <label class="star star-5" for="star-5"></label>
+                    <input
+                    class="star star-4"
+                    [value]="4"
+                    id="star-4"
+                    type="radio"
+                    name="ratingStars"
+                    [(ngModel)]="userRating[i]"
+                    (click)="addRating(r, userRating[i])"
+                    />
+                    <label class="star star-4" for="star-4"></label>
+                    <input
+                    class="star star-3"
+                    [value]="3"
+                    id="star-3"
+                    type="radio"
+                    name="ratingStars"
+                    [(ngModel)]="userRating[i]"
+                    (click)="addRating(r, userRating[i])"
+                    />
+                    <label class="star star-3" for="star-3"></label>
+                    <input
+                    class="star star-2"
+                    [value]="2"
+                    id="star-2"
+                    type="radio"
+                    name="ratingStars"
+                    (click)="true"
+                    [(ngModel)]="userRating[i]"
+                    (click)="addRating(r, userRating[i])"
+                    />
+                    <label class="star star-2" for="star-2"></label>
+                    <input
+                    class="star star-1"
+                    [value]="1"
+                    id="star-1"
+                    type="radio"
+                    name="ratingStars"
+                    [(ngModel)]="userRating[i]"
+                    (click)="addRating(r, userRating[i])"
+                    />
+                    <label class="star star-1" for="star-1"></label>
                   </div>
                 </div>
-              </div>
 
-              <h5 style="float: right" *ngIf="!checkNaN(getRatingAverage(i))">
-                Rated: {{getRatingAverage(i)}} STARS!
-              </h5>
-              <div class="row"></div>
+                <h6 style="float: right" *ngIf="!checkNaN(getRatingAverage(i))">
+                  Rated: {{ getRatingAverage(i) }} STARS!
+              </h6>
+              <h6 style="float: right" *ngIf="checkNaN(getRatingAverage(i))">
+                Not Yet Rated...
+              </h6>
             </div>
-
-
-            <h6 style="float: right" *ngIf="checkNaN(getRatingAverage(i))">
-              Not Yet Rated...
-            </h6>
+            <!-- </div> -->
           </div>
+        </div>
 
-            <!-- Inner Nav -->
-          <nav>
-            <div class="nav nav-tabs" id="nav-tab uid" role="tablist">
-              <!-- <button class="nav-link" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true" (click)="descriptionStatus(i)" [ngClass]="descriptionStatusTF[i] ? 'active' : ''">Description</button> -->
-              <button class="nav-link" id="nav-description-tab" data-bs-toggle="tab" data-bs-target="#nav-description" type="button" role="tab" aria-controls="nav-description" aria-selected="true" (click)="descriptionStatus(i)" [ngClass]="descriptionStatusTF[i] ? 'active' : ''">Description</button>
-              <button class="nav-link" id="nav-recipe-tab" data-bs-toggle="tab" data-bs-target="#nav-recipe" type="button" role="tab" aria-controls="nav-recipe" aria-selected="false" (click)="recipeStatus(i)" [ngClass]="recipeStatusTF[i] ? 'active' : ''">Recipe</button>
-              <button class="nav-link" id="nav-comment-tab" data-bs-toggle="tab" data-bs-target="#nav-comment" type="button" role="tab" aria-controls="nav-comment" aria-selected="false" (click)="commentStatus(i)" [ngClass]="commentStatusTF[i] ? 'active' : ''" >Comments</button>
-              <!-- <button class="nav-link" id="nav-rating-tab" data-bs-toggle="tab" data-bs-target="#nav-rating" type="button" role="tab" aria-controls="nav-contact" aria-selected="false" (click)="ratingStatus(i)" [ngClass]="ratingStatusTF[i] ? 'active' : ''">Rating</button> -->
-              <button class="nav-link" id="nav-post-tab" data-bs-toggle="tab" data-bs-target="#nav-post" type="button" role="tab" aria-controls="nav-post" aria-selected="false" (click)="postStatus(i)" [ngClass]="postStatusTF[i] ? 'active' : ''">Posts</button>
-            </div>
-          </nav>
-          <div class="tab-content" id="nav-tabContent">
-            <!-- Description -->
-            <div class="tab-pane fade" id="nav-description" [ngClass]="descriptionStatusTF[i] ? 'show active' : ''"  role="tabpanel" aria-labelledby="nav-description-tab">
-              {{r.description}}
-            </div>
-            <!-- Recipe Steps -->
-            <div class="tab-pane fade" id="nav-recipe" [ngClass]="recipeStatusTF[i] ? 'show active' : ''"  role="tabpanel" aria-labelledby="nav-recipe-tab">
-              {{r.recipeStep}}
-            </div>
-            <!-- Comments -->
-            <div class="tab-pane fade" id="nav-comment" [ngClass]="commentStatusTF[i] ? 'show active' : ''" role="tabpanel" aria-labelledby="nav-comment-tab">
-              <div *ngFor="let rc of r.recipeComments">
-                <br>
-                USERNAME
-                <div class="card mt-1">
-                  <div class="card-body" >
-                    {{rc.details}}
-                    <div *ngFor="let reply of rc.recipeComments">
-                      <p style="margin-left:2">
-                        {{reply.details}}
-                      </p>
-                    </div>
+        <!-- Inner Nav -->
+        <nav>
+          <div class="nav nav-tabs" id="nav-tab uid" role="tablist">
+            <!-- <button class="nav-link" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true" (click)="descriptionStatus(i)" [ngClass]="descriptionStatusTF[i] ? 'active' : ''">Description</button> -->
+            <button
+              class="nav-link"
+              id="nav-description-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#nav-description"
+              type="button"
+              role="tab"
+              aria-controls="nav-description"
+              aria-selected="true"
+              (click)="descriptionStatus(i)"
+              [ngClass]="descriptionStatusTF[i] ? 'active' : ''"
+            >
+              Description
+            </button>
+            <button
+              class="nav-link"
+              id="nav-recipe-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#nav-recipe"
+              type="button"
+              role="tab"
+              aria-controls="nav-recipe"
+              aria-selected="false"
+              (click)="recipeStatus(i)"
+              [ngClass]="recipeStatusTF[i] ? 'active' : ''"
+            >
+              Recipe
+            </button>
+            <button
+              class="nav-link"
+              id="nav-comment-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#nav-comment"
+              type="button"
+              role="tab"
+              aria-controls="nav-comment"
+              aria-selected="false"
+              (click)="commentStatus(i)"
+              [ngClass]="commentStatusTF[i] ? 'active' : ''"
+            >
+              Comments
+            </button>
+            <!-- <button class="nav-link" id="nav-rating-tab" data-bs-toggle="tab" data-bs-target="#nav-rating" type="button" role="tab" aria-controls="nav-contact" aria-selected="false" (click)="ratingStatus(i)" [ngClass]="ratingStatusTF[i] ? 'active' : ''">Rating</button> -->
+            <button
+              class="nav-link"
+              id="nav-post-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#nav-post"
+              type="button"
+              role="tab"
+              aria-controls="nav-post"
+              aria-selected="false"
+              (click)="postStatus(i)"
+              [ngClass]="postStatusTF[i] ? 'active' : ''"
+            >
+              Posts
+            </button>
+          </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+          <!-- Description -->
+          <div
+            class="tab-pane fade"
+            id="nav-description"
+            [ngClass]="descriptionStatusTF[i] ? 'show active' : ''"
+            role="tabpanel"
+            aria-labelledby="nav-description-tab"
+          >
+            {{ r.description }}
+          </div>
+          <!-- Recipe Steps -->
+          <div
+            class="tab-pane fade"
+            id="nav-recipe"
+            [ngClass]="recipeStatusTF[i] ? 'show active' : ''"
+            role="tabpanel"
+            aria-labelledby="nav-recipe-tab"
+          >
+            {{ r.recipeStep }}
+          </div>
+          <!-- Comments -->
+          <div
+            class="tab-pane fade"
+            id="nav-comment"
+            [ngClass]="commentStatusTF[i] ? 'show active' : ''"
+            role="tabpanel"
+            aria-labelledby="nav-comment-tab"
+          >
+            <div *ngFor="let rc of r.recipeComments">
+              <br />
+              USERNAME
+              <div class="card mt-1">
+                <div class="card-body">
+                  {{ rc.details }}
+                  <div *ngFor="let reply of rc.recipeComments">
+                    <p style="margin-left: 2">
+                      {{ reply.details }}
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
-            <!-- Ratings -->
-            <!-- <div class="tab-pane fade" id="nav-rating" [ngClass]="ratingStatusTF[i] ? 'show active' : ''" role="tabpanel" aria-labelledby="nav-rating-tab">
+          </div>
+          <!-- Ratings -->
+          <!-- <div class="tab-pane fade" id="nav-rating" [ngClass]="ratingStatusTF[i] ? 'show active' : ''" role="tabpanel" aria-labelledby="nav-rating-tab">
               <p *ngIf="!checkNaN(getRatingAverage(i))">
                 This Recipe Rated: {{getRatingAverage(i)}} STARS!
               </p>
@@ -188,83 +344,130 @@ Row 1
                 Not Yet Rated...
               </p>
             </div> -->
-            <!-- Posts -->
-            <div class="tab-pane fade" id="nav-post" [ngClass]="postStatusTF[i] ? 'show active' : ''" role="tabpanel" aria-labelledby="nav-post-tab">
-              <div *ngFor="let post of r.posts">
-                <br>
-                <div class="card mt-1">
-                  <div class="card-body" >
-                    {{post.user.username}}
-                      <p style="margin-left:2">
-                        {{post.title}}
-                        {{post.description}}
-                        {{post.imageUrl}}
-                      </p>
-                    </div>
-                  </div>
+          <!-- Posts -->
+          <div
+            class="tab-pane fade"
+            id="nav-post"
+            [ngClass]="postStatusTF[i] ? 'show active' : ''"
+            role="tabpanel"
+            aria-labelledby="nav-post-tab"
+          >
+            <div *ngFor="let post of r.posts">
+              <br />
+              <div class="card mt-1">
+                <div class="card-body">
+                  {{ post.user.username }}
+                  <p style="margin-left: 2">
+                    {{ post.title }}
+                    {{ post.description }}
+                    {{ post.imageUrl }}
+                  </p>
                 </div>
               </div>
+            </div>
+          </div>
         </div>
         <!-- Card Footer Buttons -->
         <div class="card-footer text-muted">
-          <button type="button" class="btn btn-outline-success" (click)="addToMyRecipeList(r)">Add to My Recipes</button>
-          <button *ngIf="checkUserMatches(r)" type="button" class="btn btn-outline-warning" (click)="editRecipeTF[i] = !editRecipeTF[i]">Edit this Recipe</button>
-          <button *ngIf="checkUserMatches(r)" type="button" class="btn btn-outline-danger" (click)="deletefromMyRecipeList(r)">Delete this Recipe</button>
-          <br>
+          <button
+            type="button"
+            class="btn btn-outline-success"
+            (click)="addToMyRecipeList(r)"
+          >
+            Add to My Recipes
+          </button>
+          <button
+            *ngIf="checkUserMatches(r)"
+            type="button"
+            class="btn btn-outline-warning"
+            (click)="editRecipeTF[i] = !editRecipeTF[i]"
+          >
+            Edit this Recipe
+          </button>
+          <button
+            *ngIf="checkUserMatches(r)"
+            type="button"
+            class="btn btn-outline-danger"
+            (click)="deletefromMyRecipeList(r)"
+          >
+            Delete this Recipe
+          </button>
+          <br />
           <div *ngIf="editRecipeTF[i]">
-              <!-- <div class="card mt-3 mx-auto"> -->
-                <!-- <div class="card-body"> -->
-                  <form>
-                    <div class="form-group">
-                      <label for="name">Recipe Name</label><br>
-                      <input type="text" class="form-control mt-2" id="name" name="name"  [(ngModel)]="editRecipe[i].name" required>
-                    </div>
-                    <div class="form-group">
-                      <label for="recipeImage">Recipe Image Url</label><br>
-                      <input type="text" class="form-control mt-2" id="recipeImage"  name="recipeImage" [(ngModel)]="editRecipe[i].recipeImages[0].imageUrl">
-                    </div>
-                    <div class="form-group">
-                      <label for="description">Description</label><br>
-                      <input type="text" class="form-control mt-2" id="description" name="description" [(ngModel)]="editRecipe[i].description">
-                    </div>
-                    <div class="form-group">
-                      <label for="recipeStep">Recipe Instructions</label><br>
-                      <textarea class="form-control mt-2" id="recipeStep" name="recipeStep" rows="8" [(ngModel)]="editRecipe[i].recipeStep" required></textarea>
-                    </div>
-                    <!-- <div class="form-group">
+            <!-- <div class="card mt-3 mx-auto"> -->
+            <!-- <div class="card-body"> -->
+            <form>
+              <div class="form-group">
+                <label for="name">Recipe Name</label><br />
+                <input
+                  type="text"
+                  class="form-control mt-2"
+                  id="name"
+                  name="name"
+                  [(ngModel)]="editRecipe[i].name"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="recipeImage">Recipe Image Url</label><br />
+                <input
+                  type="text"
+                  class="form-control mt-2"
+                  id="recipeImage"
+                  name="recipeImage"
+                  [(ngModel)]="editRecipe[i].recipeImages[0].imageUrl"
+                />
+              </div>
+              <div class="form-group">
+                <label for="description">Description</label><br />
+                <input
+                  type="text"
+                  class="form-control mt-2"
+                  id="description"
+                  name="description"
+                  [(ngModel)]="editRecipe[i].description"
+                />
+              </div>
+              <div class="form-group">
+                <label for="recipeStep">Recipe Instructions</label><br />
+                <textarea
+                  class="form-control mt-2"
+                  id="recipeStep"
+                  name="recipeStep"
+                  rows="8"
+                  [(ngModel)]="editRecipe[i].recipeStep"
+                  required
+                ></textarea>
+              </div>
+              <!-- <div class="form-group">
                       <label for="exampleFormControlSelect2">Example multiple select</label>
                       <select multiple class="form-control" id="exampleFormControlSelect2">
                         <option *ngFor=""></option>
                       </select>
                     </div> -->
 
-                    <button class="btn btn-success mt-2" (click)="editMyRecipe(i); editRecipeTF[i] = !editRecipeTF[i]">Submit</button>
-                    <button class="btn btn-danger mt-2" (click)="editRecipeTF[i] = !editRecipeTF[i]">Cancel</button>
-                  </form>
-                <!-- </div> -->
-              <!-- </div> -->
-            </div>
+              <button
+                class="btn btn-success mt-2"
+                (click)="editMyRecipe(i); editRecipeTF[i] = !editRecipeTF[i]"
+              >
+                Submit
+              </button>
+              <button
+                class="btn btn-danger mt-2"
+                (click)="editRecipeTF[i] = !editRecipeTF[i]"
+              >
+                Cancel
+              </button>
+            </form>
+            <!-- </div> -->
+            <!-- </div> -->
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-2">
-      <!-- 3 of 3 -->
-    </div>
-  </div>
 
-  <!--
-  Row 3
-  <div class="container">
-    <div class="row">
-      <div class="col">
-        1 of 3
-      </div>
-      <div class="col-6">
-        2 of 3 (wider)
-      </div>
-      <div class="col">
-        3 of 3
-      </div>
-    </div>
-     -->
+
+    <div class="col-2">
+    <!-- 3 of 3 -->
+  </div>
 </div>
