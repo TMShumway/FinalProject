@@ -107,7 +107,7 @@ export class ProfileComponent implements OnInit {
     this.userService.getUserByUsername().subscribe(
       data => { this.editUser = data;
         console.log("The password value is: " + data.password);
-        this.editUser.password = data.password;
+        this.editUser.password = '';
         this.initializeArrays();
         this.user = data;
       },

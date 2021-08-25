@@ -67,6 +67,12 @@ export class UserService {
 
   updateUser(user: User) {
     // console.log(user);
+    if(!user.password){
+      let credentials = atob(this.authService.getCredentials());
+      let password = credentials.split(':')[1];
+      console.log('Password: ' + password);
+      user.password = password;
+    }
     return this.http.put<User>(this.url + '/' + user.id, user, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
