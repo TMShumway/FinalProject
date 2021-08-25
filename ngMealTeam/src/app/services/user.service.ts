@@ -18,15 +18,15 @@ export class UserService {
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
-  public indexPostsByUsername() : Observable<Post[]>{
-    return this.http.get<Post[]>(environment.baseUrl + "api/posts/username", this.getHttpOptions())
-      .pipe(
-        catchError((err: any) => {
-          console.log(err);
-          return throwError("Error getting recipes in RecipeService:" + err);
-        })
-      );
-  }
+  // public indexPostsByUsername() : Observable<Post[]>{
+  //   return this.http.get<Post[]>(environment.baseUrl + "api/posts/username", this.getHttpOptions())
+  //     .pipe(
+  //       catchError((err: any) => {
+  //         console.log(err);
+  //         return throwError("Error getting recipes in RecipeService:" + err);
+  //       })
+  //     );
+  // }
 
   public getUserByUsername() : Observable<User>{
     return this.http.get<User>(this.url + "/principal", this.getHttpOptions())
