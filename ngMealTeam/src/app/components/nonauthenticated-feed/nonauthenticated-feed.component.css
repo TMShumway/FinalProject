@@ -3,6 +3,11 @@
   border-radius: 10px;
 }
 
+.sub-nav{
+  display: inline-block;
+  margin-left: 3px;
+}
+
 .metal {
   background-color: #87898C;
   opacity: 90%;

@@ -35,8 +35,18 @@ export class RecipeService {
       );
   }
 
-  public indexByKeywordUnauthenticated(keyword: string) : Observable<Recipe[]>{
-    return this.http.get<Recipe[]>(environment.baseUrl + "unauthenticated/search/" + keyword)
+  public indexByTitleKeywordUnauthenticated(keyword: string) : Observable<Recipe[]>{
+    return this.http.get<Recipe[]>(environment.baseUrl + "unauthenticated/search/title/" + keyword)
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError("Error getting recipes in RecipeService:" + err);
+        })
+      );
+  }
+
+  public indexByDescriptionKeywordUnauthenticated(keyword: string) : Observable<Recipe[]>{
+    return this.http.get<Recipe[]>(environment.baseUrl + "unauthenticated/search/description/" + keyword)
       .pipe(
         catchError((err: any) => {
           console.log(err);
