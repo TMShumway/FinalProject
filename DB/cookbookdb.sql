@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS `post` (
   `user_id` INT NOT NULL,
   `recipe_id` INT NULL,
   `image_url` MEDIUMTEXT NULL,
-  `published` TINYINT NULL,
+  `published` TINYINT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   INDEX `fk_post_user1_idx` (`user_id` ASC),
   INDEX `fk_post_recipe1_idx` (`recipe_id` ASC),
@@ -471,15 +471,15 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `cookbookdb`;
-INSERT INTO `post` (`id`, `title`, `description`, `date_created`, `user_id`, `recipe_id`, `image_url`, `published`) VALUES (1, 'Making italian tonight!', 'spaghetti time', NULL, 6, NULL, 'https://images.unsplash.com/photo-1609582848349-215e8bf397d3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80', NULL);
-INSERT INTO `post` (`id`, `title`, `description`, `date_created`, `user_id`, `recipe_id`, `image_url`, `published`) VALUES (2, 'Went to OLIVE GARDEN', 'IT WAS AWFUL. I\'ll make my own alfredo next time', NULL, 1, NULL, NULL, NULL);
-INSERT INTO `post` (`id`, `title`, `description`, `date_created`, `user_id`, `recipe_id`, `image_url`, `published`) VALUES (3, 'Hello All!', 'First post', NULL, 1, 2, NULL, NULL);
-INSERT INTO `post` (`id`, `title`, `description`, `date_created`, `user_id`, `recipe_id`, `image_url`, `published`) VALUES (4, 'Pizza time', 'makin da pizza-pie', NULL, 2, 1, 'https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1225&q=80', NULL);
-INSERT INTO `post` (`id`, `title`, `description`, `date_created`, `user_id`, `recipe_id`, `image_url`, `published`) VALUES (5, 'Ramen is so great', 'I tried out this recipe and it was awesome!', NULL, 6, 3, 'https://images.unsplash.com/photo-1526318896980-cf78c088247c?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmFtZW58ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60', NULL);
-INSERT INTO `post` (`id`, `title`, `description`, `date_created`, `user_id`, `recipe_id`, `image_url`, `published`) VALUES (6, 'Happy birthday!!!', 'This was an awesome recipe. They loved it!', NULL, 3, 5, 'https://images.unsplash.com/photo-1455732063391-5f50f4df1854?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1350&q=80', NULL);
-INSERT INTO `post` (`id`, `title`, `description`, `date_created`, `user_id`, `recipe_id`, `image_url`, `published`) VALUES (7, 'This website is great!', 'can\'t wait to try it all', NULL, 6, 3, 'https://pbs.twimg.com/media/DmR3LlsU4AAj7Ls.jpg', NULL);
-INSERT INTO `post` (`id`, `title`, `description`, `date_created`, `user_id`, `recipe_id`, `image_url`, `published`) VALUES (8, 'This is my post!', 'STAY AWAY', NULL, 6, 5, NULL, NULL);
-INSERT INTO `post` (`id`, `title`, `description`, `date_created`, `user_id`, `recipe_id`, `image_url`, `published`) VALUES (9, 'I LOVE CHIPOTLE', 'perfect', NULL, 1, 11, NULL, NULL);
+INSERT INTO `post` (`id`, `title`, `description`, `date_created`, `user_id`, `recipe_id`, `image_url`, `published`) VALUES (1, 'Making italian tonight!', 'spaghetti time', NULL, 6, NULL, 'https://images.unsplash.com/photo-1609582848349-215e8bf397d3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80', 1);
+INSERT INTO `post` (`id`, `title`, `description`, `date_created`, `user_id`, `recipe_id`, `image_url`, `published`) VALUES (2, 'Went to OLIVE GARDEN', 'IT WAS AWFUL. I\'ll make my own alfredo next time', NULL, 1, NULL, NULL, 1);
+INSERT INTO `post` (`id`, `title`, `description`, `date_created`, `user_id`, `recipe_id`, `image_url`, `published`) VALUES (3, 'Hello All!', 'First post', NULL, 1, 2, NULL, 1);
+INSERT INTO `post` (`id`, `title`, `description`, `date_created`, `user_id`, `recipe_id`, `image_url`, `published`) VALUES (4, 'Pizza time', 'makin da pizza-pie', NULL, 2, 1, 'https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1225&q=80', 1);
+INSERT INTO `post` (`id`, `title`, `description`, `date_created`, `user_id`, `recipe_id`, `image_url`, `published`) VALUES (5, 'Ramen is so great', 'I tried out this recipe and it was awesome!', NULL, 6, 3, 'https://images.unsplash.com/photo-1526318896980-cf78c088247c?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmFtZW58ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60', 1);
+INSERT INTO `post` (`id`, `title`, `description`, `date_created`, `user_id`, `recipe_id`, `image_url`, `published`) VALUES (6, 'Happy birthday!!!', 'This was an awesome recipe. They loved it!', NULL, 3, 5, 'https://images.unsplash.com/photo-1455732063391-5f50f4df1854?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1350&q=80', 1);
+INSERT INTO `post` (`id`, `title`, `description`, `date_created`, `user_id`, `recipe_id`, `image_url`, `published`) VALUES (7, 'This website is great!', 'can\'t wait to try it all', NULL, 6, 3, 'https://pbs.twimg.com/media/DmR3LlsU4AAj7Ls.jpg', 1);
+INSERT INTO `post` (`id`, `title`, `description`, `date_created`, `user_id`, `recipe_id`, `image_url`, `published`) VALUES (8, 'This is my post!', 'STAY AWAY', NULL, 6, 5, NULL, 1);
+INSERT INTO `post` (`id`, `title`, `description`, `date_created`, `user_id`, `recipe_id`, `image_url`, `published`) VALUES (9, 'I LOVE CHIPOTLE', 'perfect', NULL, 1, 11, NULL, 1);
 
 COMMIT;
 
