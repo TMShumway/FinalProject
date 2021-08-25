@@ -1,0 +1,96 @@
+<div class="card mt-3 mx-auto metal" style="width: 75%;">
+  <div class="card-body">
+    Sortable options [x] [x] [x]...Different View buttons [Post Feed] [Recipe Feed]
+  </div>
+</div>
+
+<!-- Row 2 -->
+<div class="container ">
+  <div class="row">
+    <div class="col-2">
+      <!-- 1 of 3 -->
+    </div>
+    <div class="col-8">
+
+      <!-- Recipes Cards -->
+      <div *ngFor="let r of recipes; let i = index"  class="card mt-3 mx-auto">
+
+        <!-- Recipe Image -->
+        <img class="card-img-top" src="{{r.recipeImages[0].imageUrl}}" alt="Card image cap">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+
+              <!-- Recipe Name -->
+              <h3 class="card-title">{{r.name}} </h3>
+            </div>
+            <div class="col">
+              <div class="row">
+                <div class="form-row">
+                  <div class="col rating-col">
+                    <div class="stars float: right">
+                      <input class="star star-5" value="5" id="star-5" type="radio" name="ratingStars"  />
+                      <label class="star star-5" for="star-5"></label>
+                      <input class="star star-4" value="4" id="star-4" type="radio" name="ratingStars" />
+                      <label class="star star-4" for="star-4"></label>
+                      <input class="star star-3" value="3" id="star-3" type="radio" name="ratingStars" />
+                      <label class="star star-3" for="star-3"></label>
+                      <input class="star star-2" value="2" id="star-2" type="radio" name="ratingStars" />
+                      <label class="star star-2" for="star-2"></label>
+                      <input class="star star-1" value="1" id="star-1" type="radio" name="ratingStars" />
+                      <label class="star star-1" for="star-1"></label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <h5 style="float: right" *ngIf="!checkNaN(getRatingAverage(i))">
+                Rated: {{getRatingAverage(i)}} STARS!
+              </h5>
+              <div class="row"></div>
+            </div>
+
+
+            <h6 style="float: right" *ngIf="checkNaN(getRatingAverage(i))">
+              Not Yet Rated...
+            </h6>
+          </div>
+
+            <!-- Inner Nav -->
+          <nav>
+            <div class="nav nav-tabs" id="nav-tab uid" role="tablist">
+              <button class="nav-link" id="nav-description-tab" data-bs-toggle="tab" data-bs-target="#nav-description" type="button" role="tab" aria-controls="nav-description" aria-selected="true" (click)="descriptionStatus(i)" [ngClass]="descriptionStatusTF[i] ? 'active' : ''">Description</button>
+              <button class="nav-link" id="nav-recipe-tab" data-bs-toggle="tab" data-bs-target="#nav-recipe" type="button" role="tab" aria-controls="nav-recipe" aria-selected="false" (click)="recipeStatus(i)" [ngClass]="recipeStatusTF[i] ? 'active' : ''">Recipe</button>
+              <!-- <button class="nav-link" id="nav-rating-tab" data-bs-toggle="tab" data-bs-target="#nav-rating" type="button" role="tab" aria-controls="nav-contact" aria-selected="false" (click)="ratingStatus(i)" [ngClass]="ratingStatusTF[i] ? 'active' : ''">Rating</button> -->
+            </div>
+          </nav>
+          <div class="tab-content" id="nav-tabContent">
+            <!-- Description -->
+            <div class="tab-pane fade" id="nav-description" [ngClass]="descriptionStatusTF[i] ? 'show active' : ''"  role="tabpanel" aria-labelledby="nav-description-tab">
+              <p class="mt-2">{{r.description}}</p>
+            </div>
+            <!-- Recipe Steps -->
+            <div class="tab-pane fade" id="nav-recipe" [ngClass]="recipeStatusTF[i] ? 'show active' : ''"  role="tabpanel" aria-labelledby="nav-recipe-tab">
+                <p class="mt-2">{{r.recipeStep}}</p>
+            </div>
+            <!-- Ratings -->
+            <!-- <div class="tab-pane fade" id="nav-rating" [ngClass]="ratingStatusTF[i] ? 'show active' : ''" role="tabpanel" aria-labelledby="nav-rating-tab">
+              <p *ngIf="!checkNaN(getRatingAverage(i))">
+                This Recipe Rated: {{getRatingAverage(i)}} STARS!
+              </p>
+              <p *ngIf="checkNaN(getRatingAverage(i))">
+                Not Yet Rated...
+              </p>
+            </div> -->
+         </div>
+        <!-- Card Footer Buttons -->
+        <!-- <div class="card-footer text-muted">
+        </div> -->
+      </div>
+      </div>
+    </div>
+    <div class="col-2">
+      <!-- 3 of 3 -->
+    </div>
+  </div>
+</div>

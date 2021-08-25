@@ -25,6 +25,16 @@ export class RecipeService {
       );
   }
 
+  public indexUnauthenticated() : Observable<Recipe[]>{
+    return this.http.get<Recipe[]>(environment.baseUrl + "unauthenticated/recipes")
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError("Error getting recipes in RecipeService:" + err);
+        })
+      );
+  }
+
   public indexByUsername() : Observable<Recipe[]>{
     return this.http.get<Recipe[]>(this.url + "/username", this.getHttpOptions())
       .pipe(

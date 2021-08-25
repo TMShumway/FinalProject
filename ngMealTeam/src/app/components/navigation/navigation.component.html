@@ -6,7 +6,7 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
           <a class="nav-item nav-link" [routerLink]="['/home']" *ngIf="loggedIn()">Home</a>
-          <a class="nav-item nav-link" [routerLink]="['/home']" *ngIf="!loggedIn()">Browse Recipes</a>
+          <a class="nav-item nav-link" [routerLink]="['/recipes']" *ngIf="!loggedIn()">Browse Recipes</a>
           <!-- <a class="nav-item nav-link" [routerLink]="['/userRecipes']" *ngIf="loggedIn()">My Recipes</a> -->
           <a class="nav-item nav-link" [routerLink]="['/profile']" *ngIf="loggedIn()">My Profile</a>
           <a class="nav-item nav-link" [routerLink]="['/about']">About</a>
