@@ -12,5 +12,6 @@ public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
 	List<Recipe> findByUser_Username(String username);
 	List<Recipe> findByPublishedTrueAndPersonalTrueAndUser_Username(String username);
 	List<Recipe> findByPublishedTrueAndPersonalFalse();
+	List<Recipe> findByPublishedTrueAndPersonalFalseAndNameContainsOrDescriptionContains(String kw1, String kw2);
 	
 }

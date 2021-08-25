@@ -12,6 +12,7 @@ export class NonauthenticatedFeedComponent implements OnInit {
   recipes: Recipe[] = [];
   descriptionStatusTF: boolean[] = [];
   recipeStatusTF: boolean[] = [];
+  search: string = '';
 
   constructor(private recipeService: RecipeService) { }
 
@@ -63,6 +64,16 @@ export class NonauthenticatedFeedComponent implements OnInit {
     this.descriptionStatusTF[index] = false;
     this.recipeStatusTF[index] = true;
     // this.ratingStatusTF[index] = false;
+  }
+
+  searchRecipes(){
+    this.recipeService.indexByKeywordUnauthenticated(this.search).subscribe(
+      data => {
+        this.recipes = data.reverse();
+        this.initializeArrays();
+      },
+      error => { console.error('Error retrieving recipes from recipeService: ' + error);}
+    );
   }
 
 }

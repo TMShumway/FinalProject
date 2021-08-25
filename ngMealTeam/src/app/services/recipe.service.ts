@@ -35,6 +35,16 @@ export class RecipeService {
       );
   }
 
+  public indexByKeywordUnauthenticated(keyword: string) : Observable<Recipe[]>{
+    return this.http.get<Recipe[]>(environment.baseUrl + "unauthenticated/search/" + keyword)
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError("Error getting recipes in RecipeService:" + err);
+        })
+      );
+  }
+
   public indexByUsername() : Observable<Recipe[]>{
     return this.http.get<Recipe[]>(this.url + "/username", this.getHttpOptions())
       .pipe(

@@ -52,6 +52,18 @@ public class RecipeServiceImpl implements RecipeService {
 		return recipes;
 	}
 
+	// Return all recipes by keyword search
+	@Override
+	public List<Recipe> indexByKeyword(String keyword) {
+		List<Recipe> recipes;
+		try {
+			recipes = recipeRepo.findByPublishedTrueAndPersonalFalseAndNameContainsOrDescriptionContains(keyword, keyword);
+		} catch (Exception e) {
+			recipes = null;
+		}
+		return recipes;
+	}
+
 	// Return one recipe by recipe Id
 	@Override
 	public Recipe show(int recipeId) {
