@@ -26,6 +26,8 @@ public class Post {
 	
 	private String description;
 	
+	private boolean published;
+	
 	@CreationTimestamp
 	@Column(name = "date_created")
 	private LocalDateTime dateCreated;
@@ -90,6 +92,22 @@ public class Post {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public boolean isPublished() {
+		return published;
+	}
+
+	public void setPublished(boolean published) {
+		this.published = published;
+	}
+
+	public Recipe getRecipe() {
+		return recipe;
+	}
+
+	public void setRecipe(Recipe recipe) {
+		this.recipe = recipe;
 	}
 
 	@Override

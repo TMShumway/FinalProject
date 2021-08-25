@@ -36,26 +36,26 @@ export class ProfileComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.loadUser();
     this.loadUserPosts();
     this.loadUserRecipes();
-    this.loadUser();
   }
 
-  loadAllPosts() {
-    this.postService.index().subscribe(
-      data => { this.posts = data.reverse();},
+  // loadAllPosts() {
+  //   this.postService.index().subscribe(
+  //     data => { this.posts = data.reverse();},
 
-      error => { console.error('Error retrieving posts from postService: ' + error);}
-    );
-  }
+  //     error => { console.error('Error retrieving posts from postService: ' + error);}
+  //   );
+  // }
 
   loadUserPosts() {
-    this.userService.indexPostsByUsername().subscribe(
+    this.postService.indexByUsernamePublishedTrue(this.user.username).subscribe(
       data => { this.posts = data.reverse();
 
       },
 
-      error => { console.error('Error retrieving posts from userService: ' + error);}
+      error => { console.error('Error retrieving posts from postService: ' + error);}
     );
   }
 
@@ -70,6 +70,18 @@ export class ProfileComponent implements OnInit {
     );
     this.newPost = new Post();
   }
+
+  deletFromMyPostList(post: Post){
+    // this.loadUser();
+    console.log(this.user?.username);
+    if (this.user?.username == post.user.username){
+      post.published = false;
+      this.postService.destroyPost(post).subscribe(
+        data => { this.loadUserPosts();  },
+        err => { console.error('Observer error: ' + err) }
+        );
+      }
+    }
 
   // createNewRecipe(){
   //   this.recipeService.create(this.newRecipe, this.rImageUrl).subscribe(
