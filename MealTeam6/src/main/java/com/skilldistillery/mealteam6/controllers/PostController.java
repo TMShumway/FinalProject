@@ -50,19 +50,31 @@ public class PostController {
 		return post;
 	}
 
-	@DeleteMapping("posts/{id}")
-	public void delete(HttpServletRequest req, HttpServletResponse res, @PathVariable int id, Principal principal) {
-		try {
-			boolean deleted = postService.destroy(id);
-			if (deleted) {
-				res.setStatus(204);
-			} else {
-				res.setStatus(404);
-			}
-		} catch (Exception e) {
-			res.setStatus(400);
+//	@DeleteMapping("posts/{id}")
+//	public void delete(HttpServletRequest req, HttpServletResponse res, @PathVariable int id, Principal principal) {
+//		try {
+//			boolean deleted = postService.destroy(id);
+//			if (deleted) {
+//				res.setStatus(204);
+//			} else {
+//				res.setStatus(404);
+//			}
+//		} catch (Exception e) {
+//			res.setStatus(400);
+//		}
+//	}
+	
+	@DeleteMapping("posts/{postId}")
+    public void unPublishPost(@PathVariable int postId, HttpServletResponse res, Principal Principal) {
+    	boolean deleted = false;
+    	deleted = postService.destroy(postId);
+    	if (deleted) {
+			res.setStatus(204);
+		} else {
+			res.setStatus(403);
 		}
-	}
+    	
+    }
 	
 	@GetMapping("posts/{id}")
 	public Post showPost(@PathVariable int id, HttpServletRequest req, HttpServletResponse res) {
@@ -82,6 +94,30 @@ public class PostController {
 	public List<Post> index(HttpServletRequest req, HttpServletResponse res, Principal principal) {
 		List<Post> posts = null;
 		posts = postService.showAllPosts();  // How do we ensure a user is logged in?
+		if(posts == null) {
+			res.setStatus(404);
+		} else {
+			res.setStatus(200);  // 200 or 201?
+		}
+		return posts;
+	}
+	
+//	@GetMapping("posts/published")
+//	public List<Post> indexByPublishedTrue(HttpServletRequest req, HttpServletResponse res, Principal principal) {
+//		List<Post> posts = null;
+//		posts = postService.showAllPublishedPosts();  // How do we ensure a user is logged in?
+//		if(posts == null) {
+//			res.setStatus(404);
+//		} else {
+//			res.setStatus(200);  // 200 or 201?
+//		}
+//		return posts;
+//	}
+
+	@GetMapping("posts/published")
+	public List<Post> indexByUsernameAndPublishedTrue(HttpServletRequest req, HttpServletResponse res, Principal principal) {
+		List<Post> posts = null;
+		posts = postService.findByUser_UsernameAndPublishedTrue(principal.getName());  // How do we ensure a user is logged in?
 		if(posts == null) {
 			res.setStatus(404);
 		} else {

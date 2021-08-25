@@ -8,6 +8,7 @@ export class Post {
   imageUrl: string;
   hasImage: boolean;
   user: User;
+  published: boolean;
 
   constructor(
     id = 0,
@@ -16,7 +17,8 @@ export class Post {
     dateCreated = '',
     imageUrl = '',
     hasImage = false,
-    user = new User()
+    user = new User(),
+    published = true
     ){
     this.id = id;
     this.title = title;
@@ -25,5 +27,6 @@ export class Post {
     this.imageUrl = imageUrl;
     this.hasImage = hasImage;
     this.user = user;
+    this.published = published;
   }
 }

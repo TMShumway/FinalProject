@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.mealteam6.entities.Post;
+import com.skilldistillery.mealteam6.entities.Recipe;
 import com.skilldistillery.mealteam6.repositories.PostRepository;
 
 @Service
@@ -53,15 +54,31 @@ public class PostServiceImpl implements PostService {
 		return null;
 	}
 
+//	@Override
+//	public boolean destroy(int id) {
+//		Optional<Post> post = postRepo.findById(id);
+//		if (post.isPresent()) {
+//			Post mp = post.get();
+//			postRepo.delete(mp);
+//			return true;
+//		}
+//		return false;
+//	}
+	
 	@Override
-	public boolean destroy(int id) {
-		Optional<Post> post = postRepo.findById(id);
-		if (post.isPresent()) {
-			Post mp = post.get();
-			postRepo.delete(mp);
-			return true;
+	public boolean destroy(int postId) {
+		Post postToDelete = null;
+		try {
+			Optional<Post> postOptional = postRepo.findById(postId);
+			if(postOptional.isPresent()) {
+				postToDelete = postOptional.get();
+				postToDelete.setPublished(false);
+				postRepo.saveAndFlush(postToDelete);
+			}
+		} catch (Exception e) {
+			return false;
 		}
-		return false;
+		return true;
 	}
 
 	@Override
@@ -70,10 +87,28 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
+	public List<Post> showAllPublishedPosts() {
+		return postRepo.findByPublishedTrue();
+	}
+	
+	
+
+	@Override
 	public List<Post> showPostsByUsername(String username) {
 		List<Post> posts = null;
 		try {
 			posts = postRepo.findByUser_Username(username);
+		} catch (Exception e) {
+			posts = null;
+		}
+		return posts;
+	}
+
+	@Override
+	public List<Post> findByUser_UsernameAndPublishedTrue(String username) {
+		List<Post> posts = null;
+		try {
+			posts = postRepo.findByUser_UsernameAndPublishedTrue(username);
 		} catch (Exception e) {
 			posts = null;
 		}

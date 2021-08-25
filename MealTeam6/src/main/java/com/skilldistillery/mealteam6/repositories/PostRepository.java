@@ -10,4 +10,6 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
 	// SELECT * from POST 
 	List<Post> findByDescriptionContainingIgnoreCaseOrTitleIgnoreCaseContaining(String keyword, String keyword1);
 	List<Post> findByUser_Username(String username);
+	List<Post> findByPublishedTrue();
+	List<Post> findByUser_UsernameAndPublishedTrue(String username);
 }

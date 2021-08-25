@@ -25,6 +25,25 @@ export class PostService {
         })
       );
   }
+  // public indexPublishedTrue(){
+  //   return this.http.get<Post[]>(this.url + "/published", this.getHttpOptions())
+  //     .pipe(
+  //       catchError((err: any) => {
+  //         console.log(err);
+  //         return throwError("Error getting posts in PostService:" + err);
+  //       })
+  //     );
+  // }
+
+  public indexByUsernamePublishedTrue(username: String){
+    return this.http.get<Post[]>(this.url + "/published" , this.getHttpOptions())
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError("Error getting user posts in PostService:" + err);
+        })
+      );
+  }
 
   getHttpOptions(){
     const credentials = this.authService.getCredentials();
@@ -45,6 +64,16 @@ export class PostService {
           console.log(err);
           return throwError('Error creating post: ' + err);
         })
+      );
+  }
+
+  public destroyPost(post: Post){
+    return this.http.delete<Post>(this.url + "/" + post.id, this.getHttpOptions())
+    .pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Error destroying post: ' + err);
+      })
       );
   }
 }
