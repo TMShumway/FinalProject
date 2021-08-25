@@ -36,7 +36,7 @@
           Username: {{user.username}}
         </p>
         <p class="sideNavBtn">
-          User since: {{user.dateCreated}}
+          User since: {{user.dateCreated | date: "mediumDate"}}
         </p>
         <p class="sideNavBtn">
           Recipes Contributed: TBD
