@@ -11,7 +11,8 @@ public interface RecipeService {
 	List<Recipe> indexByUsername(String username);
 	Recipe show(int recipeId);
 	Recipe createRecipe(Recipe recipe, String username, String imageUrl);
-	Recipe updateRecipe(Recipe recipe, int recipeId);
+//	Recipe updateRecipe(Recipe recipe, int recipeId);
+	Recipe updateRecipe(Recipe recipe, int recipeId, String decodedUrl);
 	RecipeImage addImageToRecipe(Recipe recipe, String imageUrl) throws Exception;
 	boolean deleteRecipe(int recipeId);
 	Recipe createRecipe(Recipe recipe, String username);

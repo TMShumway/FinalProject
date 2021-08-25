@@ -93,6 +93,7 @@ public class RecipeController {
 	@PostMapping("recipes/userlist")
 	public Recipe create(HttpServletRequest req, HttpServletResponse res, @RequestBody Recipe recipe, Principal principal) {
 		try {
+			recipe.setId(0);
 			recipe = recipeService.createRecipe(recipe, principal.getName());
 			res.setStatus(201);
 			StringBuffer url = req.getRequestURL();
@@ -105,10 +106,12 @@ public class RecipeController {
 		return recipe;
 	}
 	
-    @PutMapping("recipes/{recipeId}")
-	public Recipe update(HttpServletRequest req, HttpServletResponse res, @PathVariable int recipeId, @RequestBody Recipe recipe, Principal principal) {
+    @PutMapping("recipes/{recipeId}/{imageUrl}")
+	public Recipe update(HttpServletRequest req, HttpServletResponse res, @PathVariable int recipeId, @PathVariable byte[] imageUrl, @RequestBody Recipe recipe, Principal principal) {
 		try {
-			recipe = recipeService.updateRecipe(recipe, recipeId);
+			String decodedUrl = new String(Base64.getDecoder().decode(imageUrl));
+			recipe = recipeService.updateRecipe(recipe, recipeId, decodedUrl);
+			
 			res.setStatus(201);
 			StringBuffer url = req.getRequestURL();
 			url.append("/").append(recipe.getId());
