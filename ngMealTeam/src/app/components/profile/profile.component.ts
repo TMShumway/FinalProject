@@ -27,6 +27,9 @@ export class ProfileComponent implements OnInit {
   // ratingStatusTF: boolean[] = [];
   postStatusTF: boolean[] = [];
   editUser = new User();
+  makeAPostIsVisible: Boolean = true;
+  newPost = new Post();
+  user: User = new User();
 
 
   constructor(private postService: PostService, private userService: UserService, private recipeService: RecipeService, private authService: AuthService) { }
@@ -55,6 +58,28 @@ export class ProfileComponent implements OnInit {
     );
   }
 
+  createNewPost(){
+    this.newPost.user = this.user;
+  this.postService.createPost(this.newPost).subscribe(
+
+      data => { this.loadAllPosts();
+                },
+
+      err => { console.error('Observer error in homeComponent createNewPost(): ' + err) }
+    );
+    this.newPost = new Post();
+  }
+
+  // createNewRecipe(){
+  //   this.recipeService.create(this.newRecipe, this.rImageUrl).subscribe(
+  //     data => { this.loadAllRecipes();
+  //               this.createRecipeForm(); },
+
+  //     err => { console.error('Observer error in homeComponent createNewRecipe(): ' + err) }
+  //   );
+  //   this.newRecipe = new Recipe();
+  // }
+
   loadUserRecipes() {
     this.recipeService.indexByUsername().subscribe(
       data => { this.recipes = data;
@@ -70,6 +95,7 @@ export class ProfileComponent implements OnInit {
       data => { this.editUser = data;
         this.editUser.password = '';
         this.initializeArrays();
+        this.user = data;
       },
 
       error => { console.error('Error retrieving user from userService: ' + error);}
@@ -87,15 +113,27 @@ export class ProfileComponent implements OnInit {
     this.recipeIsVisible = false;
     this.postIsVisible = true;
     this.editProfileIsVisible = false;
-
+    this.makeAPostIsVisible = true;
     this.loadUserPosts();
     return this.postIsVisible;
+  }
+
+  showMakePostDiv() {
+    this.makeAPostIsVisible = true;
+    // this.postIsVisible = true;
+    this.editProfileIsVisible = false;
+    this.postIsVisible = true;
+    this.recipeIsVisible = true;
+
+    // this.loadUserPosts();
+    return this.makeAPostIsVisible;
   }
 
   showEditProfileDiv() {
     this.editProfileIsVisible = true;
     this.postIsVisible = false;
     this.recipeIsVisible = false;
+    this.makeAPostIsVisible = false;
 
     // this.loadUserPosts();
     return this.editProfileIsVisible;
@@ -135,6 +173,8 @@ export class ProfileComponent implements OnInit {
     this.postIsVisible = false;
     this.editProfileIsVisible = false;
     this.recipeIsVisible = true;
+    this.makeAPostIsVisible = true;
+
     this.loadUserRecipes();
     return this.recipeIsVisible;
   }
