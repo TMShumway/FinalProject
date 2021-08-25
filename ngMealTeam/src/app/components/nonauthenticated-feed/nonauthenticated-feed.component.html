@@ -1,6 +1,11 @@
 <div class="card mt-3 mx-auto metal" style="width: 75%;">
   <div class="card-body">
     Sortable options [x] [x] [x]...Different View buttons [Post Feed] [Recipe Feed]
+    <form action="">
+      <label for="search">Search Recipes:</label>
+      <input type="text" id="search" name=search [(ngModel)]="search" (keyup)="searchRecipes()">
+    </form>
+    <button class="btn btn-success" (click)="loadAllRecipes()">Reset Search</button>
   </div>
 </div>
 
