@@ -37,4 +37,14 @@ export class PostService {
     };
   return httpOptions;
   }
+
+  public createPost(post: Post){
+    return this.http.post<Post>(this.url, post, this.getHttpOptions())
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError('Error creating post: ' + err);
+        })
+      );
+  }
 }

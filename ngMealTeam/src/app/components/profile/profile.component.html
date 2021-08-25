@@ -24,17 +24,19 @@
     <div class="col-10"> Col 2 of 3 </div>
   </div> -->
 
+
+
   <div class="row theProfile">
     <!-- https://upload.wikimedia.org/wikipedia/commons/8/84/Sylvester_Stallone_Cannes_2019.jpg -->
     <div class="col-md-3">
       <div class="vertical-menu card mt-3 mx-auto">
         <div class="card-body">
-        <img class="card-img-top" src="{{editUser.imgUrl}}" alt="">
+        <img class="card-img-top" src="{{user.imgUrl}}" alt="">
         <p class="sideNavBtn">
-          Username: {{editUser.username}}
+          Username: {{user.username}}
         </p>
         <p class="sideNavBtn">
-          User since: {{editUser.dateCreated | date: "mediumDate"}}
+          User since: {{user.dateCreated}}
         </p>
         <p class="sideNavBtn">
           Recipes Contributed: TBD
@@ -57,6 +59,29 @@
     </div>
 
     <div class="col-md-6 scroller">
+
+
+        <!------------------------------------  Make A Post ------------------------------------------------>
+      <div class="makeAPost"  *ngIf="makeAPostIsVisible">
+        <div class="card mt-3 mx-auto">
+
+        <h1>Make a Post</h1>
+        <form >
+          <!-- <label for="title">Title:</label> -->
+          <input name ="title" type="text" value="" placeholder="Title" [(ngModel)]="newPost.title">
+          <input name ="imageUrl" type="text" value="" placeholder="image url" [(ngModel)]="newPost.imageUrl">
+
+          <!-- <label for="description">Comment</label><br> -->
+          <textarea name="description" id="" cols="40" rows="5" placeholder="Tell us about your gastronomic event!" [(ngModel)]="newPost.description"></textarea><br>
+          <!-- <label for="imageUrl">Image URL</label><br> -->
+          <button type="button" (click)=createNewPost()>Post</button>
+          <!-- <input type="submit" (click)=postComment()> -->
+        </form>
+        </div>
+      </div>
+        <!------------------------------------  Make A Post ------------------------------------------------>
+
+
      <!-- <p class="scrollable"> -->
        <div *ngIf="postIsVisible" >
         <div *ngFor="let p of posts; let i = index"  class="card mt-3 mx-auto">
@@ -83,6 +108,10 @@
           </div>
         </div>
        </div>
+
+
+
+
        <div *ngIf="recipeIsVisible">
         <div *ngFor="let r of recipes; let i = index"  class="card mt-3 mx-auto">
           <!-- <script> uid = 'x' + r.id </script> -->
@@ -211,13 +240,16 @@
 
         <label for="password">Password</label><br>
         <input type="password" name="password" [(ngModel)]="editUser.password"><br><br>
-        <br><br>
         <input type="submit" (click)=updateUser(editUser)>
       </form>
       </div>
       </div>
 
-      <!------------------------------------ End Edit Profile ------------------------------------------------>
+      <!------------------------------------  Edit Profile ------------------------------------------------>
+
+
+
+
 
     </div>
 
