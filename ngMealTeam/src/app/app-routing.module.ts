@@ -10,10 +10,12 @@ import { UserRecipesComponent } from './components/user-recipes/user-recipes.com
 import { ContactComponent } from './components/contact/contact.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { PostFormComponent } from './components/post-form/post-form.component';
+import { NonauthenticatedFeedComponent } from './components/nonauthenticated-feed/nonauthenticated-feed.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'welcome'},
   { path: 'home', component: HomeComponent },
+  { path: 'recipes', component: NonauthenticatedFeedComponent },
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'userRecipes', component: UserRecipesComponent },

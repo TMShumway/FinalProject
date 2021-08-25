@@ -20,6 +20,7 @@ import { RecipeFormModalComponent } from './components/recipe-form-modal/recipe-
 import { PostFormComponent } from './components/post-form/post-form.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NonauthenticatedFeedComponent } from './components/nonauthenticated-feed/nonauthenticated-feed.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     UserRecipesComponent,
     RecipeFormModalComponent,
     PostFormComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    NonauthenticatedFeedComponent
   ],
   imports: [
     BrowserModule,
