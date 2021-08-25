@@ -102,7 +102,7 @@ export class ProfileComponent implements OnInit {
     );
   }
   postHasImage(i: number) {
-    if(this.posts[i].imageUrl === null){
+    if(this.posts[i].imageUrl === null || this.posts[i].imageUrl === ''){
       return false;
     } else {
       return true;
