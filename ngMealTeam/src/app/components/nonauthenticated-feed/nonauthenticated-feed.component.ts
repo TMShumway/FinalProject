@@ -12,7 +12,8 @@ export class NonauthenticatedFeedComponent implements OnInit {
   recipes: Recipe[] = [];
   descriptionStatusTF: boolean[] = [];
   recipeStatusTF: boolean[] = [];
-  search: string = '';
+  searchTitle: string = '';
+  searchDescription: string = '';
 
   constructor(private recipeService: RecipeService) { }
 
@@ -66,14 +67,30 @@ export class NonauthenticatedFeedComponent implements OnInit {
     // this.ratingStatusTF[index] = false;
   }
 
-  searchRecipes(){
-    this.recipeService.indexByKeywordUnauthenticated(this.search).subscribe(
+  searchRecipesByTitle(){
+    this.recipeService.indexByTitleKeywordUnauthenticated(this.searchTitle).subscribe(
       data => {
         this.recipes = data.reverse();
         this.initializeArrays();
       },
       error => { console.error('Error retrieving recipes from recipeService: ' + error);}
     );
+  }
+
+  searchRecipesByDescription(){
+    this.recipeService.indexByDescriptionKeywordUnauthenticated(this.searchDescription).subscribe(
+      data => {
+        this.recipes = data.reverse();
+        this.initializeArrays();
+      },
+      error => { console.error('Error retrieving recipes from recipeService: ' + error);}
+    );
+  }
+
+  resetSearchParameters(){
+    this.searchDescription = '';
+    this.searchTitle = '';
+    this.loadAllRecipes();
   }
 
 }

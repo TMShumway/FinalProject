@@ -32,10 +32,20 @@ public class UnathenticatedController {
 		return recipes;
 	}
 
-	@GetMapping("search/{keyword}")
-	private List<Recipe> indexKeyword(HttpServletResponse res, @PathVariable String keyword) {
+	@GetMapping("search/title/{keyword}")
+	private List<Recipe> indexTitleKeyword(HttpServletResponse res, @PathVariable String keyword) {
 		List<Recipe> recipes = null;
-		recipes = recipeService.indexByKeyword(keyword);
+		recipes = recipeService.indexByTitleKeyword(keyword);
+		if (recipes == null) {
+			res.setStatus(404);
+		}
+		return recipes;
+	}
+
+	@GetMapping("search/description/{keyword}")
+	private List<Recipe> indexDescriptionKeyword(HttpServletResponse res, @PathVariable String keyword) {
+		List<Recipe> recipes = null;
+		recipes = recipeService.indexByDescriptionKeyword(keyword);
 		if (recipes == null) {
 			res.setStatus(404);
 		}

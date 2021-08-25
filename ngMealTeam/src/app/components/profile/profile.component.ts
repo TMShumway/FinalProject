@@ -51,7 +51,8 @@ export class ProfileComponent implements OnInit {
 
   loadUserPosts() {
     this.userService.indexPostsByUsername().subscribe(
-      data => { this.posts = data;
+      data => { this.posts = data.reverse();
+
       },
 
       error => { console.error('Error retrieving posts from userService: ' + error);}
@@ -62,7 +63,7 @@ export class ProfileComponent implements OnInit {
     this.newPost.user = this.user;
   this.postService.createPost(this.newPost).subscribe(
 
-      data => { this.loadAllPosts();
+      data => { this.loadUserPosts();
                 },
 
       err => { console.error('Observer error in homeComponent createNewPost(): ' + err) }
@@ -93,7 +94,8 @@ export class ProfileComponent implements OnInit {
   loadUser() {
     this.userService.getUserByUsername().subscribe(
       data => { this.editUser = data;
-        this.editUser.password = '';
+        console.log("The password value is: " + data.password);
+        this.editUser.password = data.password;
         this.initializeArrays();
         this.user = data;
       },
@@ -140,9 +142,11 @@ export class ProfileComponent implements OnInit {
   }
 
   updateUser(user: User) {
+    console.log('Entering updateUser from ProfileComponent, Username: ' + user.username + ' Password: ' + user.password);
     this.userService.updateUser(user).subscribe(
       data => {
       this.authService.logout();
+      console.log('Username being passed to login function: ' + user.username + ' Password: ' + user.password);
       this.authService.login(user.username, user.password).subscribe(
        loggedIn => {
          console.log('Logged in')
