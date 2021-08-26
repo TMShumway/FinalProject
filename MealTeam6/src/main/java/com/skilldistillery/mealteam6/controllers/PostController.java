@@ -90,17 +90,17 @@ public class PostController {
 		return post;
 	}
 
-	@GetMapping("posts")
-	public List<Post> index(HttpServletRequest req, HttpServletResponse res, Principal principal) {
-		List<Post> posts = null;
-		posts = postService.showAllPosts();  // How do we ensure a user is logged in?
-		if(posts == null) {
-			res.setStatus(404);
-		} else {
-			res.setStatus(200);  // 200 or 201?
-		}
-		return posts;
-	}
+//	@GetMapping("posts")
+//	public List<Post> index(HttpServletRequest req, HttpServletResponse res, Principal principal) {
+//		List<Post> posts = null;
+//		posts = postService.showAllPosts();  // How do we ensure a user is logged in?
+//		if(posts == null) {
+//			res.setStatus(404);
+//		} else {
+//			res.setStatus(200);  // 200 or 201?
+//		}
+//		return posts;
+//	}
 	
 //	@GetMapping("posts/published")
 //	public List<Post> indexByPublishedTrue(HttpServletRequest req, HttpServletResponse res, Principal principal) {

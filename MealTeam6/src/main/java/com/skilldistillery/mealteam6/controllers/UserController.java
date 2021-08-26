@@ -32,16 +32,16 @@ public class UserController {
 	@Autowired
 	private PostService postService;
 	
-	@GetMapping("users")
-	public List<User> getAllUsers(HttpServletResponse res, Principal principal)
-	{
-		List<User> users = null;
-		users = userService.index();
-		if (users == null) {
-			res.setStatus(404);
-		}
-		return users;
-	}
+//	@GetMapping("users")
+//	public List<User> getAllUsers(HttpServletResponse res, Principal principal)
+//	{
+//		List<User> users = null;
+//		users = userService.index();
+//		if (users == null) {
+//			res.setStatus(404);
+//		}
+//		return users;
+//	}
 	
 	@GetMapping("users/{uid}")
 	public User getUserByUsername(
