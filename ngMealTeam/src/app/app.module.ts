@@ -21,6 +21,7 @@ import { PostFormComponent } from './components/post-form/post-form.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NonauthenticatedFeedComponent } from './components/nonauthenticated-feed/nonauthenticated-feed.component';
+import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { NonauthenticatedFeedComponent } from './components/nonauthenticated-fee
     RecipeFormModalComponent,
     PostFormComponent,
     EditProfileComponent,
-    NonauthenticatedFeedComponent
+    NonauthenticatedFeedComponent,
+    AdminDashboardComponent
   ],
   imports: [
     BrowserModule,
