@@ -18,5 +18,7 @@ public interface UserService {
 	User addToUserRecipes(String username, Recipe recipe);
 //	boolean destroy(int uid);
 
+	User adminFlipEnabled(int userId, String name);
+
 
 }
