@@ -325,7 +325,7 @@
             <div *ngFor="let rc of r.recipeComments">
               <br />
               USERNAME
-              <div class="card mt-1">
+              <div class="card mx-auto mt-1" style="width:98%;">
                 <div class="card-body">
                   {{ rc.details }}
                   <div *ngFor="let reply of rc.recipeComments">
@@ -334,6 +334,19 @@
                     </p>
                   </div>
                 </div>
+              </div>
+            </div>
+            <!-- Reply Box -->
+            <div class="card mx-auto mb-1 mt-1" style="width:98%;">
+              <div class="card-body">
+                <form class="form-inline">
+
+                      <textarea class="form-control" id="recipeComments" rows="2" name="recipeComments" placeholder="What's on your mind?"></textarea>
+
+                      <button class="btn btn-primary">Reply</button>
+
+
+                </form>
               </div>
             </div>
           </div>
