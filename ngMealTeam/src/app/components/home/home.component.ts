@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Recipe } from 'src/app/models/recipe';
+import { RecipeComments } from 'src/app/models/recipe-comments';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { RecipeService } from 'src/app/services/recipe.service';
@@ -12,6 +13,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class HomeComponent implements OnInit {
 
+  newComment: RecipeComments = new RecipeComments();
   recipes: Recipe[] = [];
   newRecipe: Recipe = new Recipe();
   editRecipe: Recipe[] = [];
@@ -212,5 +214,16 @@ loadUser() {
      );
   }
 
+  addNewComment(r: Recipe){
+    this.recipeService.addComment(r.id, this.newComment).subscribe(
+      data => {
+        this.newComment = new RecipeComments();
+        this.loadAllRecipes();
+      },
+      err => {
+        console.error('Observer error in homeComponent AddNewComment(): ' + err)
+      }
+    );
+  }
 
 }

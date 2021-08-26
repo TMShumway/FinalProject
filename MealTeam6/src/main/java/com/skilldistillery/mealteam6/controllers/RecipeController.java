@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.mealteam6.entities.Rating;
 import com.skilldistillery.mealteam6.entities.Recipe;
+import com.skilldistillery.mealteam6.entities.RecipeComment;
 import com.skilldistillery.mealteam6.services.RecipeService;
 
 @RestController
@@ -40,7 +41,7 @@ public class RecipeController {
 		return recipes;
 	}
 	
-	//Get posts by username with PathVariable username
+	//Get recipes by username with PathVariable username
 	@GetMapping("recipes/usernames/{username}")
 	private List<Recipe> indexByUsername(HttpServletResponse res, Principal principal, @PathVariable String username) {
 		List<Recipe> recipes = null;
@@ -51,7 +52,7 @@ public class RecipeController {
 		return recipes;
 	}
 
-	//Get posts by username from logged in user	
+	//Get recipes by username from logged in user	
 	@GetMapping("recipes/username")
 	private List<Recipe> indexByUsername(HttpServletResponse res, Principal principal) {
 		List<Recipe> recipes = null;
@@ -153,6 +154,19 @@ public class RecipeController {
 		}
 		return recipe;
 	}
+
+    @PostMapping("recipes/add/comment/new/{recipeId}")
+    public Recipe createRecipeComment(HttpServletRequest req, HttpServletResponse res, @PathVariable int recipeId, @RequestBody RecipeComment comment, Principal principal) {
+    	Recipe recipe = null;
+    	try {
+    		recipe = recipeService.addCommentToRecipe(recipeId, comment, principal.getName());
+    		res.setStatus(201);
+    	} catch (Exception e) {
+    		res.setStatus(400);
+    		recipe = null;
+    	}
+    	return recipe;
+    }
     
 }
 

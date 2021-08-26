@@ -12,15 +12,18 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 
 @Entity
 @Table(name="recipe_comment")
 public class RecipeComment {
 	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -32,14 +35,17 @@ public class RecipeComment {
 	private LocalDateTime dateCreated;
 
 	@ManyToOne
+	@JsonIgnoreProperties("recipeComments")
 	@JoinColumn(name = "recipe_id")
 	private Recipe recipe;
 	
-	@OneToMany
-	@JoinColumn(name = "recipe_comment_reply_id")
-	private List<RecipeComment> recipeComments;
+//	@OneToMany
+//	@JoinColumn(name = "recipe_comment_reply_id")
+//	private List<RecipeComment> recipeComments;
 	
 	@ManyToOne
+//	@JsonIgnoreProperties(value = {"posts"})
+	@JsonIncludeProperties({"id", "username", "dateCreated"})
 	@JoinColumn(name = "user_id")
 	private User user;
 	
@@ -57,6 +63,22 @@ public class RecipeComment {
 		this.id = id;
 		this.details = details;
 		this.dateCreated = dateCreated;
+	}
+
+	public Recipe getRecipe() {
+		return recipe;
+	}
+	
+	public void setRecipe(Recipe recipe) {
+		this.recipe = recipe;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public int getId() {
