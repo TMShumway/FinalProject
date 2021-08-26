@@ -26,12 +26,13 @@ export class AdminDashboardComponent implements OnInit {
   ngOnInit(): void {
     this.loadUser();
     this.loadAllUsers();
+    this.loadAllRecipes();
+    this.loadAllPosts();
   }
 
   loadUser() {
     this.userService.getUserByUsername().subscribe(
       data => { this.loggedInUser = data;
-        // this.initializeArrays();
       },
       error => { console.error('Error retrieving user from userService: ' + error);}
       );
@@ -64,6 +65,22 @@ export class AdminDashboardComponent implements OnInit {
     this.adminService.disableUser(userId).subscribe(
       data => {
         this.allUsers[i] = data;
+      },
+      error => { console.error('Error retrieving user from adminService: ' + error);}
+      );
+  }
+  disableRecipe(recipeId: number, i: number){
+    this.adminService.disableRecipe(recipeId).subscribe(
+      data => {
+        this.allRecipes[i] = data;
+      },
+      error => { console.error('Error retrieving recipe from adminService: ' + error);}
+      );
+  }
+  disablePost(postId: number, i: number){
+    this.adminService.disablePost(postId).subscribe(
+      data => {
+        this.allPosts[i] = data;
       },
       error => { console.error('Error retrieving user from adminService: ' + error);}
       );

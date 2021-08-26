@@ -68,4 +68,22 @@ export class AdminService {
       })
     );
   }
+  disableRecipe(recipeId: number): Observable<Recipe>{
+    return this.http.put<Recipe>(this.url + "/users/" + recipeId, {}, this.getHttpOptions())
+    .pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError("Error disabling user in AdminService:" + err);
+      })
+    );
+  }
+  disablePost(postId: number): Observable<Post>{
+    return this.http.put<Post>(this.url + "/users/" + postId, {}, this.getHttpOptions())
+    .pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError("Error disabling user in AdminService:" + err);
+      })
+    );
+  }
 }

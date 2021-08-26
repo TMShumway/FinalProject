@@ -9,40 +9,44 @@
           <!-- <button class="nav-link" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true" (click)="descriptionStatus(i)" [ngClass]="descriptionStatusTF[i] ? 'active' : ''">Description</button> -->
           <button
             class="nav-link"
-            id="nav-description-tab"
+            id="nav-user-tab"
             data-bs-toggle="tab"
-            data-bs-target="#nav-description"
+            data-bs-target="#nav-user"
             type="button"
             role="tab"
-            aria-controls="nav-description"
+            aria-controls="nav-user"
             aria-selected="true"
             (click)="userStatus()"
             [ngClass]="userStatusTF ? 'active' : ''"
           >
             Users
           </button>
+
+
           <button
             class="nav-link"
-            id="nav-description-tab"
+            id="nav-recipe-tab"
             data-bs-toggle="tab"
-            data-bs-target="#nav-description"
+            data-bs-target="#nav-recipe"
             type="button"
             role="tab"
-            aria-controls="nav-description"
+            aria-controls="nav-recipe"
             aria-selected="false"
             (click)="recipeStatus()"
             [ngClass]="recipeStatusTF ? 'active' : ''"
           >
             Recipes
           </button>
+
+
           <button
             class="nav-link"
-            id="nav-comment-tab"
+            id="nav-post-tab"
             data-bs-toggle="tab"
-            data-bs-target="#nav-comment"
+            data-bs-target="#nav-post"
             type="button"
             role="tab"
-            aria-controls="nav-comment"
+            aria-controls="nav-post"
             aria-selected="false"
             (click)="postStatus()"
             [ngClass]="postStatusTF ? 'active' : ''"
@@ -59,7 +63,7 @@
           id="nav-user"
           [ngClass]="userStatusTF ? 'show active' : ''"
           role="tabpanel"
-          aria-labelledby="nav-description-tab"
+          aria-labelledby="nav-user-tab"
         >
           <table class="table table-striped">
             <thead class="thead-dark">
@@ -105,7 +109,7 @@
         <!-- Recipes -->
         <div
           class="tab-pane fade"
-          id="nav-user"
+          id="nav-recipe"
           [ngClass]="recipeStatusTF ? 'show active' : ''"
           role="tabpanel"
           aria-labelledby="nav-recipe-tab"
@@ -137,14 +141,10 @@
                   <td>{{ recipe.user.username }}</td>
                   <td>{{ recipe.published }}</td>
                   <td>{{ recipe.personal }}</td>
-                  <button type="button" class="btn btn-danger">Delete</button>
                   <td>
-                    <input
-                      type="checkbox"
-                      (click)="disableUser(user.id, i)"
-                      [(ngModel)]="user.enabled"
-                    />
+                    <button type="button" class="btn btn-danger" (click)="disableUser(recipe.id, i)" [(ngModel)]="recipe.published">Delete</button>
                   </td>
+
                 </tr>
               </ng-container>
             </tbody>
@@ -156,7 +156,7 @@
         <!-- Posts -->
         <div
           class="tab-pane fade"
-          id="nav-recipe"
+          id="nav-post"
           [ngClass]="postStatusTF ? 'show active' : ''"
           role="tabpanel"
           aria-labelledby="nav-post-tab"
@@ -165,34 +165,34 @@
             <thead class="thead-dark">
               <tr>
                 <th scope="col">ID#</th>
-                <th scope="col">Profile Image Url</th>
-                <th scope="col">Email</th>
-                <th scope="col">Username</th>
-                <th scope="col">Password</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
                 <th scope="col">Date Created</th>
-                <th scope="col">Role</th>
+                <th scope="col">User</th>
+                <th scope="col">Recipe</th>
+                <th scope="col">Image Url</th>
                 <th scope="col">Active</th>
               </tr>
             </thead>
             <tbody>
-              <ng-container *ngFor="let user of allUsers; let i = index">
+              <ng-container *ngFor="let post of allPosts; let i = index">
                 <tr>
                   <th>
                     <button type="button" class="btn btn-secondary">
-                      {{ user.id }}
+                      {{ post.id }}
                     </button>
                   </th>
-                  <td><img style="height: 60px" src="{{ user.imgUrl }}" /></td>
-                  <td>{{ user.email }}</td>
-                  <td>{{ user.username }}</td>
-                  <td>**********</td>
-                  <td>{{ user.dateCreated }}</td>
-                  <td>{{ user.role }}</td>
+                  <td>{{ post.id }}</td>
+                  <td>{{ post.title }}</td>
+                  <td>{{ post.description }}</td>
+                  <td>{{ post.dateCreated}}</td>
+                  <td>{{ post.user.username}}</td>
+                  <td><img style="height: 60px" src="{{ post.imageUrl }}" /></td>
                   <td>
                     <input
                       type="checkbox"
-                      (click)="disableUser(user.id, i)"
-                      [(ngModel)]="user.enabled"
+                      (click)="disablePost(post.id, i)"
+                      [(ngModel)]="post.published"
                     />
                   </td>
                 </tr>
