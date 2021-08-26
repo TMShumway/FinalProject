@@ -67,6 +67,10 @@ export class AuthService {
   }
 
   getCredentials() {
-    return localStorage.getItem('credentials');
+    let cred = localStorage.getItem('credentials');
+    if(!cred){
+      cred = '';
+    }
+    return cred;
   }
 }
