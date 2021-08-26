@@ -1,7 +1,7 @@
 
 <div class="card mt-3 mx-auto metal" style="width: 75%;" >
   <div class="card-body" >
-      <h1 style="text-align: center;">Welcome to the elite meal team 6</h1>
+      <h1 style="text-align: center;">Welcome to the elite meal team6</h1>
   </div>
 </div>
 
@@ -39,16 +39,20 @@
     <!-----------------------------col 2-------------------------------->
     <div class="col-6 card mt-3 mx-auto">
       <div class="card-body" style="text-align: center ;">
-        <!-- <body> -->
           <h2>Need meal-time inspiration?</h2><br>
           <h3>Want a simple tool to browse community recipes, create and store your personal recipes?</h3><br>
           <h3>Want to make it social?</h3><br>
           <h3>Meal Team6 has your back.</h3><br>
 
-          <!-- <h3>Click register to get started.</h3> -->
-          <!-- <a href="http://localhost:1776/#/register">register</a> -->
-        <!-- </body> -->
-
+          <h3>Click register to get started.</h3>
+          <button class="btn btn-success" [routerLink]="['/register']" *ngIf="!loggedIn()">Register</button><br><br>
+          <p>- or -</p> <br>
+          <div *ngIf="!loggedIn()">
+            <app-login></app-login>
+          </div>
+          <div *ngIf="loggedIn()">
+          <app-logout></app-logout>
+         </div>
       </div>
     </div>
     <!-----------------------------col 2-------------------------------->
