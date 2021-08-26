@@ -1,32 +1,107 @@
-<h5>Admin Home</h5>
+
+<div class="container">
+  <div class="row">
+    <div col-1></div>
+    <div col-10>
+      <h5>Admin Home</h5>
+<!-- Inner Nav -->
+<nav>
+  <div class="nav nav-tabs" id="nav-tab uid" role="tablist">
+    <!-- <button class="nav-link" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true" (click)="descriptionStatus(i)" [ngClass]="descriptionStatusTF[i] ? 'active' : ''">Description</button> -->
+    <button
+      class="nav-link"
+      id="nav-description-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#nav-description"
+      type="button"
+      role="tab"
+      aria-controls="nav-description"
+      aria-selected="true"
+      (click)="userStatus()"
+      [ngClass]="userStatusTF ? 'active' : ''"
+
+    >
+      Users
+    </button>
+    <button
+      class="nav-link"
+      id="nav-description-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#nav-description"
+      type="button"
+      role="tab"
+      aria-controls="nav-description"
+      aria-selected="false"
+      (click)="recipeStatus()"
+      [ngClass]="recipeStatusTF ? 'active' : ''"
+
+    >
+      Recipes
+    </button>
+    <button
+      class="nav-link"
+      id="nav-comment-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#nav-comment"
+      type="button"
+      role="tab"
+      aria-controls="nav-comment"
+      aria-selected="false"
+      (click)="postStatus()"
+      [ngClass]="postStatusTF ? 'active' : ''"
+
+    >
+      Posts
+    </button>
+
+  </div>
+</nav>
+<!-- Tabs Content -->
+<div class="tab-content" id="nav-tabContent">
+  <!-- Users -->
+  <div
+    class="tab-pane fade"
+    id="nav-user"
+    [ngClass]="userStatusTF ? 'show active' : ''"
+    role="tabpanel"
+    aria-labelledby="nav-description-tab"
+  >
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">ID#</th>
+            <th scope="col">Profile Image Url</th>
+            <th scope="col">Email</th>
+            <th scope="col">Username</th>
+            <th scope="col">Password</th>
+            <th scope="col">Date Created</th>
+            <th scope="col">Role</th>
+            <th scope="col">Active</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let user of allUsers; let i = index;">
+            <tr>
+              <th>{{user.id}}</th>
+              <td> <img style="height:60px" src="{{ user.imgUrl }}"></td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.username }}</td>
+              <td>**********</td>
+              <td>{{ user.dateCreated }}</td>
+              <td>{{ user.role }}</td>
+              <td>
+                <button type="button" class="btn btn-danger" (click)="disableUser(user.id)">{{ user.enabled }}</button>
+              </td>
+            </tr>
+          </ng-container>
+
+        </tbody>
+      </table>
+  </div>
+    <div col-1></div>
+
+  </div>
+  </div>
+</div>
 
 
-<table class="table table-striped">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">ID#</th>
-      <th scope="col">Username</th>
-      <th scope="col">Password</th>
-      <th scope="col">Email</th>
-      <th scope="col">Image Url</th>
-      <th scope="col">Date Created</th>
-      <th scope="col">Role</th>
-      <th scope="col">Active</th>
-    </tr>
-  </thead>
-  <tbody>
-    <ng-container *ngFor="let user of allUsers; let i = index;">
-      <tr>
-        <th>{{user.id}}</th>
-        <td>{{ user.username }}</td>
-        <td>**********</td>
-        <td>{{ user.email }}</td>
-        <td>{{ user.imgUrl }}</td>
-        <td>{{ user.dateCreated }}</td>
-        <td>{{ user.role }}</td>
-        <td>{{ user.enabled }}</td>
-      </tr>
-    </ng-container>
-
-  </tbody>
-</table>

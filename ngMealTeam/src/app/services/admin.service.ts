@@ -40,7 +40,7 @@ export class AdminService {
   }
 
   disableUser(userId: number): Observable<User>{
-    return this.http.put<User>(this.url + "/users" + userId, this.getHttpOptions())
+    return this.http.put<User>(this.url + "/users/" + userId, this.getHttpOptions())
     .pipe(
       catchError((err: any) => {
         console.log(err);
