@@ -94,7 +94,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `post_comment` ;
 
 CREATE TABLE IF NOT EXISTS `post_comment` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `details` TEXT NULL,
   `date_created` DATETIME NULL,
   `post_id` INT NOT NULL,
@@ -141,7 +141,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `category` ;
 
 CREATE TABLE IF NOT EXISTS `category` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `category_name` VARCHAR(45) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
@@ -153,7 +153,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `ingredient` ;
 
 CREATE TABLE IF NOT EXISTS `ingredient` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `ingredient_name` VARCHAR(45) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
@@ -262,7 +262,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `recipe_comment` ;
 
 CREATE TABLE IF NOT EXISTS `recipe_comment` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `recipe_id` INT NOT NULL,
   `details` MEDIUMTEXT NULL,
   `user_id` INT NOT NULL,
