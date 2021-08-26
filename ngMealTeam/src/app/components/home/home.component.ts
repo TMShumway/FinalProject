@@ -214,11 +214,12 @@ loadUser() {
      );
   }
 
-  addNewComment(r: Recipe){
+  addNewComment(r: Recipe, i: number){
     this.recipeService.addComment(r.id, this.newComment).subscribe(
       data => {
         this.newComment = new RecipeComments();
-        this.loadAllRecipes();
+        this.recipes[i] = data;
+        // this.loadAllRecipes();
       },
       err => {
         console.error('Observer error in homeComponent AddNewComment(): ' + err)
