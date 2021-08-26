@@ -11,7 +11,7 @@ public interface PostService {
 	public Post create(Post post);
 	public Post update(Post post);
 	public boolean destroy(int id);
-	public List<Post> showAllPosts();
+	public List<Post> showAllPosts(String username);
 	public List<Post> showPostsByUsername(String username);
 	public List<Post> showAllPublishedPosts();
 	public List<Post> findByUser_UsernameAndPublishedTrue(String username);

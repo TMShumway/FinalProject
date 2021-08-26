@@ -21,12 +21,15 @@ public class UserServiceImpl implements UserService {
 	private PasswordEncoder encoder;
 	
 	@Override
-	public List<User> index(){
-		List<User> users;
-		try {
-			users = userRepo.findAll();
-		} catch(Exception e){
-			users = null;
+	public List<User> index(String username){
+		List<User> users = null;
+		User user = userRepo.findByUsername(username);
+		if (user.getRole().equals("ADMIN")) {
+			try {
+				users = userRepo.findAll();
+			} catch (Exception e) {
+				users = null;
+			} 
 		}
 		return users;
 	}
@@ -96,6 +99,23 @@ public class UserServiceImpl implements UserService {
 			user = null;
 		}
 		return user;	
+	}
+
+	@Override
+	public User adminFlipEnabled(int userId, String name) {
+		User user = null;
+		if (userRepo.findByUsername(name).getUsername().equals("ADMIN")) {
+			try {
+				Optional<User> userO = userRepo.findById(userId);
+				if(userO.isPresent()) {
+					user = userO.get();
+					user.setEnabled(!user.getEnabled());
+				}
+			} catch (Exception e) {
+				user = null;
+			} 
+		}
+		return user;
 	}
 	
 //	@Override

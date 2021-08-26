@@ -5,20 +5,17 @@ export class RecipeComments {
   details: string;
   dateCreated: string;
   user: User;
-  recipeComments: RecipeComments[];
 
   constructor(
     id = 0,
     details = '',
     dateCreated = '',
-    user = new User(),
-    recipeComments = []
+    user = new User()
   ){
     this.id = id;
     this.details = details;
     this.dateCreated = dateCreated;
     this.user = user;
-    this.recipeComments = recipeComments;
   }
 
 

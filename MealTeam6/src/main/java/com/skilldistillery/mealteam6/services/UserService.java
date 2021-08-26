@@ -7,7 +7,7 @@ import com.skilldistillery.mealteam6.entities.User;
 
 public interface UserService {
 
-	List<User> index();
+	List<User> index(String username);
 
 	User userByUsername(String username);
 
@@ -17,6 +17,8 @@ public interface UserService {
 
 	User addToUserRecipes(String username, Recipe recipe);
 //	boolean destroy(int uid);
+
+	User adminFlipEnabled(int userId, String name);
 
 
 }
