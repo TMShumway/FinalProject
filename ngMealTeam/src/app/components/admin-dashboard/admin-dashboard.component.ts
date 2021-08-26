@@ -38,7 +38,6 @@ export class AdminDashboardComponent implements OnInit {
   loadAllUsers() {
     this.adminService.indexUsers().subscribe(
       data => { this.allUsers = data;
-        // this.initializeArrays();
       },
       error => { console.error('Error retrieving user from adminService: ' + error);}
       );
@@ -61,9 +60,11 @@ export class AdminDashboardComponent implements OnInit {
   //     );
   // }
 
-  disableUser(userId: number){
+  disableUser(userId: number, i: number){
     this.adminService.disableUser(userId).subscribe(
-      data => { this.loadAllUsers();
+      data => {
+        // this.loadAllUsers();
+        this.allUsers[i] = data;
         // this.initializeArrays();
       },
       error => { console.error('Error retrieving user from adminService: ' + error);}

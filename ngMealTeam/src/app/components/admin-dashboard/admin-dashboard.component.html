@@ -90,7 +90,7 @@
               <td>{{ user.dateCreated }}</td>
               <td>{{ user.role }}</td>
               <td>
-                <button type="button" class="btn btn-danger" (click)="disableUser(user.id)">{{ user.enabled }}</button>
+                <input type="checkbox" (click)="disableUser(user.id, i)" [(ngModel)]="user.enabled"/>
               </td>
             </tr>
           </ng-container>
