@@ -7,14 +7,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.mealteam6.entities.Post;
-import com.skilldistillery.mealteam6.entities.Recipe;
+import com.skilldistillery.mealteam6.entities.User;
 import com.skilldistillery.mealteam6.repositories.PostRepository;
+import com.skilldistillery.mealteam6.repositories.UserRepository;
 
 @Service
 public class PostServiceImpl implements PostService {
 
 	@Autowired
 	private PostRepository postRepo;
+
+	@Autowired
+	private UserRepository userRepo;
 	
 	@Override
 	public List<Post> getPostByKeyWord(String keyword) {
@@ -82,8 +86,17 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public List<Post> showAllPosts() {
-		return postRepo.findAll();
+	public List<Post> showAllPosts(String username) {
+		List<Post> posts = null;
+		User user = userRepo.findByUsername(username);
+		if(user.getRole().equals("ADMIN")) {
+			try {
+				posts = postRepo.findAll();
+			} catch (Exception e) {
+				posts = null;
+			}
+		}
+		return posts;
 	}
 
 	@Override
