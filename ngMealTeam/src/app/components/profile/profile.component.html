@@ -170,16 +170,10 @@
               <!-- Comments -->
               <div class="tab-pane fade" id="nav-comment" [ngClass]="commentStatusTF[i] ? 'show active' : ''" role="tabpanel" aria-labelledby="nav-comment-tab">
                 <div *ngFor="let rc of r.recipeComments">
-                  <br>
-                  USERNAME
-                  <div class="card mt-1">
-                    <div class="card-body" >
-                      {{rc.details}}
-                      <div *ngFor="let reply of rc.recipeComments">
-                        <p style="margin-left:2">
-                          {{reply.details}}
-                        </p>
-                      </div>
+                  <br />
+                  <div class="card mx-auto mt-1" style="width:98%;">
+                    <div class="card-body">
+                      <strong>{{rc.user.username}}: </strong>{{ rc.details }}
                     </div>
                   </div>
                 </div>

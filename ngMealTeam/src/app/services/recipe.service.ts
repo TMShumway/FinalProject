@@ -5,6 +5,7 @@ import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Ratings } from '../models/ratings';
 import { Recipe } from '../models/recipe';
+import { RecipeComments } from '../models/recipe-comments';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -121,4 +122,13 @@ export class RecipeService {
     );
   }
 
+  addComment(id: number, newComment: RecipeComments): Observable<Recipe> {
+    return this.http.post<Recipe>(this.url + "/add/comment/new/" + id ,newComment , this.getHttpOptions())
+    .pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Error adding comment to recipe: '+ err);
+      })
+    );
+  }
 }

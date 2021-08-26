@@ -1,6 +1,7 @@
 package com.skilldistillery.mealteam6.controllers;
 
 import java.security.Principal;
+import java.util.Base64;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -64,4 +68,15 @@ public class AdminController {
 		return posts;
 	}
 	
+    @PutMapping("admin/users/{userId}")
+	public User updateUserEnabled(HttpServletResponse res, @PathVariable int userId, Principal principal) {
+    	User user = userService.adminFlipEnabled(userId, principal.getName());
+		if(user != null) {
+			res.setStatus(201);			
+		} else {
+			res.setStatus(400);
+			user = null;			
+		}
+		return user;
+	}
 }

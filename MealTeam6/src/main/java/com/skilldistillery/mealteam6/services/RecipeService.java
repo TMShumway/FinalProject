@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.skilldistillery.mealteam6.entities.Rating;
 import com.skilldistillery.mealteam6.entities.Recipe;
+import com.skilldistillery.mealteam6.entities.RecipeComment;
 import com.skilldistillery.mealteam6.entities.RecipeImage;
 
 public interface RecipeService {
@@ -21,5 +22,6 @@ public interface RecipeService {
 	List<Recipe> indexByDescriptionKeyword(String keyword);
 	Recipe updateRecipe(Recipe recipe, int recipeId, String imageUrl);
 	Rating addRatingToRecipe(Recipe recipe, String username, int starRating);
+	Recipe addCommentToRecipe(int recipeId, RecipeComment comment, String username);
 	
 }

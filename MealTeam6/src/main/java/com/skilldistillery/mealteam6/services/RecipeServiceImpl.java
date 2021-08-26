@@ -10,10 +10,12 @@ import org.springframework.stereotype.Service;
 import com.skilldistillery.mealteam6.entities.Rating;
 import com.skilldistillery.mealteam6.entities.RatingId;
 import com.skilldistillery.mealteam6.entities.Recipe;
+import com.skilldistillery.mealteam6.entities.RecipeComment;
 import com.skilldistillery.mealteam6.entities.RecipeImage;
 import com.skilldistillery.mealteam6.entities.RecipeImageId;
 import com.skilldistillery.mealteam6.entities.User;
 import com.skilldistillery.mealteam6.repositories.RatingRepository;
+import com.skilldistillery.mealteam6.repositories.RecipeCommentRepository;
 import com.skilldistillery.mealteam6.repositories.RecipeImageRepository;
 import com.skilldistillery.mealteam6.repositories.RecipeRepository;
 import com.skilldistillery.mealteam6.repositories.UserRepository;
@@ -32,6 +34,9 @@ public class RecipeServiceImpl implements RecipeService {
 	
 	@Autowired
 	private RatingRepository ratingRepo;
+
+	@Autowired
+	private RecipeCommentRepository recipeCommentRepo;
 	
 	
 	// Return all recipes for admin
@@ -209,6 +214,38 @@ public class RecipeServiceImpl implements RecipeService {
 			return rating;			
 		}
 	}
+	
+	@Override
+	public Recipe addCommentToRecipe(int recipeId, RecipeComment comment, String username) {
+		Recipe recipe = null;
+		User user = null;
+		try {
+			user = userRepo.findByUsername(username);
+			Optional<Recipe> recipeOptional = recipeRepo.findById(recipeId);
+			if(recipeOptional.isPresent()) {
+				recipe = recipeOptional.get();
+				comment.setRecipe(recipe);
+				comment.setUser(user);
+				comment = recipeCommentRepo.saveAndFlush(comment);
+			}
+		} catch (Exception e) {
+			recipe = null;
+		}
+		return recipe;
+	}
 
 
 }
+
+//				List<RecipeComment> userRecipeComments = user.getRecipeComments();
+//				userRecipeComments.add(comment);
+//				user.setRecipeComments(userRecipeComments);
+//				
+//				comment.setUser(user);
+//				
+//				comment.setRecipe(recipe);
+//				List<RecipeComment> recipeComments = recipe.getRecipeComments();
+//				recipeComments.add(comment);
+//				recipe.setRecipeComments(recipeComments);
+//				recipeRepo.saveAndFlush(recipe);
+//				userRepo.saveAndFlush(user);
