@@ -23,5 +23,6 @@ public interface RecipeService {
 	Recipe updateRecipe(Recipe recipe, int recipeId, String imageUrl);
 	Rating addRatingToRecipe(Recipe recipe, String username, int starRating);
 	Recipe addCommentToRecipe(int recipeId, RecipeComment comment, String username);
+	Recipe adminFlipPublished(int recipeId, String name);
 	
 }

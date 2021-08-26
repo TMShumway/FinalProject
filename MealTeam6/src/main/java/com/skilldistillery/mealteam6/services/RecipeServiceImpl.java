@@ -234,6 +234,24 @@ public class RecipeServiceImpl implements RecipeService {
 		return recipe;
 	}
 
+	@Override
+	public Recipe adminFlipPublished(int recipeId, String name) {
+		Recipe recipe = null;
+		if (userRepo.findByUsername(name).getRole().equals("ADMIN")) {
+			try {
+				Optional<Recipe> recipeO = recipeRepo.findById(recipeId);
+				if(recipeO.isPresent()) {
+					recipe = recipeO.get();
+					recipe.setPublished(!recipe.getPublished());
+					recipe = recipeRepo.saveAndFlush(recipe);
+				}
+			} catch (Exception e) {
+				recipe = null;
+			} 
+		}
+		return recipe;
+	}
+
 
 }
 
