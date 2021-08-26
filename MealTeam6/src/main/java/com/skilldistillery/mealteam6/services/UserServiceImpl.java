@@ -104,12 +104,13 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User adminFlipEnabled(int userId, String name) {
 		User user = null;
-		if (userRepo.findByUsername(name).getUsername().equals("ADMIN")) {
+		if (userRepo.findByUsername(name).getRole().equals("ADMIN")) {
 			try {
 				Optional<User> userO = userRepo.findById(userId);
 				if(userO.isPresent()) {
 					user = userO.get();
 					user.setEnabled(!user.getEnabled());
+					user = userRepo.saveAndFlush(user);
 				}
 			} catch (Exception e) {
 				user = null;
