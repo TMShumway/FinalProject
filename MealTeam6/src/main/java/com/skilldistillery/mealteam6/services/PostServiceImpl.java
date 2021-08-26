@@ -128,4 +128,10 @@ public class PostServiceImpl implements PostService {
 		return posts;
 	}
 
+	@Override
+	public Post adminFlipPublished(int postId, String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

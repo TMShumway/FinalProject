@@ -79,4 +79,16 @@ public class AdminController {
 		}
 		return user;
 	}
+
+//    @PutMapping("admin/posts/{postId}")
+//    public Post updatePostPublished(HttpServletResponse res, @PathVariable int postId, Principal principal) {
+//    	Post post = postService.adminFlipPublished(postId, principal.getName());
+//    	if(post != null) {
+//    		res.setStatus(201);			
+//    	} else {
+//    		res.setStatus(400);
+//    		post = null;			
+//    	}
+//    	return post;
+//    }
 }
