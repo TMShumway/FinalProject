@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { Ratings } from '../models/ratings';
 import { Recipe } from '../models/recipe';
 import { AuthService } from './auth.service';
 
@@ -107,6 +108,17 @@ export class RecipeService {
           return throwError('Error creating recipe: ' + err);
         })
       );
+  }
+
+  public addRating(recipe:Recipe, newRating: number, username: String){
+    console.log(newRating);
+    return this.http.post<Ratings>(this.url + "/" + newRating + "/" + username, recipe, this.getHttpOptions())
+    .pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Error creating rating: '+ err);
+      })
+    );
   }
 
 }

@@ -40,7 +40,7 @@ public class Recipe {
 	@OneToMany(mappedBy = "recipe")
 	private List<RecipeImage> recipeImages;
 
-	@JsonIgnoreProperties("user")
+	@JsonIgnoreProperties(value = {"user", "recipe"})
 	@OneToMany(mappedBy = "recipe")
 	private List<Rating> ratings;
 

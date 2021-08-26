@@ -3,22 +3,26 @@
   border-radius: 15px;
 }
 
+ngb-rating {
+  margin-left: -5;
+  color: #ffcd35;
+  font-size: 24px;
+}
 
-
-input.star {
+/* input.star {
   display: none
 }
 
 label.star {
   float: right;
-  padding: 10px;
+  padding: 5px;
   font-size: 24px;
   color: #4A148C;
   transition: all .2s;
 }
 
 label.star:first-of-type {
-	margin-right: 50px;
+	margin-right: 10px;
 }
 
 
@@ -44,4 +48,4 @@ label.star:hover {
 label.star:before {
   content: '\f006';
   font-family: FontAwesome;
-}
+} */

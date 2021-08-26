@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skilldistillery.mealteam6.entities.Rating;
 import com.skilldistillery.mealteam6.entities.Recipe;
 import com.skilldistillery.mealteam6.services.RecipeService;
 
@@ -123,7 +124,10 @@ public class RecipeController {
 	}
     
     @DeleteMapping("recipes/{recipeId}")
-    public void unPublishRecipe(@PathVariable int recipeId, HttpServletResponse res, Principal Principal) {
+    public void unPublishRecipe(
+    		@PathVariable int recipeId, 
+    		HttpServletResponse res, 
+    		Principal Principal) {
     	boolean deleted = false;
     	deleted = recipeService.deleteRecipe(recipeId);
     	if (deleted) {
@@ -133,5 +137,22 @@ public class RecipeController {
 		}
     	
     }
+    
+    @PostMapping("recipes/{rating}/{username}")
+    public Recipe createRating(HttpServletRequest req, HttpServletResponse res, @PathVariable String username, @PathVariable int rating, @RequestBody Recipe recipe, Principal principal) {
+    	Rating newRating = null;
+    	try {
+			newRating = recipeService.addRatingToRecipe(recipe, username, rating);
+			res.setStatus(201);
+			StringBuffer url = req.getRequestURL();
+			url.append("/").append(recipe.getId());
+			res.setHeader("Location", url.toString());
+		} catch (Exception e) {
+			res.setStatus(400);
+			recipe = null;
+		}
+		return recipe;
+	}
+    
 }
 

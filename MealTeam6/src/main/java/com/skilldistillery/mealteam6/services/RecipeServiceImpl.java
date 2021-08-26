@@ -7,10 +7,13 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.mealteam6.entities.Rating;
+import com.skilldistillery.mealteam6.entities.RatingId;
 import com.skilldistillery.mealteam6.entities.Recipe;
 import com.skilldistillery.mealteam6.entities.RecipeImage;
 import com.skilldistillery.mealteam6.entities.RecipeImageId;
 import com.skilldistillery.mealteam6.entities.User;
+import com.skilldistillery.mealteam6.repositories.RatingRepository;
 import com.skilldistillery.mealteam6.repositories.RecipeImageRepository;
 import com.skilldistillery.mealteam6.repositories.RecipeRepository;
 import com.skilldistillery.mealteam6.repositories.UserRepository;
@@ -26,6 +29,9 @@ public class RecipeServiceImpl implements RecipeService {
 
 	@Autowired
 	private RecipeImageRepository recipeImageRepo;
+	
+	@Autowired
+	private RatingRepository ratingRepo;
 	
 	
 	// Return all recipes
@@ -88,7 +94,7 @@ public class RecipeServiceImpl implements RecipeService {
 		return recipe;
 	}
 
-	// Create a recipe
+	// Create a recipe 2
 	@Override
 	public Recipe createRecipe(Recipe recipe, String username, String imageUrl) {
 		
@@ -106,15 +112,24 @@ public class RecipeServiceImpl implements RecipeService {
 		return recipe;
 	}
 
+	// Create a recipe 3
 	@Override
-	public RecipeImage addImageToRecipe(Recipe recipe, String imageUrl) throws Exception {
-		RecipeImageId rId = new RecipeImageId(recipe.getId(), recipe.getUser().getId());
-		RecipeImage rImage = new RecipeImage();
-		rImage.setId(rId);
-		rImage.setImageUrl(imageUrl);
-		rImage.setRecipe(recipe);
-		return recipeImageRepo.saveAndFlush(rImage);
+	public Recipe createRecipe(Recipe recipe, String username) {
+		try {
+			User user = userRepo.findByUsername(username);
+			recipe.setUser(user);
+			recipe.setPersonal(true);
+			recipeRepo.save(recipe);
+			List <RecipeImage> rImages = new ArrayList<>();
+			rImages.add(addImageToRecipe(recipe, recipe.getRecipeImages().get(0).getImageUrl()));
+			recipe.setRecipeImages(rImages);
+			recipeRepo.saveAndFlush(recipe);
+		} catch (Exception e) {
+			recipe = null;
+		}
+		return recipe;
 	}
+
 
 	// Update a recipe
 	@Override
@@ -153,22 +168,32 @@ public class RecipeServiceImpl implements RecipeService {
 		return true;
 	}
 	
-	// Create a recipe
-		@Override
-		public Recipe createRecipe(Recipe recipe, String username) {
-			try {
-				User user = userRepo.findByUsername(username);
-				recipe.setUser(user);
-				recipe.setPersonal(true);
-				recipeRepo.save(recipe);
-				List <RecipeImage> rImages = new ArrayList<>();
-				rImages.add(addImageToRecipe(recipe, recipe.getRecipeImages().get(0).getImageUrl()));
-				recipe.setRecipeImages(rImages);
-				recipeRepo.saveAndFlush(recipe);
-			} catch (Exception e) {
-				recipe = null;
-			}
-			return recipe;
+	@Override
+	public RecipeImage addImageToRecipe(Recipe recipe, String imageUrl) throws Exception {
+		RecipeImageId rId = new RecipeImageId(recipe.getId(), recipe.getUser().getId());
+		RecipeImage rImage = new RecipeImage();
+		rImage.setId(rId);
+		rImage.setImageUrl(imageUrl);
+		rImage.setRecipe(recipe);
+		return recipeImageRepo.saveAndFlush(rImage);
+	}
+
+	@Override
+	public Rating addRatingToRecipe(Recipe recipe, String username, int starRating) {
+		Rating rating = null;
+		try {
+			User user = userRepo.findByUsername(username);
+			RatingId ratingId = new RatingId(recipe.getId(), recipe.getUser().getId()); 
+			rating = new Rating();
+			rating.setId(ratingId);
+			rating.setUser(user);
+			rating.setRecipe(recipe);
+			rating.setStarRating(starRating);
+			return ratingRepo.saveAndFlush(rating);
+		} catch(Exception e) {
+			return rating;			
 		}
-			
+	}
+
+
 }
