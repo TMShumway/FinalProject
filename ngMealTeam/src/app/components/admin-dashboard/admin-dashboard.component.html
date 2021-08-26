@@ -142,7 +142,7 @@
                   <td>{{ recipe.published }}</td>
                   <td>{{ recipe.personal }}</td>
                   <td>
-                    <button type="button" class="btn btn-danger" (click)="disableUser(recipe.id, i)" [(ngModel)]="recipe.published">Delete</button>
+                    <button type="button" class="btn btn-danger" (click)="disableRecipe(recipe.id, i)" [(ngModel)]="recipe.published">Delete</button>
                   </td>
 
                 </tr>
@@ -187,7 +187,7 @@
                   <td>{{ post.description }}</td>
                   <td>{{ post.dateCreated}}</td>
                   <td>{{ post.user.username}}</td>
-                  <td><img style="height: 60px" src="{{ post.imageUrl }}" /></td>
+                  <td><a src="post.imageUrl">Image Link </a></td>
                   <td>
                     <input
                       type="checkbox"

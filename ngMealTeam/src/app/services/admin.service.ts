@@ -69,7 +69,7 @@ export class AdminService {
     );
   }
   disableRecipe(recipeId: number): Observable<Recipe>{
-    return this.http.put<Recipe>(this.url + "/users/" + recipeId, {}, this.getHttpOptions())
+    return this.http.put<Recipe>(this.url + "/recipes/" + recipeId, {}, this.getHttpOptions())
     .pipe(
       catchError((err: any) => {
         console.log(err);
@@ -78,7 +78,7 @@ export class AdminService {
     );
   }
   disablePost(postId: number): Observable<Post>{
-    return this.http.put<Post>(this.url + "/users/" + postId, {}, this.getHttpOptions())
+    return this.http.put<Post>(this.url + "/posts/" + postId, {}, this.getHttpOptions())
     .pipe(
       catchError((err: any) => {
         console.log(err);
