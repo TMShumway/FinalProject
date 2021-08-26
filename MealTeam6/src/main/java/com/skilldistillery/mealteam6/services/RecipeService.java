@@ -9,6 +9,7 @@ import com.skilldistillery.mealteam6.entities.RecipeImage;
 public interface RecipeService {
 
 	List<Recipe> index();
+	List<Recipe> indexAdmin(String username);
 	List<Recipe> indexByUsername(String username);
 	Recipe show(int recipeId);
 	Recipe createRecipe(Recipe recipe, String username, String imageUrl);

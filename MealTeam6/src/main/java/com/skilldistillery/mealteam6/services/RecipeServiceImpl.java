@@ -34,6 +34,21 @@ public class RecipeServiceImpl implements RecipeService {
 	private RatingRepository ratingRepo;
 	
 	
+	// Return all recipes for admin
+	@Override
+	public List<Recipe> indexAdmin(String username) {
+		List<Recipe> recipes = null;
+		User user = userRepo.findByUsername(username);
+		if (user.getRole().equals("ADMIN")) {
+			try {
+				recipes = recipeRepo.findAll();
+			} catch (Exception e) {
+				recipes = null;
+			} 
+		}
+		return recipes;
+	}
+
 	// Return all recipes
 	@Override
 	public List<Recipe> index() {
