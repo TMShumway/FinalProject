@@ -44,7 +44,7 @@ export class AdminService {
     .pipe(
       catchError((err: any) => {
         console.log(err);
-        return throwError("Error getting posts in AdminService:" + err);
+        return throwError("Error disabling user in AdminService:" + err);
       })
     );
   }
