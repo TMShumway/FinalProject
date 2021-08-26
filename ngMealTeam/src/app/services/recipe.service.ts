@@ -111,6 +111,7 @@ export class RecipeService {
   }
 
   public addRating(recipe:Recipe, newRating: number, username: String){
+    console.log(newRating);
     return this.http.post<Ratings>(this.url + "/" + newRating + "/" + username, recipe, this.getHttpOptions())
     .pipe(
       catchError((err: any) => {

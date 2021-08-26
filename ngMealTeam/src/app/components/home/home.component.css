@@ -3,7 +3,13 @@
   border-radius: 15px;
 }
 
-input.star {
+ngb-rating {
+  margin-left: -5;
+  color: #ffcd35;
+  font-size: 24px;
+}
+
+/* input.star {
   display: none
 }
 
@@ -42,4 +48,4 @@ label.star:hover {
 label.star:before {
   content: '\f006';
   font-family: FontAwesome;
-}
+} */

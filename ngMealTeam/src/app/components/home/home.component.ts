@@ -16,13 +16,14 @@ export class HomeComponent implements OnInit {
   newRecipe: Recipe = new Recipe();
   editRecipe: Recipe[] = [];
   rImageUrl: string = '';
+  userRating: number[] = [];
+  averageRating: number[] = [];
 
   // recipeImages:
   // Posts
   // Comments
   loggedInUser: User = new User();
   selected: Recipe | null = null;
-  userRating: number[] = [];
   descriptionStatusTF: boolean[] = [];
   recipeStatusTF: boolean[] = [];
   commentStatusTF: boolean[] = [];
@@ -66,7 +67,8 @@ export class HomeComponent implements OnInit {
     this.postStatusTF = [];
     this.editRecipe = [];
     for (let i = 0; i < this.recipes.length; i++) {
-      // this.userRating.push(1);
+      //recipe rating average
+      this.getRatingAverage(i);
       this.descriptionStatusTF.push(true);
       this.recipeStatusTF.push(false);
       this.commentStatusTF.push(false);
@@ -114,12 +116,13 @@ export class HomeComponent implements OnInit {
     this.postStatusTF[index] = true;
   }
 
-  getRatingAverage(i: number){
+  getRatingAverage(recipeIndex: number){
     let average = 0;
-    for (let index = 0; index < this.recipes[i].ratings.length; index++) {
-      average += this.recipes[i].ratings[index].starRating;
+
+    for (let index = 0; index < this.recipes[recipeIndex].ratings.length; index++) {
+      average += this.recipes[recipeIndex].ratings[index].starRating;
     }
-    return average /= this.recipes[i].ratings.length;
+    this.userRating[recipeIndex] = average /= this.recipes[recipeIndex].ratings.length;
   }
 
   checkNaN(n: number){
@@ -196,8 +199,10 @@ loadUser() {
         }
   }
 
-  addRating(recipe: Recipe, index: number){
-     this.recipeService.addRating(recipe, this.userRating[index], this.loggedInUser.username).subscribe(
+  addRating(recipe: Recipe, ratingIndex: number){
+    console.log("/////////////////" + ratingIndex + "///////////////////////////////////////");
+
+     this.recipeService.addRating(recipe, this.userRating[ratingIndex], this.loggedInUser.username).subscribe(
        data => {
          this.loadAllRecipes();
        },

@@ -143,7 +143,7 @@
 
       <!-- Recipes Cards -->
 
-      <div *ngFor="let r of recipes; let i = index" class="card mt-3 mx-auto">
+      <div *ngFor="let r of recipes; let i = index; getRatingAverage(i)" class="card mt-3 mx-auto">
         <!-- Recipe Image -->
 
         <img
@@ -163,14 +163,16 @@
                 <!-- <div class="col rating-col"> -->
                   <!-- Star Rating -->
                 <div class="stars" style="float: right">
-                  <input
+                  <ngb-rating [max]="5" [(rate)]="userRating[i]" [readonly]="false" (rateChange)="addRating(r, i)"></ngb-rating>
+                  <p>{{userRating[i]}}</p>
+                  <!-- <input
                     class="star star-5"
                     [value]="5"
                     id="star-5"
                     type="radio"
                     name="ratingStars"
                     [(ngModel)]="userRating[i]"
-                    (change)="addRating(r, i)"
+                    (click)="addRating(r, i)"
                     />
                     <label class="star star-5" for="star-5"></label>
                     <input
@@ -213,14 +215,14 @@
                     [(ngModel)]="userRating[i]"
                     (click)="addRating(r, userRating[i])"
                     />
-                    <label class="star star-1" for="star-1"></label>
+                    <label class="star star-1" for="star-1"></label> -->
                   </div>
                 </div>
 
-                <h6 style="float: right" *ngIf="!checkNaN(getRatingAverage(i))">
-                  Rated: {{ getRatingAverage(i) }} STARS!
+                <h6 style="float: right" *ngIf="!checkNaN(userRating[i])">
+                  Rated: {{ userRating[i] }} STARS!
               </h6>
-              <h6 style="float: right" *ngIf="checkNaN(getRatingAverage(i))">
+              <h6 style="float: right" *ngIf="checkNaN(userRating[i])">
                 Not Yet Rated...
               </h6>
             </div>
