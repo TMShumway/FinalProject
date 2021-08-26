@@ -11,6 +11,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { PostFormComponent } from './components/post-form/post-form.component';
 import { NonauthenticatedFeedComponent } from './components/nonauthenticated-feed/nonauthenticated-feed.component';
+import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'welcome'},
@@ -24,7 +25,9 @@ const routes: Routes = [
   { path: 'register', component: RegistrationComponent},
   { path: 'profile', component: ProfileComponent},
   { path: 'update', component: EditProfileComponent},
-  { path: 'post', component: PostFormComponent}
+  { path: 'post', component: PostFormComponent},
+  { path: 'admin', component: AdminDashboardComponent}
+
 ];
 
 @NgModule({
