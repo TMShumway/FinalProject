@@ -39,5 +39,14 @@ export class AdminDashboardComponent implements OnInit {
       );
     }
 
+  disableUser(userId: number){
+    this.adminService.disableUser(userId).subscribe(
+      data => { this.loadAllUsers();
+        // this.initializeArrays();
+      },
+      error => { console.error('Error retrieving user from adminService: ' + error);}
+      );
+    }
+
 
 }

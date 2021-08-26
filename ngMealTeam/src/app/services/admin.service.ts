@@ -30,14 +30,22 @@ export class AdminService {
   }
 
   indexUsers(): Observable<User[]> {
-      return this.http.get<User[]>(this.url + "users", this.getHttpOptions())
+      return this.http.get<User[]>(this.url + "/users", this.getHttpOptions())
         .pipe(
           catchError((err: any) => {
             console.log(err);
             return throwError("Error getting posts in AdminService:" + err);
           })
         );
-    }
+  }
 
-
+  disableUser(userId: number): Observable<User>{
+    return this.http.put<User>(this.url + "/users" + userId, this.getHttpOptions())
+    .pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError("Error getting posts in AdminService:" + err);
+      })
+    );
+  }
 }
