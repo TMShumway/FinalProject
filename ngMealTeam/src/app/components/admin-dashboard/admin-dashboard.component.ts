@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Post } from 'src/app/models/post';
+import { Recipe } from 'src/app/models/recipe';
 import { User } from 'src/app/models/user';
 import { AdminService } from 'src/app/services/admin.service';
 import { UserService } from 'src/app/services/user.service';
@@ -12,8 +14,8 @@ export class AdminDashboardComponent implements OnInit {
 
   loggedInUser: User = new User();
   allUsers: User[] = [];
-  allRecipes: User[] = [];
-  allPosts: User[] = [];
+  allRecipes: Recipe[] = [];
+  allPosts: Post[] = [];
   userStatusTF: boolean = true;
   recipeStatusTF: boolean = false;
   postStatusTF: boolean = false;
@@ -43,29 +45,25 @@ export class AdminDashboardComponent implements OnInit {
       );
   }
 
-  // loadAllRecipes() {
-  //   this.adminService.indexRecipes().subscribe(
-  //     data => { this.allUsers = data;
-  //       // this.initializeArrays();
-  //     },
-  //     error => { console.error('Error retrieving user from adminService: ' + error);}
-  //     );
-  // }
-  // loadAllPosts() {
-  //   this.adminService.indexPosts().subscribe(
-  //     data => { this.allUsers = data;
-  //       // this.initializeArrays();
-  //     },
-  //     error => { console.error('Error retrieving user from adminService: ' + error);}
-  //     );
-  // }
+  loadAllRecipes() {
+    this.adminService.indexRecipes().subscribe(
+      data => { this.allRecipes = data;
+      },
+      error => { console.error('Error retrieving user from adminService: ' + error);}
+      );
+  }
+  loadAllPosts() {
+    this.adminService.indexPosts().subscribe(
+      data => { this.allPosts = data;
+      },
+      error => { console.error('Error retrieving user from adminService: ' + error);}
+      );
+  }
 
   disableUser(userId: number, i: number){
     this.adminService.disableUser(userId).subscribe(
       data => {
-        // this.loadAllUsers();
         this.allUsers[i] = data;
-        // this.initializeArrays();
       },
       error => { console.error('Error retrieving user from adminService: ' + error);}
       );

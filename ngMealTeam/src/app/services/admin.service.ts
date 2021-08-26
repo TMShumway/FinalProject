@@ -6,6 +6,8 @@ import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 import { environment } from 'src/environments/environment';
+import { Post } from '../models/post';
+import { Recipe } from '../models/recipe';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +33,24 @@ export class AdminService {
 
   indexUsers(): Observable<User[]> {
       return this.http.get<User[]>(this.url + "/users", this.getHttpOptions())
+        .pipe(
+          catchError((err: any) => {
+            console.log(err);
+            return throwError("Error getting users in AdminService:" + err);
+          })
+        );
+  }
+  indexRecipes(): Observable<Recipe[]> {
+      return this.http.get<Recipe[]>(this.url + "/recipes", this.getHttpOptions())
+        .pipe(
+          catchError((err: any) => {
+            console.log(err);
+            return throwError("Error getting recipes in AdminService:" + err);
+          })
+        );
+  }
+  indexPosts(): Observable<Post[]> {
+      return this.http.get<Post[]>(this.url + "/posts", this.getHttpOptions())
         .pipe(
           catchError((err: any) => {
             console.log(err);
