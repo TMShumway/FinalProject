@@ -1,3 +1,12 @@
-#nav {
+/* #nav {
   background-color: red;
+  background-image: url("https://d12oja0ew7x0i8.cloudfront.net/image-handler/ts/20200929084449/ri/750/src/images/Article_Images/ImageForArticle_13089_16013834890159628.png");
+
+}
+*/
+
+.navbar {
+  /* background-color: red; */
+  background-image: url("https://d12oja0ew7x0i8.cloudfront.net/image-handler/ts/20200929084449/ri/750/src/images/Article_Images/ImageForArticle_13089_16013834890159628.png"); /* assuming img folder is one step back from css*/
+
 }

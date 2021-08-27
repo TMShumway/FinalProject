@@ -15,5 +15,6 @@ public interface PostService {
 	public List<Post> showPostsByUsername(String username);
 	public List<Post> showAllPublishedPosts();
 	public List<Post> findByUser_UsernameAndPublishedTrue(String username);
+	public Post adminFlipPublished(int postId, String name);
 	
 }

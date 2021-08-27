@@ -79,4 +79,28 @@ public class AdminController {
 		}
 		return user;
 	}
+
+    @PutMapping("admin/posts/{postId}")
+    public Post updatePostPublished(HttpServletResponse res, @PathVariable int postId, Principal principal) {
+    	Post post = postService.adminFlipPublished(postId, principal.getName());
+    	if(post != null) {
+    		res.setStatus(201);			
+    	} else {
+    		res.setStatus(400);
+    		post = null;			
+    	}
+    	return post;
+    }
+
+    @PutMapping("admin/recipes/{recipeId}")
+    public Recipe updateRecipePublished(HttpServletResponse res, @PathVariable int recipeId, Principal principal) {
+    	Recipe recipe = recipeService.adminFlipPublished(recipeId, principal.getName());
+    	if(recipe != null) {
+    		res.setStatus(201);			
+    	} else {
+    		res.setStatus(400);
+    		recipe = null;			
+    	}
+    	return recipe;
+    }
 }

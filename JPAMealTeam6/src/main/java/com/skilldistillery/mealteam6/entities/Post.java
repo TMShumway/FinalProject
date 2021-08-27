@@ -94,7 +94,7 @@ public class Post {
 		this.user = user;
 	}
 
-	public boolean isPublished() {
+	public boolean getPublished() {
 		return published;
 	}
 

@@ -128,4 +128,22 @@ public class PostServiceImpl implements PostService {
 		return posts;
 	}
 
+	@Override
+	public Post adminFlipPublished(int postId, String name) {
+		Post post = null;
+		if (userRepo.findByUsername(name).getRole().equals("ADMIN")) {
+			try {
+				Optional<Post> postO = postRepo.findById(postId);
+				if(postO.isPresent()) {
+					post = postO.get();
+					post.setPublished(!post.getPublished());
+					post = postRepo.saveAndFlush(post);
+				}
+			} catch (Exception e) {
+				post = null;
+			} 
+		}
+		return post;
+	}
+
 }
