@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row theProfile">
     <!-- https://upload.wikimedia.org/wikipedia/commons/8/84/Sylvester_Stallone_Cannes_2019.jpg -->
-    <div class="col-md-2 lockMe">
+    <div class="col-md-2">
       <div class="vertical-menu card mt-3 mx-auto">
         <img class="card-img-top exscuseThisCard" src="{{user.imgUrl}}" alt="">
         <div class="card-body">
@@ -31,10 +31,7 @@
       </div>
     </div>
 
-    <div class="col-md-2">
-    </div>
-
-    <div class="col-md-8">
+    <div class="col-md-8 scroller">
 
       <!------------------------------------  Make A Post ------------------------------------------------>
       <div class="makeAPost" *ngIf="makeAPostIsVisible">
