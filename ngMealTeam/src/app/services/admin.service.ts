@@ -6,6 +6,8 @@ import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 import { environment } from 'src/environments/environment';
+import { Post } from '../models/post';
+import { Recipe } from '../models/recipe';
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +36,24 @@ export class AdminService {
         .pipe(
           catchError((err: any) => {
             console.log(err);
+            return throwError("Error getting users in AdminService:" + err);
+          })
+        );
+  }
+  indexRecipes(): Observable<Recipe[]> {
+      return this.http.get<Recipe[]>(this.url + "/recipes", this.getHttpOptions())
+        .pipe(
+          catchError((err: any) => {
+            console.log(err);
+            return throwError("Error getting recipes in AdminService:" + err);
+          })
+        );
+  }
+  indexPosts(): Observable<Post[]> {
+      return this.http.get<Post[]>(this.url + "/posts", this.getHttpOptions())
+        .pipe(
+          catchError((err: any) => {
+            console.log(err);
             return throwError("Error getting posts in AdminService:" + err);
           })
         );
@@ -41,6 +61,24 @@ export class AdminService {
 
   disableUser(userId: number): Observable<User>{
     return this.http.put<User>(this.url + "/users/" + userId, {}, this.getHttpOptions())
+    .pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError("Error disabling user in AdminService:" + err);
+      })
+    );
+  }
+  disableRecipe(recipeId: number): Observable<Recipe>{
+    return this.http.put<Recipe>(this.url + "/recipes/" + recipeId, {}, this.getHttpOptions())
+    .pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError("Error disabling user in AdminService:" + err);
+      })
+    );
+  }
+  disablePost(postId: number): Observable<Post>{
+    return this.http.put<Post>(this.url + "/posts/" + postId, {}, this.getHttpOptions())
     .pipe(
       catchError((err: any) => {
         console.log(err);
