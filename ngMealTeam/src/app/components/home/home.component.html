@@ -4,21 +4,26 @@
   style="width: 75%; background-color: cornflowerblue"
 >
   <div class="card-body">
-    Sortable options [x] [x] [x]...Different View buttons [Post Feed] [Recipe
-    Feed]
+    Some Sort Option |
+      <label for="searchTitle">Search By Title:</label>
+      <input class="sub-nav" type="text" id="searchTitle" name="searchTitle" [(ngModel)]="searchTitle" (keyup)="searchRecipesByTitle()">
+      <label for="searchDescription">Search By Description:</label>
+      <input class="sub-nav" type="text" id="searchDescription" name="searchDescription" [(ngModel)]="searchDescription" (keyup)="searchRecipesByDescription()">
+    <button class="sub-nav btn btn-success" (click)="resetSearchParameters()">Reset Search</button>
     <!-- Button trigger modal -->
     <button
-      type="button"
-      class="btn btn-primary"
-      data-toggle="modal"
-      data-target="#exampleModal"
-      (click)="createRecipeForm()"
+    type="button"
+    class="btn btn-primary"
+    data-toggle="modal"
+    data-target="#exampleModal"
+    (click)="createRecipeForm()"
     >
-      Add a recipe
-    </button>
+    Add a recipe
+  </button>
+  </div>
 
     <!-- Modal -->
-    <div
+    <!-- <div
       class="modal fade"
       id="exampleModal"
       tabindex="-1"
@@ -52,8 +57,7 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
+    </div> -->
 </div>
 
 <!-- Container -->
@@ -68,7 +72,7 @@
     <div class="col-8">
       <!-- Create a Recipe Card -->
       <div *ngIf="createRecipeTF">
-        <div class="card mt-3 mx-auto">
+        <div class="card mt-3 text-center mx-auto">
           <div class="card-body">
             <form>
               <div class="form-group">
@@ -143,7 +147,7 @@
 
       <!-- Recipes Cards -->
 
-      <div *ngFor="let r of recipes; let i = index; " class="card mt-3 mx-auto">
+      <div *ngFor="let r of recipes; let i = index; " class="card mt-3 text-center mx-auto">
         <!-- Recipe Image -->
 
         <img
@@ -156,7 +160,7 @@
           <div class="row">
             <div class="col-8">
               <!-- Recipe Name -->
-              <h3 class="card-title">{{ r.name }}</h3>
+              <h3 class="card-title" style="text-align: left;">{{ r.name }}</h3>
             </div>
             <div class="col-4">
               <div class="form-row">
@@ -302,7 +306,7 @@
             role="tabpanel"
             aria-labelledby="nav-description-tab"
           >
-            {{ r.description }}
+            <p class="mt-2">{{ r.description }}</p>
           </div>
           <!-- Recipe Steps -->
           <div
@@ -312,7 +316,7 @@
             role="tabpanel"
             aria-labelledby="nav-recipe-tab"
           >
-            {{ r.recipeStep }}
+            <p class="mt-2">{{ r.recipeStep }}</p>
           </div>
           <!-- Comments -->
           <div
@@ -325,7 +329,7 @@
             <div *ngFor="let rc of r.recipeComments">
               <div class="card mx-auto mt-1" style="width:98%;">
                 <div class="card-body">
-                  <strong>{{rc.user.username}}: </strong>{{ rc.details }}
+                  <p style="text-align: left;"><strong>{{rc.user.username}}: </strong>{{ rc.details }}</p>
                 </div>
               </div>
             </div>
@@ -334,7 +338,7 @@
               <div class="card-body">
                 <form class="form-inline">
                       <textarea class="form-control" id="recipeComments" rows="2" name="description" placeholder="What's on your mind?" [(ngModel)]="newComment.details" ></textarea>
-                      <button class="btn btn-primary" (click)="addNewComment(r, i)">Reply</button>
+                      <button class="btn btn-primary mt-2" (click)="addNewComment(r, i)">Reply</button>
                 </form>
               </div>
             </div>
@@ -376,6 +380,7 @@
           <button
             type="button"
             class="btn btn-outline-success"
+            style="margin-left: 5px; margin-right: 5px;"
             (click)="addToMyRecipeList(r)"
           >
             Add to My Recipes
@@ -384,6 +389,7 @@
             *ngIf="checkUserMatches(r)"
             type="button"
             class="btn btn-outline-warning"
+            style="margin-left: 5px; margin-right: 5px;"
             (click)="editRecipeTF[i] = !editRecipeTF[i]"
           >
             Edit this Recipe
@@ -392,6 +398,7 @@
             *ngIf="checkUserMatches(r)"
             type="button"
             class="btn btn-outline-danger"
+            style="margin-left: 5px; margin-right: 5px;"
             (click)="deletefromMyRecipeList(r)"
           >
             Delete this Recipe

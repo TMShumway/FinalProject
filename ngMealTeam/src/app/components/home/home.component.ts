@@ -20,6 +20,8 @@ export class HomeComponent implements OnInit {
   rImageUrl: string = '';
   userRating: number[] = [];
   averageRating: number[] = [];
+  searchTitle: string = '';
+  searchDescription: string = '';
 
   // recipeImages:
   // Posts
@@ -225,6 +227,32 @@ loadUser() {
         console.error('Observer error in homeComponent AddNewComment(): ' + err)
       }
     );
+  }
+
+  searchRecipesByTitle(){
+    this.recipeService.indexByTitleKeywordUnauthenticated(this.searchTitle).subscribe(
+      data => {
+        this.recipes = data.reverse();
+        this.initializeArrays();
+      },
+      error => { console.error('Error retrieving recipes from recipeService: ' + error);}
+    );
+  }
+
+  searchRecipesByDescription(){
+    this.recipeService.indexByDescriptionKeywordUnauthenticated(this.searchDescription).subscribe(
+      data => {
+        this.recipes = data.reverse();
+        this.initializeArrays();
+      },
+      error => { console.error('Error retrieving recipes from recipeService: ' + error);}
+    );
+  }
+
+  resetSearchParameters(){
+    this.searchDescription = '';
+    this.searchTitle = '';
+    this.loadAllRecipes();
   }
 
 }
