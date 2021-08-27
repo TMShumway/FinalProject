@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.mealteam6.entities.Post;
+import com.skilldistillery.mealteam6.entities.PostComment;
+import com.skilldistillery.mealteam6.entities.Recipe;
 import com.skilldistillery.mealteam6.services.PostService;
 
 @RestController
@@ -125,4 +127,18 @@ public class PostController {
 		}
 		return posts;
 	}
+	
+//	@PostMapping("posts/add/comment/new/{postId}")
+//    public Post createPostComment(HttpServletRequest req, HttpServletResponse res, @PathVariable int postId,
+//    		                       @RequestBody PostComment comment, Principal principal) {
+//    	Post post = null;
+//    	try {
+//    		post = postService.addCommentToPost(postId, comment, principal.getName());
+//    		res.setStatus(201);
+//    	} catch (Exception e) {
+//    		res.setStatus(400);
+//    		post = null;
+//    	}
+//    	return post;
+//    }
 }

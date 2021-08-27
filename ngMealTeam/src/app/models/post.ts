@@ -1,3 +1,4 @@
+import { PostComment } from "./post-comment";
 import { User } from "./user";
 
 export class Post {
@@ -9,6 +10,7 @@ export class Post {
   hasImage: boolean;
   user: User;
   published: boolean;
+  postComments: PostComment[];
 
   constructor(
     id = 0,
@@ -18,7 +20,8 @@ export class Post {
     imageUrl = '',
     hasImage = false,
     user = new User(),
-    published = true
+    published = true,
+    postComments = []
     ){
     this.id = id;
     this.title = title;
@@ -28,5 +31,6 @@ export class Post {
     this.hasImage = hasImage;
     this.user = user;
     this.published = published;
+    this.postComments = postComments;
   }
 }
