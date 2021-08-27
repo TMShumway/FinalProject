@@ -125,7 +125,7 @@
                   <th scope="col">User</th>
                   <th scope="col">Available</th>
                   <th scope="col">Personal</th>
-                  <th scope="col">Delete</th>
+                  <th scope="col">Active</th>
                 </tr>
               </thead>
               <tbody>
@@ -143,15 +143,21 @@
                     <td>{{ recipe.published }}</td>
                     <td>{{ recipe.personal }}</td>
                     <td>
-                      <button
+                      <input
+                        type="checkbox"
+                        (click)="disableRecipe(recipe.id, i)"
+                        [(ngModel)]="recipe.published"
+                        ngDefaultControl
+                      />
+                      <!-- <button
                         type="button"
                         class="btn btn-danger"
                         (click)="disableRecipe(recipe.id, i)"
                         [(ngModel)]="recipe.published"
                         ngDefaultControl
                       >
-                        Delete
-                      </button>
+                        Delete -->
+                      <!-- </button> -->
                     </td>
                   </tr>
                 </ng-container>
@@ -175,7 +181,6 @@
                   <th scope="col">Description</th>
                   <th scope="col">Date Created</th>
                   <th scope="col">User</th>
-                  <th scope="col">Recipe</th>
                   <th scope="col">Image Url</th>
                   <th scope="col">Active</th>
                 </tr>
@@ -188,7 +193,6 @@
                         {{ post.id }}
                       </button>
                     </th>
-                    <td>{{ post.id }}</td>
                     <td>{{ post.title }}</td>
                     <td>{{ post.description }}</td>
                     <td>{{ post.dateCreated }}</td>
