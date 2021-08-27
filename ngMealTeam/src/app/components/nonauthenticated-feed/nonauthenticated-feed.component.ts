@@ -14,6 +14,8 @@ export class NonauthenticatedFeedComponent implements OnInit {
   recipeStatusTF: boolean[] = [];
   searchTitle: string = '';
   searchDescription: string = '';
+  averageRating: number[] = [];
+  userRating: number[] = [];
 
   constructor(private recipeService: RecipeService) { }
 
@@ -37,7 +39,9 @@ export class NonauthenticatedFeedComponent implements OnInit {
   initializeArrays() {
     this.descriptionStatusTF = [];
     this.recipeStatusTF = [];
+    this.userRating = [];
     for (let i = 0; i < this.recipes.length; i++) {
+      this.getRatingAverage(i);
       this.descriptionStatusTF.push(true);
       this.recipeStatusTF.push(false);
       // this.ratingStatusTF.push(false);
@@ -48,12 +52,13 @@ export class NonauthenticatedFeedComponent implements OnInit {
     return Number.isNaN(n);
   }
 
-  getRatingAverage(i: number){
+  getRatingAverage(recipeIndex: number){
     let average = 0;
-    for (let index = 0; index < this.recipes[i].ratings.length; index++) {
-      average += this.recipes[i].ratings[index].starRating;
+
+    for (let index = 0; index < this.recipes[recipeIndex].ratings.length; index++) {
+      average += this.recipes[recipeIndex].ratings[index].starRating;
     }
-    return average /= this.recipes[i].ratings.length;
+    this.userRating[recipeIndex] = average /= this.recipes[recipeIndex].ratings.length;
   }
 
   descriptionStatus(index : number){
@@ -92,5 +97,7 @@ export class NonauthenticatedFeedComponent implements OnInit {
     this.searchTitle = '';
     this.loadAllRecipes();
   }
+
+
 
 }
