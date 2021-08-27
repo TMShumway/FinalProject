@@ -1,73 +1,99 @@
 <!-- <h1>homepage</h1> -->
-<div
-  class="card mt-3 mx-auto"
-  style="width: 75%; background-image: url(https://images.unsplash.com/photo-1495195134817-aeb325a55b65?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1355&q=80)"
-
->
-  <div class="card-body">
-    Some Sort Option |
-      <label for="searchTitle">Search By Title:</label>
-      <input class="sub-nav" type="text" id="searchTitle" name="searchTitle" [(ngModel)]="searchTitle" (keyup)="searchRecipesByTitle()">
-      <label for="searchDescription">Search By Description:</label>
-      <input class="sub-nav" type="text" id="searchDescription" name="searchDescription" [(ngModel)]="searchDescription" (keyup)="searchRecipesByDescription()">
-    <button class="sub-nav btn btn-success" (click)="resetSearchParameters()">Reset Search</button>
-    <!-- Button trigger modal -->
-    <button
-    type="button"
-    class="btn btn-primary"
-    data-toggle="modal"
-    data-target="#exampleModal"
-    (click)="createRecipeForm()"
-    >
-    Add a recipe
-  </button>
-  </div>
-
-    <!-- Modal -->
-    <!-- <div
-      class="modal fade"
-      id="exampleModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">...</div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-dismiss="modal"
-            >
-              Close
-            </button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
-        </div>
-      </div>
-    </div> -->
-</div>
-
-<!-- Container -->
 <div class="container">
   <div class="row">
-    <!-- 1 of 3 -->
-    <div class="col-2">
+    <div class="col-md-2"></div>
+    <div
+      class="card mt-3 mx-auto text-center col-md-8"
+      style="
+        background-image: url(https://images.unsplash.com/photo-1495195134817-aeb325a55b65?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1355&q=80);
+      "
+    >
+      <div class="card-body">
+        <form>
+          <label for="searchTitle">Search By Title:</label>
+          <input
+            class="sub-nav form-control"
+            type="text"
+            id="searchTitle"
+            name="searchTitle"
+            [(ngModel)]="searchTitle"
+            (keyup)="searchRecipesByTitle()"
+          />
+          <label for="searchDescription">Search By Description:</label>
+          <input
+            class="sub-nav form-control"
+            type="text"
+            id="searchDescription"
+            name="searchDescription"
+            [(ngModel)]="searchDescription"
+            (keyup)="searchRecipesByDescription()"
+          />
+          <button
+            class="sub-nav btn btn-success"
+            style="margin: 6px"
+            (click)="resetSearchParameters()"
+          >
+            Reset Search
+          </button>
+          <!-- Button trigger modal -->
+          <button
+            type="button"
+            class="btn btn-primary"
+            style="margin: 6px"
+            data-toggle="modal"
+            data-target="#exampleModal"
+            (click)="createRecipeForm()"
+          >
+            Add a recipe
+          </button>
+        </form>
+      </div>
 
+      <!-- Modal -->
+      <!-- <div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+  >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button
+        type="button"
+        class="close"
+        data-dismiss="modal"
+        aria-label="Close"
+        >
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
+    <div class="modal-body">...</div>
+    <div class="modal-footer">
+      <button
+      type="button"
+      class="btn btn-secondary"
+      data-dismiss="modal"
+      >
+      Close
+    </button>
+    <button type="button" class="btn btn-primary">Save changes</button>
+  </div>
+</div>
+</div>
+</div> -->
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <!-- Container -->
+
+  <div class="row">
+    <!-- 1 of 3 -->
+    <div class="col-2"></div>
 
     <!-- 2 of 3 -->
     <div class="col-8">
@@ -148,7 +174,10 @@
 
       <!-- Recipes Cards -->
 
-      <div *ngFor="let r of recipes; let i = index; " class="card mt-3 text-center mx-auto">
+      <div
+        *ngFor="let r of recipes; let i = index"
+        class="card mt-3 text-center mx-auto"
+      >
         <!-- Recipe Image -->
 
         <img
@@ -161,14 +190,19 @@
           <div class="row">
             <div class="col-8">
               <!-- Recipe Name -->
-              <h3 class="card-title" style="text-align: left;">{{ r.name }}</h3>
+              <h3 class="card-title" style="text-align: left">{{ r.name }}</h3>
             </div>
             <div class="col-4">
               <div class="form-row">
                 <!-- <div class="col rating-col"> -->
-                  <!-- Star Rating -->
+                <!-- Star Rating -->
                 <div class="stars" style="float: right">
-                  <ngb-rating [max]="5" [(rate)]="userRating[i]" [readonly]="false" (rateChange)="addRating(r, i)"></ngb-rating>
+                  <ngb-rating
+                    [max]="5"
+                    [(rate)]="userRating[i]"
+                    [readonly]="false"
+                    (rateChange)="addRating(r, i)"
+                  ></ngb-rating>
                   <!-- <p>{{userRating[i]}}</p> -->
                   <!-- <input
                     class="star star-5"
@@ -221,11 +255,11 @@
                     (click)="addRating(r, userRating[i])"
                     />
                     <label class="star star-1" for="star-1"></label> -->
-                  </div>
                 </div>
+              </div>
 
-                <h6 style="float: right" *ngIf="!checkNaN(userRating[i])">
-                  <!-- Rated: {{ userRating[i] }} STARS! -->
+              <h6 style="float: right" *ngIf="!checkNaN(userRating[i])">
+                <!-- Rated: {{ userRating[i] }} STARS! -->
               </h6>
               <h6 style="float: right" *ngIf="checkNaN(userRating[i])">
                 <!-- Not Yet Rated... -->
@@ -328,18 +362,32 @@
             aria-labelledby="nav-comment-tab"
           >
             <div *ngFor="let rc of r.recipeComments">
-              <div class="card mx-auto mt-1" style="width:98%;">
+              <div class="card mx-auto mt-1" style="width: 98%">
                 <div class="card-body">
-                  <p style="text-align: left;"><strong>{{rc.user.username}}: </strong>{{ rc.details }}</p>
+                  <p style="text-align: left">
+                    <strong>{{ rc.user.username }}: </strong>{{ rc.details }}
+                  </p>
                 </div>
               </div>
             </div>
             <!-- Reply Box -->
-            <div class="card mx-auto mb-1 mt-1" style="width:98%;">
+            <div class="card mx-auto mb-1 mt-1" style="width: 98%">
               <div class="card-body">
                 <form class="form-inline">
-                      <textarea class="form-control" id="recipeComments" rows="2" name="description" placeholder="What's on your mind?" [(ngModel)]="newComment.details" ></textarea>
-                      <button class="btn btn-primary mt-2" (click)="addNewComment(r, i)">Reply</button>
+                  <textarea
+                    class="form-control"
+                    id="recipeComments"
+                    rows="2"
+                    name="description"
+                    placeholder="What's on your mind?"
+                    [(ngModel)]="newComment.details"
+                  ></textarea>
+                  <button
+                    class="btn btn-primary mt-2"
+                    (click)="addNewComment(r, i)"
+                  >
+                    Reply
+                  </button>
                 </form>
               </div>
             </div>
@@ -381,7 +429,7 @@
           <button
             type="button"
             class="btn btn-outline-success"
-            style="margin-left: 5px; margin-right: 5px;"
+            style="margin-left: 5px; margin-right: 5px"
             (click)="addToMyRecipeList(r)"
           >
             Add to My Recipes
@@ -390,7 +438,7 @@
             *ngIf="checkUserMatches(r)"
             type="button"
             class="btn btn-outline-warning"
-            style="margin-left: 5px; margin-right: 5px;"
+            style="margin-left: 5px; margin-right: 5px"
             (click)="editRecipeTF[i] = !editRecipeTF[i]"
           >
             Edit this Recipe
@@ -399,7 +447,7 @@
             *ngIf="checkUserMatches(r)"
             type="button"
             class="btn btn-outline-danger"
-            style="margin-left: 5px; margin-right: 5px;"
+            style="margin-left: 5px; margin-right: 5px"
             (click)="deletefromMyRecipeList(r)"
           >
             Delete this Recipe
@@ -478,8 +526,8 @@
       </div>
     </div>
 
-
     <div class="col-2">
-    <!-- 3 of 3 -->
+      <!-- 3 of 3 -->
+    </div>
   </div>
 </div>
