@@ -206,14 +206,16 @@ loadUser() {
   addRating(recipe: Recipe, ratingIndex: number){
     console.log("/////////////////" + ratingIndex + "///////////////////////////////////////");
 
-     this.recipeService.addRating(recipe, this.userRating[ratingIndex], this.loggedInUser.username).subscribe(
-       data => {
-         this.loadAllRecipes();
-       },
-       err => {
-         console.error('Observer error in homeComponent sendRating(): ' + err)
-       }
-     );
+    if(!isNaN(this.userRating[ratingIndex])){
+       this.recipeService.addRating(recipe, this.userRating[ratingIndex], this.loggedInUser.username).subscribe(
+         data => {
+           this.loadAllRecipes();
+         },
+         err => {
+           console.error('Observer error in homeComponent sendRating(): ' + err)
+         }
+       );
+    }
   }
 
   addNewComment(r: Recipe, i: number){
