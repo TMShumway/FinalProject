@@ -9,6 +9,10 @@
   height: 100vh;
 }
 
+/* .lockMe {
+  overflow-y: hidden;
+} */
+
 .theProfile {
   height: 100%;
 
@@ -27,4 +31,13 @@
 
 .makeAPost {
   text-align: center;
+}
+
+.card, .card-img-top {
+  border: 1px solid silver;
+  border-radius: 15px;
+}
+
+.exscuseThisCard {
+  border: none;
 }
