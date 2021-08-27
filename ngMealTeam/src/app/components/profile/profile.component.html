@@ -24,6 +24,9 @@
             <button class="btn btn-success sideNavBtn mx-auto mt-2" (click)="showRecipeDiv()">My Recipes</button><br>
             <!-- <button class="btn btn-success sideNavBtn mx-auto">Friends Posts</button><br> -->
             <button class="btn btn-success sideNavBtn mx-auto mt-2" (click)="showPostDiv()"> My Posts</button>
+            <div *ngIf="user.role == 'ADMIN'">
+              <button class="btn btn-success sideNavBtn mx-auto mt-2" [routerLink]="['/admin']"> Admin </button>
+            </div>
           </div>
 
 

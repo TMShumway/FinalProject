@@ -110,7 +110,7 @@ export class ProfileComponent implements OnInit {
   loadUser() {
     this.userService.getUserByUsername().subscribe(
       data => { this.editUser = data;
-        console.log("The password value is: " + data.password);
+        // console.log("The password value is: " + data.password);
         this.editUser.password = '';
         this.initializeArrays();
         this.user = data;
@@ -162,7 +162,7 @@ export class ProfileComponent implements OnInit {
     this.userService.updateUser(user).subscribe(
       data => {
       this.authService.logout();
-      console.log('Username being passed to login function: ' + user.username + ' Password: ' + user.password);
+      // console.log('Username being passed to login function: ' + user.username + ' Password: ' + user.password);
       this.authService.login(user.username, user.password).subscribe(
        loggedIn => {
          console.log('Logged in')
