@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.mealteam6.entities.Post;
+import com.skilldistillery.mealteam6.entities.PostComment;
+import com.skilldistillery.mealteam6.entities.Recipe;
 import com.skilldistillery.mealteam6.entities.User;
 import com.skilldistillery.mealteam6.repositories.PostRepository;
 import com.skilldistillery.mealteam6.repositories.UserRepository;
@@ -145,5 +147,24 @@ public class PostServiceImpl implements PostService {
 		}
 		return post;
 	}
+
+//	@Override
+//	public Post addCommentToPost(int postId, PostComment comment, String username) {
+//		Post post = null;
+//		User user = null;
+//		try {
+//			user = userRepo.findByUsername(username);
+//			Optional<Post> recipeOptional = postRepo.findById(postId);
+//			if(recipeOptional.isPresent()) {
+//				post = recipeOptional.get();
+//				comment.set(post);
+//				comment.setUser(user);
+//				comment = recipeCommentRepo.saveAndFlush(comment);
+//			}
+//		} catch (Exception e) {
+//			recipe = null;
+//		}
+//		return recipe;
+//	}
 
 }

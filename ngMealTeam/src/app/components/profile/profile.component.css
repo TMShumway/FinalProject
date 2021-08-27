@@ -9,9 +9,12 @@
   height: 100vh;
 }
 
-/* .lockMe {
+.lockMe {
+  position: fixed;
   overflow-y: hidden;
-} */
+  min-width: 8%;
+  max-width: 9%;
+}
 
 .theProfile {
   height: 100%;
