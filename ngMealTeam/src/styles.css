@@ -14,7 +14,7 @@
 }
 body {
   background-image: url("https://p0.pxfuel.com/preview/582/417/143/brown-wood-wooden-wall.jpg");
-  background-repeat: no-repeat;
+  /* background-repeat: no-repeat; */
   background-attachment: fixed;
   background-size: cover;
 }
