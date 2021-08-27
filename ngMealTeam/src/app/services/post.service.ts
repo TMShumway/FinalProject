@@ -1,9 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Post } from '../models/post';
+import { PostComment } from '../models/post-comment';
 import { Recipe } from '../models/recipe';
 import { AuthService } from './auth.service';
 
@@ -76,4 +77,14 @@ export class PostService {
       })
       );
   }
+
+  // addComment(id: number, newComment: PostComment): Observable<Post> {
+  //   return this.http.post<Post>(this.url + "/add/comment/new/" + id ,newComment , this.getHttpOptions())
+  //   .pipe(
+  //     catchError((err: any) => {
+  //       console.log(err);
+  //       return throwError('Error adding comment to post: '+ err);
+  //     })
+  //   );
+  // }
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from 'src/app/models/post';
+import { PostComment } from 'src/app/models/post-comment';
 import { Recipe } from 'src/app/models/recipe';
+import { RecipeComments } from 'src/app/models/recipe-comments';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
@@ -15,6 +17,8 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ProfileComponent implements OnInit {
 
+  newPostComment: PostComment = new PostComment();
+  newComment: RecipeComments = new RecipeComments();
   posts: Post[] = [];
   recipes: Recipe[] = [];
   postIsVisible: Boolean = true;
@@ -106,7 +110,7 @@ export class ProfileComponent implements OnInit {
   loadUser() {
     this.userService.getUserByUsername().subscribe(
       data => { this.editUser = data;
-        console.log("The password value is: " + data.password);
+        // console.log("The password value is: " + data.password);
         this.editUser.password = '';
         this.initializeArrays();
         this.user = data;
@@ -158,7 +162,7 @@ export class ProfileComponent implements OnInit {
     this.userService.updateUser(user).subscribe(
       data => {
       this.authService.logout();
-      console.log('Username being passed to login function: ' + user.username + ' Password: ' + user.password);
+      // console.log('Username being passed to login function: ' + user.username + ' Password: ' + user.password);
       this.authService.login(user.username, user.password).subscribe(
        loggedIn => {
          console.log('Logged in')
@@ -173,6 +177,18 @@ export class ProfileComponent implements OnInit {
     );
   }
 
+  // addNewPostComment(p: Post, i: number){
+  //   this.postService.addComment(p.id, this.newPostComment).subscribe(
+  //     data => {
+  //       this.newPostComment = new PostComment();
+  //       this.posts[i] = data;
+  //       // this.loadAllRecipes();
+  //     },
+  //     err => {
+  //       console.error('Observer error in profileComponent addNewPostComment(): ' + err)
+  //     }
+  //   );
+  // }
 
   // reload() {
   //   this.todoService.index().subscribe(
@@ -252,5 +268,18 @@ export class ProfileComponent implements OnInit {
     this.commentStatusTF[index] = false;
     // this.ratingStatusTF[index] = false;
     this.postStatusTF[index] = true;
+  }
+
+  addNewComment(r: Recipe, i: number){
+    this.recipeService.addComment(r.id, this.newComment).subscribe(
+      data => {
+        this.newComment = new RecipeComments();
+        this.recipes[i] = data;
+        // this.loadAllRecipes();
+      },
+      err => {
+        console.error('Observer error in homeComponent AddNewComment(): ' + err)
+      }
+    );
   }
 }

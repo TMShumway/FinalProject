@@ -24,6 +24,9 @@
             <button class="btn btn-success sideNavBtn mx-auto mt-2" (click)="showRecipeDiv()">My Recipes</button><br>
             <!-- <button class="btn btn-success sideNavBtn mx-auto">Friends Posts</button><br> -->
             <button class="btn btn-success sideNavBtn mx-auto mt-2" (click)="showPostDiv()"> My Posts</button>
+            <div *ngIf="user.role == 'ADMIN'">
+              <button class="btn btn-success sideNavBtn mx-auto mt-2" [routerLink]="['/admin']"> Admin </button>
+            </div>
           </div>
 
 
@@ -59,6 +62,20 @@
             <h5 class="card-title">{{p.title}}</h5>
             <p>{{p.description}}</p>
 
+              <!-- <div class="card mx-auto mt-1" style="width:98%;" *ngFor="let pc of p.postComments">
+                <div class="card-body">
+                  <p style="text-align: left;"><strong>{{pc.user.username}}: </strong>{{pc.details}}</p>
+                </div>
+              </div> -->
+              <!-- Reply Box -->
+              <!-- <div class="card mx-auto mb-1 mt-1" style="width:98%;">
+                <div class="card-body">
+                  <form class="form-inline">
+                        <textarea class="form-control" id="recipeComments" rows="2" name="description" placeholder="What's on your mind?" [(ngModel)]="newComment.details" ></textarea>
+                        <button class="btn btn-primary mt-2" (click)="addNewPostComment(p, i)">Reply</button>
+                  </form>
+                </div>
+              </div> -->
             <!-- Inner Nav -->
             <!-- <nav>
               <div class="nav nav-tabs" id="nav-tab uid" role="tablist">
@@ -88,14 +105,13 @@
 
       <!-- Recipe Display Div -->
       <div *ngIf="recipeIsVisible">
-        <div *ngFor="let r of recipes; let i = index" class="card mt-3 mx-auto">
+        <div *ngFor="let r of recipes; let i = index" class="card mt-3 text-center mx-auto">
           <!-- <script> uid = 'x' + r.id </script> -->
           <img class="card-img-top" src="{{r.recipeImages[0].imageUrl}}" alt="Card image cap">
           <div class="card-body">
-            <h3 class="card-title">{{r.name}}
+            <h3 class="card-title" style="text-align: left;">{{r.name}}
               <h5 *ngIf="!checkNaN(getRatingAverage(i))">
-                This Recipe Rated: {{getRatingAverage(i)}} STARS!
-
+                <p style="text-align: right;">This Recipe Rated: {{getRatingAverage(i)}} STARS!</p>
                 <div class="form-row">
                   <div class="col rating-col">
                     <h5 class="d-flex justify-content-center">Rating</h5>
@@ -113,7 +129,7 @@
                 </div>
               </h5>
               <h6 *ngIf="checkNaN(getRatingAverage(i))">
-                Not Yet Rated...
+               <p style="text-align: right;">Not Yet Rated...</p>
               </h6>
             </h3>
             <!-- Inner Nav -->
@@ -131,9 +147,9 @@
                   type="button" role="tab" aria-controls="nav-comment" aria-selected="false"
                   (click)="commentStatus(i)" [ngClass]="commentStatusTF[i] ? 'active' : ''">Comments</button>
                 <!-- <button class="nav-link" id="nav-rating-tab" data-bs-toggle="tab" data-bs-target="#nav-rating" type="button" role="tab" aria-controls="nav-contact" aria-selected="false" (click)="ratingStatus(i)" [ngClass]="ratingStatusTF[i] ? 'active' : ''">Rating</button> -->
-                <button class="nav-link" id="nav-post-tab" data-bs-toggle="tab" data-bs-target="#nav-post"
+                <!-- <button class="nav-link" id="nav-post-tab" data-bs-toggle="tab" data-bs-target="#nav-post"
                   type="button" role="tab" aria-controls="nav-post" aria-selected="false" (click)="postStatus(i)"
-                  [ngClass]="postStatusTF[i] ? 'active' : ''">Posts</button>
+                  [ngClass]="postStatusTF[i] ? 'active' : ''">Posts</button> -->
               </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
@@ -151,11 +167,19 @@
               <div class="tab-pane fade" id="nav-comment" [ngClass]="commentStatusTF[i] ? 'show active' : ''"
                 role="tabpanel" aria-labelledby="nav-comment-tab">
                 <div *ngFor="let rc of r.recipeComments">
-                  <br />
                   <div class="card mx-auto mt-1" style="width:98%;">
                     <div class="card-body">
-                      <strong>{{rc.user.username}}: </strong>{{ rc.details }}
+                      <p style="text-align: left;"><strong>{{rc.user.username}}: </strong>{{ rc.details }}</p>
                     </div>
+                  </div>
+                </div>
+                <!-- Reply Box -->
+                <div class="card mx-auto mb-1 mt-1" style="width:98%;">
+                  <div class="card-body">
+                    <form class="form-inline">
+                          <textarea class="form-control" id="recipeComments" rows="2" name="description" placeholder="What's on your mind?" [(ngModel)]="newComment.details" ></textarea>
+                          <button class="btn btn-primary mt-2" (click)="addNewComment(r, i)">Reply</button>
+                    </form>
                   </div>
                 </div>
               </div>
@@ -169,7 +193,7 @@
               </p>
             </div> -->
               <!-- Posts -->
-              <div class="tab-pane fade" id="nav-post" [ngClass]="postStatusTF[i] ? 'show active' : ''"
+              <!-- <div class="tab-pane fade" id="nav-post" [ngClass]="postStatusTF[i] ? 'show active' : ''"
                 role="tabpanel" aria-labelledby="nav-post-tab">
                 <div *ngFor="let post of r.posts">
                   <br>
@@ -184,7 +208,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> -->
             </div>
             <!-- Card Button -->
           </div>
